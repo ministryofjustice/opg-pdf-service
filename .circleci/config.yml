@@ -6,7 +6,7 @@ workflows:
       - test_pdf_service:
           name: test_pdf_service
       - docker_build_pdf_service:
-          name: pdf_service_build
+          name: build_pdf_service
           requires: [test_pdf_service]
 
 orbs:
