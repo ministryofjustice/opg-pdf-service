@@ -16,7 +16,7 @@ orbs:
         steps:
           - run:
               name: Install AWS CLI
-              command: sudo pip 3 install awscli --upgrade
+              command: sudo pip3 install awscli --upgrade
       ecr_login:
         steps:
           - run:
