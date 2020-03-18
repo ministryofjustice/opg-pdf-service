@@ -16,9 +16,9 @@ RUN  apt-get update \
     && chmod +x /usr/sbin/wait-for-it.sh
 
 WORKDIR /src/app
-COPY service-pdf/app/package.json ./package.json
+COPY package.json ./package.json
 RUN npm install
-COPY service-pdf/app .
+COPY . .
 
 EXPOSE 80
 
