@@ -46,9 +46,9 @@ orbs:
             name: Run tests with Jest
             command: mkdir -p ./test-results/junit && ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
         - store_test_results:
-            path: app/test-results
+            path: test-results
         - store_artifacts:
-            path: app/test-results/junit
+            path: test-results/junit
         - run:
             name: Run coverage with Jest
             command: |
@@ -59,11 +59,6 @@ orbs:
             path: build/service-pdf/
         - store_artifacts:
             path: build/service-pdf/
-        - persist_to_workspace:
-            root: build
-            paths:
-              - service-pdf/
-            when: always
 
     docker_build_pdf_service:
       #
@@ -84,7 +79,7 @@ orbs:
         - run:
             name: Build
             command: |
-              docker build --file docker/app/Dockerfile --tag pdf:latest .
+              docker build --file Dockerfile --tag pdf_service:latest .
         - ecr_login
         - run:
             name: Push container
