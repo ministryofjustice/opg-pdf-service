@@ -3,7 +3,7 @@ version: 2.1
 workflows:
   pr-build-and-test:
     jobs:
-      - pdf_serivce/test_pdf_service:
+      - pdf_service/test_pdf_service:
           name: test_pdf_service
       - pdf_service/docker_build_pdf_service:
           name: pdf_service_build
@@ -11,7 +11,7 @@ workflows:
 
 orbs:
   pdf_service:
-    commnads:
+    commands:
       install_aws_cli:
         steps:
           - run:
