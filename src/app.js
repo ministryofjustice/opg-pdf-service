@@ -26,9 +26,17 @@ const app = polka()
 
 app.get("/health-check", async (req, res) => {
     try {
-        return res.end("OK");
+        if (process.uptime() > 0) {
+            return res.end("OK");
+        } else {
+            res.writeHead(500, {
+                'Content-Type': 'application/json',
+                'X-Error-Code': 'The up time is less than zero'
+            });
+            return res.end();
+        }
     } catch(e) {
-        res.writeHead(503, {
+        res.writeHead(500, {
             'Content-Type': 'application/json',
             'X-Error-Code': 'There is a problem with the service.'
         });
