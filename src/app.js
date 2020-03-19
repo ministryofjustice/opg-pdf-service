@@ -3,6 +3,7 @@ const polka = require("polka");
 import GeneratePdf from "./lib/generatePdf";
 import {error} from "pdf-lib";
 
+
 function stripAnchorTagsFromHtml(headers) {
   return headers["strip-anchor-tags"] !== undefined;
 }
