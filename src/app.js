@@ -23,7 +23,7 @@ const app = polka()
     res.end(Buffer.from(result, "binary"));
   });
 
-app.get("/healthcheck", async (req, res) => {
+app.get("/health-check", async (req, res) => {
     try {
         return res.end("OK");
     } catch(e) {

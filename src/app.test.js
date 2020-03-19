@@ -21,11 +21,21 @@ describe("Given the app gets an api request to an endpoint", () => {
 });
 
 describe("Given the app gets an api request to an endpoint", () => {
-  describe("GET /healthcheck", () => {
+  describe("GET /health-check", () => {
     test("It should respond with a http status code of 200", async () => {
       const response = await request(app.handler)
-          .get("/healthcheck");
+          .get("/health-check");
       expect(response.statusCode).toBe(200);
+    });
+  });
+});
+
+describe("Given the app gets an api request to an endpoint", () => {
+  describe("GET /health-check", () => {
+    test("It should respond with a http status code of 503", async () => {
+      const response = await request(app.handler)
+          .get("/health-check").throw("I am an Error");
+      expect(response.statusCode).toBe(503);
     });
   });
 });
