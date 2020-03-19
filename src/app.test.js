@@ -19,3 +19,13 @@ describe("Given the app gets an api request to an endpoint", () => {
     });
   });
 });
+
+describe("Given the app gets an api request to an endpoint", () => {
+  describe("GET /healthcheck", () => {
+    test("It should respond with a http status code of 200", async () => {
+      const response = await request(app.handler)
+          .post("/healthcheck");
+      expect(response.statusCode).toBe(200);
+    });
+  });
+});
