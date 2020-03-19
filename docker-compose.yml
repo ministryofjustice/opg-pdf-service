@@ -1,0 +1,13 @@
+version: "2.1"
+
+services:
+  pdf-service:
+    container_name: pdf_service
+    image: pdf_service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3004:3004
+    environment:
+      PDF_SERVICE_PORT: 3004
