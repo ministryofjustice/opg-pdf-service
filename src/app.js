@@ -1,20 +1,16 @@
 const bodyParser = require("body-parser");
 const polka = require("polka");
 import GeneratePdf from "./lib/generatePdf";
+import pdfService from "./lib/pdfService";
 import {error} from "pdf-lib";
 
-
-function stripAnchorTagsFromHtml(headers) {
-  return headers["strip-anchor-tags"] !== undefined;
-}
-
 const app = polka()
-  .use(bodyParser.json({ type: "application/json" }))
+  .use(bodyParser.text({ type: "text/html", limit: "2000kb" }))
   .post("/generate-pdf", async (req, res) => {
-    const result = await GeneratePdf(req.body.html, {
-        stripTags: stripAnchorTagsFromHtml(req.headers),
-        pageWidth: req.body.pageWidth,
-        pageHeight:req.body.pageHeight
+    const result = await GeneratePdf(req.body, {
+        stripTags: pdfService.stripAnchorTagsFromHtml(req.headers["strip-anchor-tags"]),
+        pageWidth: pdfService.pageWidth(req.headers["page-width"]),
+        pageHeight: pdfService.pageHeight(req.headers["page-height"])
     });
 
     res.writeHead(200, {

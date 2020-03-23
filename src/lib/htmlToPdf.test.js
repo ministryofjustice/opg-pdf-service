@@ -18,4 +18,20 @@ describe("Given you pass HTML to be returned into PDF", () => {
       expect(pdf).toBeInstanceOf(Uint8Array);
     });
   });
+  describe("Given a PDF is valid with no page sizing sent and to be generated", () => {
+    test("it should generate a PDF using puppeteer successfully", async () => {
+      const pdf = await htmlToPdf(testHtml, { waitUntil: "load", pageHeight: null, pageWidth: null });
+
+      expect(pdf).not.toBeNull();
+      expect(pdf).toBeInstanceOf(Uint8Array);
+    });
+  });
+  describe("Given a PDF is valid with page sizing sent and to be generated", () => {
+    test("it should generate a PDF using puppeteer successfully", async () => {
+      const pdf = await htmlToPdf(testHtml, { waitUntil: "load", pageHeight: 20, pageWidth: 40 });
+
+      expect(pdf).not.toBeNull();
+      expect(pdf).toBeInstanceOf(Uint8Array);
+    });
+  });
 });

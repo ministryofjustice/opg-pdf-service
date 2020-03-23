@@ -1,22 +1,16 @@
 const request = require("supertest");
 const app = require("./app");
 
-const testHtml =  {
-    html: `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`
-}
-
-const testHtmlAndPageSizers =  {
-    html: `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`,
-    pageWidth: 200,
-    pageHeight: 300
-}
+const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`
+const pageWidth = 200
+const pageHeight = 300
 
 describe("Given the app gets an api request to an endpoint", () => {
     describe("POST /generate-pdf", () => {
         test("It should respond with a valid PDF and correct headers", async () => {
             const response = await request(app.handler)
                 .post("/generate-pdf")
-                .set("content-type", "application/json")
+                .set("content-type", "text/html")
                 .send(testHtml);
             expect(response.statusCode).toBe(200);
             expect(response.type).toBe("application/pdf");
@@ -30,8 +24,8 @@ describe("Given the app gets an api request to an endpoint", () => {
         test("It should respond with a valid PDF and new page size", async () => {
             const response = await request(app.handler)
                 .post("/generate-pdf")
-                .set("content-type", "application/json")
-                .send(testHtmlAndPageSizers);
+                .set("content-type", "text/html")
+                .send(testHtml);
             expect(response.statusCode).toBe(200);
             expect(response.type).toBe("application/pdf");
             expect(response.headers["content-disposition"]).toBe(
