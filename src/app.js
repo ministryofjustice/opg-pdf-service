@@ -8,11 +8,21 @@ function stripAnchorTagsFromHtml(headers) {
   return headers["strip-anchor-tags"] !== undefined;
 }
 
+function pageWidth(headers) {
+    return headers["page-width"] !== undefined;
+}
+
+function pageHeight(headers) {
+    return headers["page-height"] !== undefined;
+}
+
 const app = polka()
   .use(bodyParser.text({ type: "text/html", limit: "2000kb" }))
   .post("/generate-pdf", async (req, res) => {
     const result = await GeneratePdf(req.body, {
-      stripTags: stripAnchorTagsFromHtml(req.headers)
+        stripTags: stripAnchorTagsFromHtml(req.headers),
+        pageWidth: pageWidth(req.headers),
+        pageHeight: pageHeight(req.headers)
     });
 
     res.writeHead(200, {
