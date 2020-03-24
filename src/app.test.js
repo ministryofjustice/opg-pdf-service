@@ -2,11 +2,11 @@ const request = require("supertest");
 const app = require("./app");
 
 const testHtml =  {
-    html: `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>`
+    html: `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`
 }
 
 const testHtmlAndPageSizers =  {
-    html: `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>`,
+    html: `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`,
     pageWidth: 200,
     pageHeight: 300
 }
