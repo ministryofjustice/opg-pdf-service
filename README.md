@@ -69,6 +69,11 @@ The api details to call are as follows
 
 If the `strip-anchor-tags` header is present then the service will remove all anchor links in the document, else it will leave them present and clickable.
 
+- page-width: `1100` (optional)
+- page-height: `2000` (optional)
+
+If the `page-width` & `page-height` header is not present it will default to `1100` & `2000`
+
 ### Response Headers
 
 - Content-Type: `application/pdf`

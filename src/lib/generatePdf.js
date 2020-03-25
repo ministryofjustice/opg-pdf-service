@@ -7,7 +7,10 @@ const generatePdf = async (html, options) => {
   if (options.stripTags) {
     html = await stripAnchorTags(html);
   }
-  const pdf = await htmlToPdf(html, { waitUntil: "load" });
+  const pdf = await htmlToPdf(html, { waitUntil: "load",
+    pageWidth: options.pageWidth,
+    pageHeight: options.pageHeight
+  });
 
   const pdfDoc = await PDFDocument.load(pdf.buffer);
 
