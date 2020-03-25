@@ -1,4 +1,4 @@
-import pdfService from "./pdfService";
+import pdfService from "./pdfConfigService";
 
 describe("Given you send a page height", () => {
     test("It should update the value", () => {
@@ -20,6 +20,16 @@ describe("Given you dont send a page height", () => {
     });
 });
 
+describe("Given you send letters to page height", () => {
+    test("It should update the value", () => {
+        const testPageHeight = "abc";
+        const pageHeight= pdfService.pageHeight(testPageHeight);
+
+        expect(pageHeight).toBe(2000);
+        expect(pdfService.pageHeightValue).toBe(pageHeight);
+    });
+});
+
 describe("Given you send a page width", () => {
     test("It should update the value", () => {
         const testPageWidth = 500;
@@ -33,6 +43,16 @@ describe("Given you send a page width", () => {
 describe("Given you dont send a page width", () => {
     test("It should update the value", () => {
         const testPageWidth = null;
+        const pageWidth = pdfService.pageHeight(testPageWidth);
+
+        expect(pageWidth).toBe(2000);
+        expect(pdfService.pageHeightValue).toBe(pageWidth);
+    });
+});
+
+describe("Given you send letters to page width", () => {
+    test("It should update the value", () => {
+        const testPageWidth = "abc";
         const pageWidth = pdfService.pageHeight(testPageWidth);
 
         expect(pageWidth).toBe(2000);
