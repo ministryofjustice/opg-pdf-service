@@ -10,6 +10,16 @@ describe("Given you send a page height", () => {
     });
 });
 
+describe("Given you send a page height that is a string", () => {
+    test("It should update the value", () => {
+        const testPageHeight = "300";
+        const pageHeight= pdfService.pageHeight(testPageHeight);
+
+        expect(pageHeight).toBe(parseInt(testPageHeight));
+        expect(pdfService.pageHeightValue).toBe(pageHeight);
+    });
+});
+
 describe("Given you dont send a page height", () => {
     test("It should update the value", () => {
         const testPageHeight = null;
@@ -36,6 +46,16 @@ describe("Given you send a page width", () => {
         const pageWidth = pdfService.pageWidth(testPageWidth);
 
         expect(pageWidth).toBe(testPageWidth);
+        expect(pdfService.pageWidthValue).toBe(pageWidth);
+    });
+});
+
+describe("Given you send a page width that is a string", () => {
+    test("It should update the value", () => {
+        const testPageWidth = "500";
+        const pageWidth = pdfService.pageWidth(testPageWidth);
+
+        expect(pageWidth).toBe(parseInt(testPageWidth));
         expect(pdfService.pageWidthValue).toBe(pageWidth);
     });
 });

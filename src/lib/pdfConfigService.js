@@ -1,10 +1,12 @@
 class PdfConfigService {
 
     static pageHeight(height) {
-        return Number.isInteger(height) ? this.pageHeightValue = height : this.pageHeightValue = 2000;
+            height = parseInt(height)
+            return Number.isInteger(height) ? this.pageHeightValue = height : this.pageHeightValue = 2000;
     }
 
     static pageWidth(width) {
+        width = parseInt(width)
         return Number.isInteger(width)  ? this.pageWidthValue = width : this.pageWidthValue = 1100 ;
     }
 
