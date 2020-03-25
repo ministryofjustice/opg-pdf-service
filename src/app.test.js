@@ -2,8 +2,6 @@ const request = require("supertest");
 const app = require("./app");
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`
-const pageWidth = 200
-const pageHeight = 300
 
 describe("Given the app gets an api request to an endpoint", () => {
     describe("POST /generate-pdf", () => {
