@@ -1,11 +1,11 @@
 class PdfService {
 
     static pageHeight(height) {
-        return this.pageHeightValue = height;
+        return height ? this.pageHeightValue = height : this.pageHeightValue = 2000;
     }
 
     static pageWidth(width) {
-        return this.pageWidthValue = width;
+        return width ? this.pageWidthValue = width : this.pageWidthValue = 1100;
     }
 
     static stripAnchorTagsFromHtml(condition) {
