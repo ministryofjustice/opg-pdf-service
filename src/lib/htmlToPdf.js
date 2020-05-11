@@ -21,10 +21,10 @@ const htmlToPdf = async (html, options) => {
     pdf = await page.pdf({
       preferCSSPageSize: false,
       margin: {
-        top: 15,
-        bottom: 70,
-        right: 70,
-        left: 70,
+        top: options.marginTop,
+        bottom: options.marginBottom,
+        right: options.marginRight,
+        left: options.marginLeft,
       },
       format: 'A4'
     });

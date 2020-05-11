@@ -8,8 +8,10 @@ const generatePdf = async (html, options) => {
     html = await stripAnchorTags(html);
   }
   const pdf = await htmlToPdf(html, { waitUntil: "load",
-    pageWidth: options.pageWidth,
-    pageHeight: options.pageHeight
+    marginTop: options.marginTop,
+    marginBottom: options.marginBottom,
+    marginLeft: options.marginLeft,
+    marginRight: options.marginRight
   });
 
   const pdfDoc = await PDFDocument.load(pdf.buffer);

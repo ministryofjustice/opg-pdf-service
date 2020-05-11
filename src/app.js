@@ -9,8 +9,10 @@ const app = polka()
   .post("/generate-pdf", async (req, res) => {
     const result = await GeneratePdf(req.body, {
         stripTags: pdfService.stripAnchorTagsFromHtml(req.headers["strip-anchor-tags"]),
-        pageWidth: pdfService.pageWidth(req.headers["page-width"]),
-        pageHeight: pdfService.pageHeight(req.headers["page-height"]),
+        marginTop: pdfService.margin(req.headers["margin-top"]),
+        marginBottom: pdfService.margin(req.headers["margin-bottom"]),
+        marginLeft: pdfService.margin(req.headers["margin-left"]),
+        marginRight: pdfService.margin(req.headers["margin-right"]),
         title: pdfService.title(req.headers["title"]),
         subject: pdfService.subject(req.headers["subject"])
     });
