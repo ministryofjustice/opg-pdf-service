@@ -15,18 +15,23 @@ const htmlToPdf = async (html, options) => {
 
   try {
     const page = await browser.newPage();
-    await page.emulateMedia("screen");
+    await page.emulateMedia("print");
 
     await page.setContent(html, options);
     pdf = await page.pdf({
-      printBackground: true,
-      width: options.pageWidth,
-      height: options.pageHeight
+      preferCSSPageSize: false,
+      margin: {
+        top: 15,
+        bottom: 70,
+        right: 70,
+        left: 70,
+      },
+      format: 'A4'
     });
     await browser.close();
   } catch (error) {
     await browser.close();
-    throw new Error("PDF Generation Error", error);
+    throw error;
   }
   return pdf;
 };

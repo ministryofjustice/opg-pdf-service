@@ -14,7 +14,14 @@ const generatePdf = async (html, options) => {
 
   const pdfDoc = await PDFDocument.load(pdf.buffer);
 
-  pdfDoc.setTitle("View LPA - View a lasting power of attorney");
+  if (options.title) {
+    pdfDoc.setTitle(options.title);
+  }
+
+  if (options.subject) {
+    pdfDoc.setSubject(options.subject);
+  }
+
   const pdfBytes = await pdfDoc.save();
   return pdfBytes;
 };

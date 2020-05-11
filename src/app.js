@@ -10,7 +10,9 @@ const app = polka()
     const result = await GeneratePdf(req.body, {
         stripTags: pdfService.stripAnchorTagsFromHtml(req.headers["strip-anchor-tags"]),
         pageWidth: pdfService.pageWidth(req.headers["page-width"]),
-        pageHeight: pdfService.pageHeight(req.headers["page-height"])
+        pageHeight: pdfService.pageHeight(req.headers["page-height"]),
+        title: pdfService.title(req.headers["title"]),
+        subject: pdfService.subject(req.headers["subject"])
     });
 
     res.writeHead(200, {
