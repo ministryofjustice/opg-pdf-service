@@ -36,13 +36,13 @@ orbs:
 jobs:
   test_pdf_service:
     docker:
-      - image: 'buildkite/puppeteer'
+      - image: 'buildkite/puppeteer:v3.0.4'
     resource_class: small
     steps:
       - checkout
       - run:
           name: Install dependencies
-          command: npm install
+          command: yarn install
       - run:
           name: Run tests with Jest
           command: mkdir -p ./test-results/junit && ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
