@@ -15,7 +15,7 @@ const htmlToPdf = async (html, options) => {
 
   try {
     const page = await browser.newPage();
-    await page.emulateMedia("print");
+    await page.emulateMediaType("print");
 
     await page.setContent(html, options);
     pdf = await page.pdf({
@@ -28,11 +28,10 @@ const htmlToPdf = async (html, options) => {
       },
       format: 'A4'
     });
+  } finally {
     await browser.close();
-  } catch (error) {
-    await browser.close();
-    throw error;
   }
+
   return pdf;
 };
 
