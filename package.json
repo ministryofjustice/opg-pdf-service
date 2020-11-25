@@ -8,8 +8,8 @@
     "test:watch": "jest --watch",
     "start:webserver": "node -r esm src/server.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Ministry of Justice",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
