@@ -1,4 +1,8 @@
-import htmlToPdf from "./htmlToPdf";
+import { exitBrowser, htmlToPdf } from "./htmlToPdf";
+
+afterAll(async () => {
+  await exitBrowser();
+});
 
 describe("Given you pass HTML to be returned into PDF", () => {
   const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>`;
@@ -6,7 +10,7 @@ describe("Given you pass HTML to be returned into PDF", () => {
   describe("Given a PDF is not generated correctly due to an error", () => {
     test("it should return null and throw an error", () => {
       return expect(
-        htmlToPdf(testHtml, { waitUntil: "loads", pageHeight: 2000, pageWidth: 1100 })
+          htmlToPdf(testHtml, { waitUntil: "loads", pageHeight: 2000, pageWidth: 1100 })
       ).rejects.toThrow("Unknown value for options.waitUntil: loads");
     });
   });

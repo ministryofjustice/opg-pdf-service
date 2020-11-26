@@ -2,7 +2,6 @@ const bodyParser = require("body-parser");
 const polka = require("polka");
 import GeneratePdf from "./lib/generatePdf";
 import pdfService from "./lib/pdfConfigService";
-import {error} from "pdf-lib";
 
 const app = polka()
   .use(bodyParser.text({ type: "text/html", limit: "2000kb" }))
