@@ -1,5 +1,4 @@
-const fs = require("fs");
-import htmlToPdf from "./htmlToPdf";
+import { htmlToPdf } from "./htmlToPdf";
 import stripAnchorTags from "./stripAnchorTags";
 import { PDFDocument } from "pdf-lib";
 
@@ -24,8 +23,7 @@ const generatePdf = async (html, options) => {
     pdfDoc.setSubject(options.subject);
   }
 
-  const pdfBytes = await pdfDoc.save();
-  return pdfBytes;
+  return await pdfDoc.save();
 };
 
 export default generatePdf;

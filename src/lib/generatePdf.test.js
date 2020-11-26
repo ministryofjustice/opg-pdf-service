@@ -1,6 +1,11 @@
 import GeneratePdf from "./generatePdf";
+import { exitBrowser } from "./htmlToPdf";
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>`;
+
+afterAll(async () => {
+  await exitBrowser();
+});
 
 describe("Given you have a HTML document you want to create a PDF Document of", () => {
   test("It should generate a PDF with stripping tags", async () => {
