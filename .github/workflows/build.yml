@@ -28,10 +28,23 @@ jobs:
           mkdir -p ./test-results/junit && ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
       - name: Code Coverage
         run: |
-          mkdir -p $HOME/project/build/service-pdf
+          mkdir -p /home/runner/project/build/service-pdf
           ./node_modules/.bin/jest --ci --runInBand --collectCoverage=true
-          cp -a ./coverage $HOME/project/build/service-pdf
-  
+          cp -a ./coverage /home/runner/project/build/service-pdf
+      
+      - name: Upload Junit
+        uses: actions/upload-artifact@v2
+        with:
+          name: junit
+          path: |
+            test-results/junit
+      - name: Upload Coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: |
+            /home/runner/project/build/service-pdf
+
   build:
     name: "Build & Push Containers"
     runs-on: ubuntu-latest
@@ -119,5 +132,3 @@ jobs:
       - name: Trigger Dev Deploy
         shell: bash
         run: curl -u ${{ secrets.JENKINS_API_USER }}:${{ secrets.JENKINS_API_TOKEN }} "https://${{ secrets.JENKINS_URL }}/job/Sirius/job/Deploy_to_Development/build?token=${{ secrets.JENKINS_API_TOKEN_NAME }}&cause=Triggered+by+opg-pdf-service"
-
-        
