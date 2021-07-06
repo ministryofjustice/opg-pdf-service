@@ -1,4 +1,4 @@
-FROM buildkite/puppeteer:8.0.0
+FROM buildkite/puppeteer:10.0.0
 
 WORKDIR /src/app
 COPY package.json ./package.json
