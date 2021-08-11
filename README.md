@@ -25,7 +25,7 @@ You can run the test by running the following
 
 ## Puppeteer
 
-Puppeteer is used for the parsing of HTML and CSS as well as the generation of the PDF. Passing in a HTML document with embedded CSS in a style tag will generate a accessible PDF for download.
+Puppeteer is used for the parsing of HTML and CSS as well as the generation of the PDF. Passing in a HTML document with embedded CSS in a style tag will generate an accessible PDF for download.
 
 There are some things to be aware of that affect performance.
 
