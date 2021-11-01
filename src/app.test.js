@@ -1,7 +1,13 @@
+import { exitBrowser } from "./lib/htmlToPdf";
+
 const request = require("supertest");
 const app = require("./app");
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`
+
+afterAll(async () => {
+    await exitBrowser();
+});
 
 describe("Given the app gets an api request to an endpoint", () => {
     describe("POST /generate-pdf", () => {
