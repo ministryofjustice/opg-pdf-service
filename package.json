@@ -16,15 +16,15 @@
     "esm": "^3.2.25",
     "pdf-lib": "^1.2.1",
     "polka": "^0.5.2",
-    "puppeteer": "^10.1.0"
+    "puppeteer": "^10.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.8",
-    "babel-jest": "^27.0.6",
-    "jest": "^27.0.6",
-    "jest-junit": "^12.2.0",
-    "supertest": "^6.1.3"
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
+    "jest-junit": "^13.0.0",
+    "supertest": "^6.1.6"
   },
   "jest-junit": {
     "outputDirectory": "./test-results/junit",
