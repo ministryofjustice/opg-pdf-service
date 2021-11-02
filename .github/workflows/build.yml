@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 defaults:
   run:
@@ -31,18 +32,11 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Install Dependencies
-        run: |
-          yarn install
 
-      - name: Run Tests
-        run: |
-          mkdir -p ./test-results/junit && ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
-      - name: Code Coverage
+      - name: Run Unit Tests & Generate Coverage Report
         run: |
           mkdir -p /home/runner/project/build/service-pdf
-          ./node_modules/.bin/jest --ci --runInBand --collectCoverage=true
-          cp -a ./coverage /home/runner/project/build/service-pdf
+          make unit-test-coverage
 
       - name: Upload Junit
         uses: actions/upload-artifact@v2
@@ -50,6 +44,7 @@ jobs:
           name: junit
           path: |
             test-results/junit
+
       - name: Upload Coverage
         uses: actions/upload-artifact@v2
         with:
@@ -79,7 +74,22 @@ jobs:
 
       - name: Build Container
         run: |
-          docker build --file Dockerfile --tag pdf_service:latest .
+          make build
+
+      - name: Trivy Image Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: pdf-service:latest
+          severity: 'HIGH,CRITICAL'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
 
       - name: Bump version
         id: bump_version
@@ -113,10 +123,10 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           PDF_SERVICE_ECR_REPOSITORY: pdf_service
         run: |
-          docker tag pdf_service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
-          docker tag pdf_service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest
+          docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+          docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest
           if [ $BRANCH_NAME == "main" ]; then
-            docker tag pdf_service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}
+            docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}
             # We want all of the tags pushed
             docker push --all-tags $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY
           else
