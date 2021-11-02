@@ -7,4 +7,7 @@ COPY yarn.lock ./yarn.lock
 RUN yarn install --production
 COPY . .
 
+RUN chown -R node /src
+USER node
+
 CMD [ "node", "-r", "esm", "src/server.js" ]
