@@ -6,7 +6,9 @@
   "scripts": {
     "test": "CI=true jest --coverage",
     "test:watch": "jest --watch",
-    "start:webserver": "node -r esm src/server.js"
+    "start:webserver": "node -r esm src/server.js",
+    "unit-test": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
+    "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true"
   },
   "author": "Ministry of Justice",
   "license": "MIT",

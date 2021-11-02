@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 defaults:
   run:
@@ -31,18 +32,11 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Install Dependencies
-        run: |
-          yarn install
 
-      - name: Run Tests
-        run: |
-          mkdir -p ./test-results/junit && ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
-      - name: Code Coverage
+      - name: Run Unit Tests & Generate Coverage Report
         run: |
           mkdir -p /home/runner/project/build/service-pdf
-          ./node_modules/.bin/jest --ci --runInBand --collectCoverage=true
-          cp -a ./coverage /home/runner/project/build/service-pdf
+          make unit-test-coverage
 
       - name: Upload Junit
         uses: actions/upload-artifact@v2
@@ -50,6 +44,7 @@ jobs:
           name: junit
           path: |
             test-results/junit
+
       - name: Upload Coverage
         uses: actions/upload-artifact@v2
         with:
@@ -79,7 +74,7 @@ jobs:
 
       - name: Build Container
         run: |
-          docker build --file Dockerfile --tag pdf_service:latest .
+          make build
 
       - name: Bump version
         id: bump_version
