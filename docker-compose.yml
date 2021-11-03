@@ -2,20 +2,26 @@ version: "2.1"
 
 services:
   pdf-service:
-    container_name: pdf_service:latest
-    image: pdf_service
+    container_name: pdf-service
+    image: pdf-service:latest
     build:
       context: .
       dockerfile: Dockerfile
+      target: production
     ports:
       - 3004:8000
     environment:
       PDF_SERVICE_PORT: 8000
 
   yarn:
-    image: buildkite/puppeteer:10.0.0
+    container_name: yarn-pdf-service
+    image: pdf-service:test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
     working_dir: /app
     volumes:
-      - "./:/app"
+      - "./coverage:/app/coverage"
+      - "./test-results:/app/test-results"
       - "~/.yarn-cache/v6/supervision:/usr/local/share/.cache/yarn/v6"
-    entrypoint: ['yarn']
