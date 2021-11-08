@@ -38,6 +38,20 @@ jobs:
           mkdir -p /home/runner/project/build/service-pdf
           make unit-test-coverage
 
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          check_name: "Unit Test Results"
+          files: test-results/junit/results.xml
+
+      - name: Coverage Report
+        uses: lucassabreu/comment-coverage-clover@main
+        with:
+          file: "coverage/clover.xml"
+          min-line-coverage: 89
+          min-method-coverage: 100
+
       - name: Upload Junit
         uses: actions/upload-artifact@v2
         with:
@@ -76,6 +90,21 @@ jobs:
         run: |
           make build
 
+      - name: Trivy Image Vulnerability Scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: pdf-service:latest
+          severity: 'HIGH,CRITICAL'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
       - name: Bump version
         id: bump_version
         uses: anothrNick/github-tag-action@1.33.0
@@ -108,10 +137,10 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           PDF_SERVICE_ECR_REPOSITORY: pdf_service
         run: |
-          docker tag pdf_service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
-          docker tag pdf_service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest
+          docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+          docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest
           if [ $BRANCH_NAME == "main" ]; then
-            docker tag pdf_service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}
+            docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}
             # We want all of the tags pushed
             docker push --all-tags $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY
           else
