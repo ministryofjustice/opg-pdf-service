@@ -33,6 +33,10 @@
     "outputName": "results.xml"
   },
   "jest": {
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "resetMocks": true,
     "testMatch": [
       "**/?(*.)+(test).js"
