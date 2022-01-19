@@ -47,7 +47,7 @@ export const htmlToPdf = async (html, options) => {
     await page.setContent(html, options);
     pdf = await page.pdf({
       preferCSSPageSize: false,
-      printBackground: true
+      printBackground: true,
       margin: {
         top: options.marginTop,
         bottom: options.marginBottom,
