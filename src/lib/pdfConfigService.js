@@ -1,8 +1,8 @@
 class PdfConfigService {
 
     static margin(value) {
-            value = parseInt(value)
-            return Number.isInteger(value) ? value : 0;
+        value = parseInt(value)
+        return Number.isInteger(value) ? value : 0;
     }
     static stripAnchorTagsFromHtml(condition) {
         return this.stripAnchorTagsFromHtmlValue = condition;
