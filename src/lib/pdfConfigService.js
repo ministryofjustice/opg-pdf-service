@@ -20,9 +20,9 @@ class PdfConfigService {
         return emulateMediaType ? emulateMediaType : "print";
     }
 
-    static printBackground(printBackground) {
-        return printBackground ? printBackground : false;
-    }
+    static printBackground(condition) {
+      return this.printBackground = condition;
+  }
 }
 
 export default PdfConfigService;
