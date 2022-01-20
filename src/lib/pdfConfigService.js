@@ -21,7 +21,7 @@ class PdfConfigService {
     }
 
     static printBackground(condition) {
-      return this.printBackground = condition;
+      return this.printBackgroundValue = condition;
   }
 }
 
