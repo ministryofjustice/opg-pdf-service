@@ -42,10 +42,11 @@ export const htmlToPdf = async (html, options) => {
   const page = await browser.newPage();
 
   try {
-    await page.emulateMediaType("print");
+    await page.emulateMediaType(options.emulateMediaType ? options.emulateMediaType : "print");
 
     await page.setContent(html, options);
     pdf = await page.pdf({
+      printBackground: options.printBackground,
       preferCSSPageSize: false,
       margin: {
         top: options.marginTop,
