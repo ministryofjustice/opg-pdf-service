@@ -15,6 +15,14 @@ class PdfConfigService {
     static subject(subject) {
         return subject ? subject : "";
     }
+
+    static emulateMediaType(emulateMediaType) {
+        return emulateMediaType ? emulateMediaType : "print";
+    }
+
+    static printBackground(printBackground) {
+        return printBackground ? printBackground : false;
+    }
 }
 
 export default PdfConfigService;

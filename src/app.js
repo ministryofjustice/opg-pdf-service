@@ -14,7 +14,8 @@ const app = polka()
         marginRight: pdfService.margin(req.headers["margin-right"]),
         title: pdfService.title(req.headers["title"]),
         subject: pdfService.subject(req.headers["subject"]),
-        printBackground: pdfService.printBackground(req.headers["print-background"])
+        printBackground: pdfService.printBackground(req.headers["print-background"]),
+        emulateMediaType: pdfService.emulateMediaType(req.headers["emulate-media-type"])
     });
 
     res.writeHead(200, {
