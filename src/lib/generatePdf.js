@@ -10,7 +10,9 @@ const generatePdf = async (html, options) => {
     marginTop: options.marginTop,
     marginBottom: options.marginBottom,
     marginLeft: options.marginLeft,
-    marginRight: options.marginRight
+    marginRight: options.marginRight,
+    printBackground: options.printBackground,
+    emulateMediaType: options.emulateMediaType ? options.emulateMediaType : "print"
   });
 
   const pdfDoc = await PDFDocument.load(pdf.buffer);

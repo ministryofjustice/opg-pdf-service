@@ -1,8 +1,8 @@
 class PdfConfigService {
 
     static margin(value) {
-            value = parseInt(value)
-            return Number.isInteger(value) ? value : 0;
+        value = parseInt(value)
+        return Number.isInteger(value) ? value : 0;
     }
     static stripAnchorTagsFromHtml(condition) {
         return this.stripAnchorTagsFromHtmlValue = condition;
@@ -15,6 +15,14 @@ class PdfConfigService {
     static subject(subject) {
         return subject ? subject : "";
     }
+
+    static emulateMediaType(emulateMediaType) {
+        return emulateMediaType ? emulateMediaType : "print";
+    }
+
+    static printBackground(condition) {
+      return this.printBackgroundValue = condition;
+  }
 }
 
 export default PdfConfigService;
