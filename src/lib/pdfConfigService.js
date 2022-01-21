@@ -4,8 +4,8 @@ class PdfConfigService {
         value = parseInt(value)
         return Number.isInteger(value) ? value : 0;
     }
-    static stripAnchorTagsFromHtml(condition) {
-        return this.stripAnchorTagsFromHtmlValue = condition;
+    static stripAnchorTagsFromHtml(value) {
+        return this.stripAnchorTagsFromHtmlValue = !!Number(value);;
     }
 
     static title(title) {
@@ -20,8 +20,8 @@ class PdfConfigService {
         return emulateMediaType ? emulateMediaType : "print";
     }
 
-    static printBackground(condition) {
-        return this.printBackgroundValue = condition;
+    static printBackground(value) {
+        return this.printBackgroundValue = !!Number(value);
     }
 }
 
