@@ -6,6 +6,7 @@ import pdfService from "./lib/pdfConfigService";
 const app = polka()
   .use(bodyParser.text({ type: "text/html", limit: "2000kb" }))
   .post("/generate-pdf", async (req, res) => {
+    console.debug("Request Headers", req.headers);
     const result = await GeneratePdf(req.body, {
         stripTags: pdfService.stripAnchorTagsFromHtml(req.headers["strip-anchor-tags"]),
         marginTop: pdfService.margin(req.headers["margin-top"]),

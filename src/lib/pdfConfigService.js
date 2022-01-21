@@ -21,8 +21,8 @@ class PdfConfigService {
     }
 
     static printBackground(condition) {
-      return this.printBackgroundValue = condition;
-  }
+        return this.printBackgroundValue = condition;
+    }
 }
 
 export default PdfConfigService;
