@@ -1,11 +1,11 @@
 class PdfConfigService {
 
     static margin(value) {
-            value = parseInt(value)
-            return Number.isInteger(value) ? value : 0;
+        value = parseInt(value)
+        return Number.isInteger(value) ? value : 0;
     }
-    static stripAnchorTagsFromHtml(condition) {
-        return this.stripAnchorTagsFromHtmlValue = condition;
+    static stripAnchorTagsFromHtml(value) {
+        return this.stripAnchorTagsFromHtmlValue = !!Number(value);;
     }
 
     static title(title) {
@@ -14,6 +14,14 @@ class PdfConfigService {
 
     static subject(subject) {
         return subject ? subject : "";
+    }
+
+    static emulateMediaType(emulateMediaType) {
+        return emulateMediaType ? emulateMediaType : "print";
+    }
+
+    static printBackground(value) {
+        return this.printBackgroundValue = !!Number(value);
     }
 }
 
