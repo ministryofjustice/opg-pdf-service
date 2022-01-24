@@ -38,11 +38,11 @@ describe("Given you send letters to margin top", () => {
 
 describe("Given you send a flag for strip anchor tags from Html", () => {
     test("It should update the value", () => {
-        const testStripAnchorTagsFromHtml = true;
+        const testStripAnchorTagsFromHtml = "true";
         const stripAnchorTagsFromHtml = pdfService.stripAnchorTagsFromHtml(testStripAnchorTagsFromHtml);
 
-        expect(stripAnchorTagsFromHtml).toBe(testStripAnchorTagsFromHtml);
-        expect(pdfService.stripAnchorTagsFromHtml(true)).toBe(stripAnchorTagsFromHtml);
+        expect(stripAnchorTagsFromHtml).toBeTruthy();
+        expect(pdfService.stripAnchorTagsFromHtml(testStripAnchorTagsFromHtml)).toBe(stripAnchorTagsFromHtml);
     });
 });
 
@@ -64,7 +64,7 @@ describe("Given you send letters to emulate media type as an empty value", () =>
 
 describe("Given you send letters to print background images", () => {
     test("It should be true", () => {
-        const printBackground = pdfService.printBackground(true);
+        const printBackground = pdfService.printBackground("true");
 
         expect(printBackground).toBeTruthy();
     });

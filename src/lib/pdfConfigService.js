@@ -5,7 +5,7 @@ class PdfConfigService {
         return Number.isInteger(value) ? value : 0;
     }
     static stripAnchorTagsFromHtml(value) {
-        return this.stripAnchorTagsFromHtmlValue = !!Number(value);;
+        return this.stripAnchorTagsFromHtmlValue = (value == "true");
     }
 
     static title(title) {
@@ -21,7 +21,7 @@ class PdfConfigService {
     }
 
     static printBackground(value) {
-        return this.printBackgroundValue = !!Number(value);
+        return this.printBackgroundValue = (value == "true");
     }
 }
 
