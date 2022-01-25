@@ -1,18 +1,21 @@
-import { htmlToPdf } from "./htmlToPdf";
-import stripAnchorTags from "./stripAnchorTags";
-import { PDFDocument } from "pdf-lib";
+import { htmlToPdf } from './htmlToPdf';
+import stripAnchorTags from './stripAnchorTags';
+import { PDFDocument } from 'pdf-lib';
 
 const generatePdf = async (html, options) => {
   if (options.stripTags) {
     html = await stripAnchorTags(html);
   }
-  const pdf = await htmlToPdf(html, { waitUntil: "load",
+  const pdf = await htmlToPdf(html, {
+    waitUntil: 'load',
     marginTop: options.marginTop,
     marginBottom: options.marginBottom,
     marginLeft: options.marginLeft,
     marginRight: options.marginRight,
     printBackground: options.printBackground,
-    emulateMediaType: options.emulateMediaType ? options.emulateMediaType : "print"
+    emulateMediaType: options.emulateMediaType
+      ? options.emulateMediaType
+      : 'print',
   });
 
   const pdfDoc = await PDFDocument.load(pdf.buffer);
