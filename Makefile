@@ -22,3 +22,7 @@ unit-test-coverage: build-test
 	mkdir -p -m 0777 ./test-results/junit
 	mkdir -p -m 0777 ./coverage
 	docker-compose run --rm yarn unit-test-coverage
+
+lint-test:
+	docker-compose run --rm yarn lint:check
+	docker-compose run --rm yarn jshint
