@@ -3,7 +3,7 @@ import { exitBrowser } from "./lib/htmlToPdf";
 const request = require("supertest");
 const app = require("./app");
 
-const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`
+const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`;
 
 afterAll(async () => {
     await exitBrowser();
@@ -43,7 +43,7 @@ describe("Given the app gets an api request to an endpoint", () => {
 describe("Given the app gets an api request to an endpoint", () => {
     describe("GET /health-check", () => {
         test("It should respond with a http status code of 200", async () => {
-            await request(app.handler).get("/health-check").expect(200)
+            await request(app.handler).get("/health-check").expect(200);
         });
     });
 });

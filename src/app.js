@@ -13,8 +13,8 @@ const app = polka()
         marginBottom: pdfService.margin(req.headers["margin-bottom"]),
         marginLeft: pdfService.margin(req.headers["margin-left"]),
         marginRight: pdfService.margin(req.headers["margin-right"]),
-        title: pdfService.title(req.headers["title"]),
-        subject: pdfService.subject(req.headers["subject"]),
+        title: pdfService.title(req.headers.title),
+        subject: pdfService.subject(req.headers.subject),
         printBackground: pdfService.printBackground(req.headers["print-background"]),
         emulateMediaType: pdfService.emulateMediaType(req.headers["emulate-media-type"])
     });
