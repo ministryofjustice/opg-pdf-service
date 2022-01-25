@@ -6,6 +6,7 @@ import pdfService from "./lib/pdfConfigService";
 const app = polka()
   .use(bodyParser.text({ type: "text/html", limit: "2000kb" }))
   .post("/generate-pdf", async (req, res) => {
+    console.debug("Request Headers", req.headers);
     const result = await GeneratePdf(req.body, {
         stripTags: pdfService.stripAnchorTagsFromHtml(req.headers["strip-anchor-tags"]),
         marginTop: pdfService.margin(req.headers["margin-top"]),
@@ -13,7 +14,9 @@ const app = polka()
         marginLeft: pdfService.margin(req.headers["margin-left"]),
         marginRight: pdfService.margin(req.headers["margin-right"]),
         title: pdfService.title(req.headers["title"]),
-        subject: pdfService.subject(req.headers["subject"])
+        subject: pdfService.subject(req.headers["subject"]),
+        printBackground: pdfService.printBackground(req.headers["print-background"]),
+        emulateMediaType: pdfService.emulateMediaType(req.headers["emulate-media-type"])
     });
 
     res.writeHead(200, {
