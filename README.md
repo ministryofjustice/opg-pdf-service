@@ -14,9 +14,9 @@ When on staging or live, the url will be available in the PHP Environment variab
 
 The project uses Jest to test the javascript components. Only `server.js` is ignored due to its implementation not needing testing.
 
-Jest also provides us with code coverage reports. There are currently no thresholds setup to fail tests but this could be done easily in the future.
+Jest also provides us with code coverage reports. There are currently no thresholds setup to fail tests but this could be done in the future.
 
-Coverage is fed into codecov for easy reporting via Github and also hooked into CircleCI which will fail the build if any tests fail.
+Coverage is fed into codecov for reporting via Github and also hooked into CircleCI which will fail the build if any tests fail.
 
 You can run the test by running the following
 
@@ -65,9 +65,17 @@ The api details to call are as follows
 ### Request Headers
 
 - Content-Type: `text/html`
-- strip-anchor-tags: `1` (optional)
+- strip-anchor-tags: `true` (optional)
 
 If the `strip-anchor-tags` header is present then the service will remove all anchor links in the document, else it will leave them present and clickable.
+
+- print-background: `true` (optional)
+
+If the `print-background` header is present then the service will include background colours and images, else it will exclude them.
+
+- emulate-media-type: `print` (optional)
+
+If the `emulate-media-type` header is set to `print` it will attempt to render the PDF with any linked print styles. If it is set to `screen` it will use the standard style tags.
 
 - page-width: `1100` (optional)
 - page-height: `2000` (optional)

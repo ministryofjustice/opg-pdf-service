@@ -1,20 +1,19 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer');
 
 let browser = null;
 
 async function initBrowser() {
   browser = await puppeteer.launch({
-        args: [
-          // Required for Docker version of Puppeteer
-          "--no-sandbox",
-          "--disable-setuid-sandbox",
-          // This will write shared memory files into /tmp instead of /dev/shm,
-          // because Docker’s default for /dev/shm is 64MB
-          "--disable-dev-shm-usage",
-          '--disable-gpu',
-        ]
-      }
-  );
+    args: [
+      // Required for Docker version of Puppeteer
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      // This will write shared memory files into /tmp instead of /dev/shm,
+      // because Docker’s default for /dev/shm is 64MB
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+    ],
+  });
 }
 
 export async function exitBrowser() {
@@ -31,7 +30,7 @@ export const htmlToPdf = async (html, options) => {
 
     // This will happen when you call browser.close(), not just when problems occur
     browser.on('disconnected', async () => {
-      console.log("Browser disconnected");
+      console.log('Browser disconnected');
 
       browser = null;
     });
@@ -42,7 +41,9 @@ export const htmlToPdf = async (html, options) => {
   const page = await browser.newPage();
 
   try {
-    await page.emulateMediaType(options.emulateMediaType ? options.emulateMediaType : "print");
+    await page.emulateMediaType(
+      options.emulateMediaType ? options.emulateMediaType : 'print',
+    );
 
     await page.setContent(html, options);
     pdf = await page.pdf({
@@ -54,7 +55,7 @@ export const htmlToPdf = async (html, options) => {
         right: options.marginRight,
         left: options.marginLeft,
       },
-      format: 'A4'
+      format: 'A4',
     });
   } finally {
     await page.close();
