@@ -8,7 +8,10 @@
     "test:watch": "jest --watch",
     "start:webserver": "node -r esm src/server.js",
     "unit-test": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
-    "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true"
+    "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true",
+    "lint:check": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --fix --ignore-path .gitignore .",
+    "jshint": "jshint src/"
   },
   "author": "Ministry of Justice",
   "license": "MIT",
@@ -24,8 +27,13 @@
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
     "babel-jest": "^27.4.6",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
     "jest-junit": "^13.0.0",
+    "jshint": "^2.13.4",
+    "prettier": "^2.5.1",
     "supertest": "^6.1.6"
   },
   "jest-junit": {
