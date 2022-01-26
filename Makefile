@@ -14,11 +14,16 @@ scan:
 	trivy --exit-code 0 --severity MEDIUM,HIGH pdf-service:latest
 	trivy --exit-code 1 --severity CRITICAL pdf-service:latest
 
-unit-test:
-	mkdir -p -m 0777 ./test-results/junit
+unit-test: setup-directories
 	docker-compose run --rm yarn unit-test
 
-unit-test-coverage: build-test
+unit-test-coverage: build-test setup-directories
+	docker-compose run --rm yarn unit-test-coverage
+
+lint-test: setup-directories
+	docker-compose run --rm yarn lint:check
+	docker-compose run --rm yarn jshint
+
+setup-directories:
 	mkdir -p -m 0777 ./test-results/junit
 	mkdir -p -m 0777 ./coverage
-	docker-compose run --rm yarn unit-test-coverage

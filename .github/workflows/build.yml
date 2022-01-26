@@ -33,6 +33,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Run Javascript Linting
+        run: |
+          make lint-test
+
       - name: Run Unit Tests & Generate Coverage Report
         run: |
           mkdir -p /home/runner/project/build/service-pdf
