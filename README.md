@@ -1,3 +1,5 @@
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+
 # PDF Service
 
 The following service allows you to post html to a endpoint at `/generate-pdf` and returns a `application/pdf` response containing a PDF.
@@ -87,3 +89,7 @@ If the `page-width` & `page-height` header is not present it will default to `11
 - Content-Type: `application/pdf`
 - Content-Disposition: `attachment; filename=download.pdf`
 - Content-Length: `number`
+
+## Pre-Commit Hooks
+
+The root of this project contains a `.pre-commit-config.yaml` file used with [pre-commit](https://pre-commit.com/) to automate the running of tasks when a commit is made with github.
