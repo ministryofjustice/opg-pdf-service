@@ -12,6 +12,10 @@ Locally this will run at [http://localhost:9004](http://localhost:9004)
 
 When on staging or live, the url will be available in the PHP Environment variable `PDF_SERVICE_URL`
 
+## Contact
+
+Should you wish to talk to others about using this service, you can find help in the `#ss-opg-pdf-service` slack channel.
+
 ## Testing
 
 The project uses Jest to test the javascript components. Only `server.js` is ignored due to its implementation not needing testing.
@@ -37,7 +41,7 @@ The reason is that chrome will make network requests to the fonts and CSS file w
 
 For example, this can be done by extracting the CSS from the external file and putting it into the `<head></head>` tag like below.
 
-```
+``` css
 <style type="text/css">
     body {
         color: #000000
