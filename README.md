@@ -83,11 +83,6 @@ If the `print-background` header is present then the service will include backgr
 
 If the `emulate-media-type` header is set to `print` it will attempt to render the PDF with any linked print styles. If it is set to `screen` it will use the standard style tags.
 
-- page-width: `1100` (optional)
-- page-height: `2000` (optional)
-
-If the `page-width` & `page-height` header is not present it will default to `1100` & `2000`
-
 ### Response Headers
 
 - Content-Type: `application/pdf`
