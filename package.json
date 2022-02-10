@@ -12,7 +12,7 @@
     "lint:check": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
     "jshint": "jshint src/",
-    "redoc:build": "redoc-cli bundle openapi/openapi.json -o openapi/docs/index.html"
+    "redoc:build": "redoc-cli bundle openapi/openapi.yaml -o openapi/docs/index.html"
   },
   "author": "Ministry of Justice",
   "license": "MIT",
