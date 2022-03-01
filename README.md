@@ -1,4 +1,11 @@
+![docs-workflow](https://github.com/ministryofjustice/opg-pdf-service/actions/workflows/docs.yml/badge.svg)
+![build-workflow](https://github.com/ministryofjustice/opg-pdf-service/actions/workflows/build.yml/badge.svg)
+
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+![licence](https://img.shields.io/github/license/ministryofjustice/opg-pdf-service.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+[OpenAPI Documentation Site](https://docs.pdf.opg.service.justice.gov.uk)
 
 # PDF Service
 
@@ -68,26 +75,10 @@ The api details to call are as follows
 - URL: `/generate-pdf`
 - Body: `HTML and CSS Content`
 
-### Request Headers
+## Documentation
 
-- Content-Type: `text/html`
-- strip-anchor-tags: `true` (optional)
-
-If the `strip-anchor-tags` header is present then the service will remove all anchor links in the document, else it will leave them present and clickable.
-
-- print-background: `true` (optional)
-
-If the `print-background` header is present then the service will include background colours and images, else it will exclude them.
-
-- emulate-media-type: `print` (optional)
-
-If the `emulate-media-type` header is set to `print` it will attempt to render the PDF with any linked print styles. If it is set to `screen` it will use the standard style tags.
-
-### Response Headers
-
-- Content-Type: `application/pdf`
-- Content-Disposition: `attachment; filename=download.pdf`
-- Content-Length: `number`
+We use an OpenAPI Spec for generating our documentation for this service. Full documenation can be found at our
+[OpenAPI Documentation Site](https://docs.pdf.opg.service.justice.gov.uk).
 
 ## Pre-Commit Hooks
 
