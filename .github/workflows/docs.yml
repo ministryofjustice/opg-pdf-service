@@ -1,5 +1,8 @@
 name: Build and Deploy API Docs
 on:
+  schedule:
+    - cron: "30 2 * * 1"
+  workflow_dispatch:
   push:
     branches:
       - main
