@@ -11,7 +11,8 @@
     "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true",
     "lint:check": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
-    "jshint": "jshint src/"
+    "jshint": "jshint src/",
+    "redoc:build": "redoc-cli bundle openapi/openapi.yaml -o openapi/docs/index.html"
   },
   "author": "Ministry of Justice",
   "license": "MIT",
@@ -35,6 +36,7 @@
     "jest-junit": "^13.0.0",
     "jshint": "^2.13.4",
     "prettier": "^2.5.1",
+    "redoc-cli": "^0.13.7",
     "supertest": "^6.1.6"
   },
   "jest-junit": {
