@@ -30,13 +30,13 @@
     "@babel/preset-env": "^7.16.11",
     "babel-jest": "^27.5.1",
     "eslint": "^8.7.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.3.1",
     "jest-junit": "^13.0.0",
     "jshint": "^2.13.4",
     "prettier": "^2.5.1",
-    "redoc-cli": "^0.13.7",
+    "redoc-cli": "^0.13.9",
     "supertest": "^6.2.2"
   },
   "jest-junit": {
