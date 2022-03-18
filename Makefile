@@ -2,17 +2,28 @@ export DOCKER_BUILDKIT=1
 
 all: build-all scan unit-test-coverage
 
-build-all: build build-test
+build-all: build build-test build-local
 
 build:
-	docker-compose build pdf-service
+	${MAKE} build-amd64 build-arm64v8 -j 2
 
+build-amd64: ARCH=amd64
+build-arm64v8: ARCH=arm64v8
+build-amd64 build-arm64v8:
+	docker build \
+		--target production \
+		--tag pdf-service:latest-${ARCH} \
+		--build-arg ARCH=${ARCH}/ \
+		.
+
+build-local:
+	docker-compose build pdf-service
 build-test:
 	docker-compose build yarn
 
 scan:
-	trivy --exit-code 0 --severity MEDIUM,HIGH pdf-service:latest
-	trivy --exit-code 1 --severity CRITICAL pdf-service:latest
+	trivy image --exit-code 0 --severity MEDIUM,HIGH pdf-service:latest
+	trivy image --exit-code 1 --severity CRITICAL pdf-service:latest
 
 unit-test: setup-directories
 	docker-compose run --rm yarn unit-test
