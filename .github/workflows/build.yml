@@ -114,21 +114,6 @@ jobs:
         with:
           sarif_file: 'trivy-results-amd64.sarif'
 
-      - name: Scan arm64v8 Image with Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: pdf-service:latest-arm64v8
-          severity: 'HIGH,CRITICAL'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
-          output: 'trivy-results-arm64v8.sarif'
-
-      - name: Upload Trivy scan results for arm64v8 image to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
-        if: always()
-        with:
-          sarif_file: 'trivy-results-arm64v8.sarif'
-
       - name: Bump version
         id: bump_version
         uses: anothrNick/github-tag-action@1.33.0
