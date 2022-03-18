@@ -90,24 +90,29 @@ jobs:
         id: extract_branch
       - uses: unfor19/install-aws-cli-action@v1
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@master
+        with:
+          platforms: all
+
       - name: Build Container
         run: |
           make build
 
-      - name: Trivy Image Vulnerability Scanner
+      - name: Scan amd64 Image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: pdf-service:latest
+          image-ref: pdf-service:latest-amd64
           severity: 'HIGH,CRITICAL'
           format: 'template'
           template: '@/contrib/sarif.tpl'
-          output: 'trivy-results.sarif'
+          output: 'trivy-results-amd64.sarif'
 
-      - name: Upload Trivy scan results to GitHub Security tab
+      - name: Upload Trivy scan results for amd64 image to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
         if: always()
         with:
-          sarif_file: 'trivy-results.sarif'
+          sarif_file: 'trivy-results-amd64.sarif'
 
       - name: Bump version
         id: bump_version
@@ -141,14 +146,17 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           PDF_SERVICE_ECR_REPOSITORY: pdf_service
         run: |
-          docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
-          docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest
+          docker tag pdf-service:latest-amd64 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64
+          docker tag pdf-service:latest-arm64v8 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
           if [ $BRANCH_NAME == "main" ]; then
-            docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}
-            # We want all of the tags pushed
-            docker push --all-tags $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY
+            echo "hello"
           else
-            docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+            docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64
+            docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
+            docker manifest create $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }} \
+              --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64 \
+              --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
+            docker manifest push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           fi
 
   push-tags:
