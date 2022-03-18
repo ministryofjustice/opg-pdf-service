@@ -149,8 +149,21 @@ jobs:
           docker tag pdf-service:latest-amd64 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64
           docker tag pdf-service:latest-arm64v8 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
           if [ $BRANCH_NAME == "main" ]; then
-            echo "hello"
+            # # Tag latest images and create manifest
+            # docker tag pdf-service:latest-amd64 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest-amd64
+            # docker tag pdf-service:latest-arm64v8 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest-arm64v8
+            # docker manifest create $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest \
+            #   --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest-amd64 \
+            #   --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest-arm64v8
+            # docker manifest push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest
           else
+            # Tag main images and create manifest
+            docker tag pdf-service:latest-amd64 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:test-${{ steps.bump_version.outputs.tag }}-amd64
+            docker tag pdf-service:latest-arm64v8 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:test-${{ steps.bump_version.outputs.tag }}-arm64v8
+            docker manifest create $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }} \
+              --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:test-${{ steps.bump_version.outputs.tag }}-amd64 \
+              --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:test-${{ steps.bump_version.outputs.tag }}-arm64v8
+            docker manifest push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:test-${{ steps.bump_version.outputs.tag }}
             docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64
             docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
             docker manifest create $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }} \
