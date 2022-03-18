@@ -1,4 +1,5 @@
-FROM alpine as base
+ARG ARCH=
+FROM ${ARCH}alpine as base
 
 RUN apk add --no-cache \
       chromium \
