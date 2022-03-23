@@ -38,3 +38,14 @@ lint-test: setup-directories
 setup-directories:
 	mkdir -p -m 0777 ./test-results/junit
 	mkdir -p -m 0777 ./coverage
+
+VERSION ?= latest
+create-manifest-version:
+	docker tag pdf-service:latest-amd64 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION)-amd64
+	docker tag pdf-service:latest-arm64v8 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION)-arm64v8
+	docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION)-amd64
+	docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION)-arm64v8
+	docker manifest create $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION) \
+		--amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION)-amd64 \
+		--amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION)-arm64v8
+	docker manifest push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:$(VERSION)
