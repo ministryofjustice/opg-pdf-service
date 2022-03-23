@@ -146,15 +146,8 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           PDF_SERVICE_ECR_REPOSITORY: pdf_service
         run: |
-          # Tag, Push, & create Manifest for Version Images
-          docker tag pdf-service:latest-amd64 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64
-          docker tag pdf-service:latest-arm64v8 $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
-          docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64
-          docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
-          docker manifest create $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }} \
-            --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-amd64 \
-            --amend $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}-arm64v8
-          docker manifest push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+          make create-manifest-version VERSION=${{ steps.bump_version.outputs.tag }}
+          make create-manifest-version VERSION=test-${{ steps.bump_version.outputs.tag }}
 
           if [ $BRANCH_NAME == "main" ]; then
             # Tag, Push, & create Manifest for Main branch Version Images
