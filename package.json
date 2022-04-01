@@ -17,7 +17,7 @@
   "author": "Ministry of Justice",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.19.1",
+    "body-parser": "^1.19.2",
     "cheerio": "^1.0.0-rc.10",
     "esm": "^3.2.25",
     "pdf-lib": "^1.17.1",
@@ -32,7 +32,7 @@
     "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.3.1",
+    "jest": "^27.5.1",
     "jest-junit": "^13.0.0",
     "jshint": "^2.13.4",
     "prettier": "^2.5.1",
