@@ -36,7 +36,7 @@
     "jest-junit": "^13.0.0",
     "jshint": "^2.13.4",
     "prettier": "^2.6.1",
-    "redoc-cli": "^0.13.9",
+    "redoc-cli": "^0.13.10",
     "supertest": "^6.2.2"
   },
   "jest-junit": {
