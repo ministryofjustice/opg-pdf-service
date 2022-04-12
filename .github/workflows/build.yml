@@ -49,6 +49,11 @@ jobs:
           check_name: "Unit Test Results"
           files: test-results/junit/results.xml
 
+      - uses: actions/upload-artifact@master
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
+
       - name: Coverage Report
         uses: lucassabreu/comment-coverage-clover@main
         with:
@@ -181,3 +186,28 @@ jobs:
       - name: Trigger Dev Deploy
         shell: bash
         run: curl -u ${{ secrets.JENKINS_API_USER }}:${{ secrets.JENKINS_API_TOKEN }} "https://${{ secrets.JENKINS_URL }}/job/Sirius/job/Deploy_to_Development/build?token=${{ secrets.JENKINS_API_TOKEN_NAME }}&cause=Triggered+by+opg-pdf-service"
+
+  sonarqube:
+    needs: test
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@master
+        with:
+          name: coverage-report
+          path: coverage/lcov.info
+
+      - name: Check Permissions
+        run: |
+          ls -alt coverage
+          chmod -R 0777 coverage
+          ls -alt coverage
+
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
