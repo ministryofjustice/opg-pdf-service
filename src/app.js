@@ -24,6 +24,10 @@ const app = polka()
       ),
     });
 
+    if (typeof result.length === 'boolean') {
+      throw new Error('what is happening?');
+    }
+
     res.writeHead(200, {
       'Content-Type': 'application/pdf',
       'Content-Disposition': `attachment; filename=download.pdf`,
