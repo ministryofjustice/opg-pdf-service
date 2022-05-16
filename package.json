@@ -25,19 +25,19 @@
     "puppeteer": "^14.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
+    "@babel/core": "^7.17.10",
     "@babel/eslint-parser": "^7.17.0",
-    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-env": "^7.17.10",
     "babel-jest": "^28.1.0",
-    "eslint": "^8.12.0",
+    "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^28.1.0",
-    "jest-junit": "^13.0.0",
+    "jest-junit": "^13.2.0",
     "jshint": "^2.13.4",
     "prettier": "^2.6.2",
-    "redoc-cli": "^0.13.10",
-    "supertest": "^6.2.2"
+    "redoc-cli": "^0.13.13",
+    "supertest": "^6.2.3"
   },
   "jest-junit": {
     "outputDirectory": "./test-results/junit",
