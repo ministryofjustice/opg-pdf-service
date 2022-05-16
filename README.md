@@ -23,6 +23,22 @@ When on staging or live, the url will be available in the PHP Environment variab
 
 Should you wish to talk to others about using this service, you can find help in the `#ss-opg-pdf-service` slack channel.
 
+## Node Versions
+
+We recommend using [Node Version Manager](https://github.com/nvm-sh/nvm#installing-and-updating) while working on this project.
+
+The version of node to use while working on this project is set in the [.nvmrc](./.nvmrc) file. This file is used for the CI and local development.
+
+To ensure you are using the correct version of Node, run the following commands using `nvm`.
+
+`nvm use` - will read the `.nvmrc` file and set your node version to it.
+
+If you get an error saying it is not installed, run the following command to install ther required version and enable it.
+
+`nvm install` - will read the `.nvmrc` file, download that version and set your node version to it.
+
+If you need to install a newer version of node, you should set the version in this file and run the above steps. The CI will automatically read this file and install the appropriate version.
+
 ## Testing
 
 The project uses Jest to test the javascript components. Only `server.js` is ignored due to its implementation not needing testing.
