@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.0",
-    "cheerio": "^1.0.0-rc.10",
+    "cheerio": "^1.0.0-rc.11",
     "esm": "^3.2.25",
     "pdf-lib": "^1.17.1",
     "polka": "^0.5.2",
