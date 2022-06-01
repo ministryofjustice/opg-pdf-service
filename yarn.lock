@@ -4242,10 +4242,10 @@ onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-openapi-sampler@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/openapi-sampler/-/openapi-sampler-1.2.3.tgz#753b69c4f45b54682469f2343399a10bc60ec993"
-  integrity sha512-dH2QYXqakorV5dxkP/f1BV3Ku4yNn21YmBsqJunnyrHLw7mnCNZZldftgrEpv/66b1m5oaUAmiJoJN+FqBEkJg==
+openapi-sampler@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/openapi-sampler/-/openapi-sampler-1.3.0.tgz#5b99ceb4156b00d2aa3f860e52ccb768a5695793"
+  integrity sha512-2QfjK1oM9Sv0q82Ae1RrUe3yfFmAyjF548+6eAeb+h/cL1Uj51TW4UezraBEvwEdzoBgfo4AaTLVFGTKj+yYDw==
   dependencies:
     "@types/json-schema" "^7.0.7"
     json-pointer "0.6.2"
@@ -4687,10 +4687,10 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-redoc-cli@^0.13.13:
-  version "0.13.13"
-  resolved "https://registry.yarnpkg.com/redoc-cli/-/redoc-cli-0.13.13.tgz#b35ae04c30daac8dce556b52f89192c29d41738b"
-  integrity sha512-v6Pj/KQNH3Rq/33Dvj9KJ7lZ42K5ugDIuTtbf4ZbzLF0LvuwoTO+Wq6JNxO5Ajcj/uVO9MaOeBwq0KH8FXIJoA==
+redoc-cli@^0.13.15:
+  version "0.13.15"
+  resolved "https://registry.yarnpkg.com/redoc-cli/-/redoc-cli-0.13.15.tgz#2a1fd31e1de8b7ae1a9d7fe55836f4b972d6d24a"
+  integrity sha512-ln8/yrrSpIKbgHyVAR81OgqSxcviNsSW5V/Z4Xdxxu9w9uIURnIuGF6z2GsUhZOY4OZrNLGXEsDl9Li38yNygA==
   dependencies:
     chokidar "^3.5.1"
     handlebars "^4.7.7"
@@ -4700,14 +4700,14 @@ redoc-cli@^0.13.13:
     node-libs-browser "^2.2.1"
     react "^17.0.1"
     react-dom "^17.0.1"
-    redoc "2.0.0-rc.69"
+    redoc "2.0.0-rc.71"
     styled-components "^5.3.0"
     yargs "^17.3.1"
 
-redoc@2.0.0-rc.69:
-  version "2.0.0-rc.69"
-  resolved "https://registry.yarnpkg.com/redoc/-/redoc-2.0.0-rc.69.tgz#9c54059d633c2c461fa3885441bcde1cc687fbb1"
-  integrity sha512-AFedbb9h0I98z0lBF2hkkn3M09CsF/zXfRCd07vGL0fZg72/VFPAmHN7CyFRGg/whVEstZ2iUhN2jbN6MmTTDQ==
+redoc@2.0.0-rc.71:
+  version "2.0.0-rc.71"
+  resolved "https://registry.yarnpkg.com/redoc/-/redoc-2.0.0-rc.71.tgz#571bef3eed5a89876266aad2689c7dc2a56c1e60"
+  integrity sha512-QVZq9irDKh/DqnxTWUrxxUy+kO0LYl3nKePsVxcCDGXsX5GOx8y8SMcQ8qxW8prUmwhcDtq2AGF96r3MsljiJQ==
   dependencies:
     "@redocly/openapi-core" "^1.0.0-beta.97"
     classnames "^2.3.1"
@@ -4719,7 +4719,7 @@ redoc@2.0.0-rc.69:
     mark.js "^8.11.1"
     marked "^4.0.15"
     mobx-react "^7.2.0"
-    openapi-sampler "^1.2.3"
+    openapi-sampler "^1.3.0"
     path-browserify "^1.0.1"
     perfect-scrollbar "^1.5.1"
     polished "^4.1.3"
