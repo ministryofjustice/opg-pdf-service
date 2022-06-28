@@ -51,6 +51,12 @@ jobs:
           check_name: "Unit Test Results"
           files: test-results/junit/results.xml
 
+      - name: Run SonarQube
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
       - name: Coverage Report
         uses: lucassabreu/comment-coverage-clover@main
         with:
