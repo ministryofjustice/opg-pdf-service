@@ -65,14 +65,14 @@ jobs:
           min-method-coverage: 100
 
       - name: Upload Junit
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: junit
           path: |
             test-results/junit
 
       - name: Upload Coverage
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: coverage
           path: |
