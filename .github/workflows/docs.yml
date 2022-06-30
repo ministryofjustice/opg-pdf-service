@@ -18,7 +18,7 @@ jobs:
           yarn install
           yarn run redoc:build
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.3
+        uses: JamesIves/github-pages-deploy-action@4.3.4
         with:
           branch: gh-pages
           folder: openapi/docs
