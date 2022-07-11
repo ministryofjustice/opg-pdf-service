@@ -32,7 +32,7 @@ jobs:
     name: "Build & Push Containers"
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
-    needs: ['test', 'publish_unit_tests', 'sonar_qube']
+    needs: ['test', 'publish_unit_tests']
     outputs:
       tag: ${{ steps.bump_version.outputs.tag }}
     steps:
