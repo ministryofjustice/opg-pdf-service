@@ -1,4 +1,4 @@
-name: Test & Build
+name: "[workflow] Main"
 
 on:
   pull_request:
@@ -23,15 +23,6 @@ jobs:
     needs: ['test']
     uses: ./.github/workflows/publish_unit_tests_job.yml
 
-  sonar_qube:
-    name: Run SonarQube
-    runs-on: ubuntu-latest
-    steps:
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
   dependabot:
     name: Dependabot Approve and Auto Merge
     needs: ['publish_unit_tests']
@@ -40,6 +31,7 @@ jobs:
   build:
     name: "Build & Push Containers"
     runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
     needs: ['test', 'publish_unit_tests', 'sonar_qube']
     outputs:
       tag: ${{ steps.bump_version.outputs.tag }}
@@ -123,7 +115,7 @@ jobs:
   push-tags:
     runs-on: ubuntu-latest
     needs: ['build']
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - uses: actions/checkout@v3
 
