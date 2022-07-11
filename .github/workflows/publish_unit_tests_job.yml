@@ -1,0 +1,37 @@
+on:
+  workflow_call:
+
+jobs:
+  publish_unit_tests:
+    name: Publish Unit Tests
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
+
+    steps:
+      - name: Download Junit
+        id: download_junit
+        uses: actions/download-artifact@v3
+        with:
+          name: junit
+          path: test-results/junit
+
+      - name: Download Coverage
+        id: download_coverage
+        uses: actions/download-artifact@v3
+        with:
+          name: coverage
+          path: coverage
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          check_name: "Unit Test Results"
+          files: test-results/junit/results.xml
+
+      - name: Coverage Report
+        uses: lucassabreu/comment-coverage-clover@main
+        with:
+          file: "/home/runner/work/opg-pdf-service/opg-pdf-service/coverage/clover.xml"
+          min-line-coverage: 89
+          min-method-coverage: 100
