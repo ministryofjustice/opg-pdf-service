@@ -28,14 +28,14 @@ jobs:
 
   dependabot:
     name: Dependabot Approve and Auto Merge
-    needs: ['publish_unit_tests']
+    needs: ['test']
     uses: ./.github/workflows/dependabot-approve-and-auto-merge_job.yml
 
   build:
     name: "Build & Push Containers"
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
-    needs: ['test', 'publish_unit_tests']
+    needs: ['publish_unit_tests']
     outputs:
       tag: ${{ steps.bump_version.outputs.tag }}
     steps:
