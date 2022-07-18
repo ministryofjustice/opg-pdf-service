@@ -11,6 +11,12 @@ RUN apk add --no-cache \
       nodejs \
       yarn
 
+RUN apk update && \
+    apk upgrade \
+    libssl1.1 \
+    libcrypto1.1 && \
+    rm -rf /var/cache/apk/*
+
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
