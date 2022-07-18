@@ -1,10 +1,5 @@
 on:
   workflow_call:
-    secrets:
-      SONAR_TOKEN:
-        required: true
-      SONAR_HOST_URL:
-        required: true
 
 jobs:
   test:
@@ -36,12 +31,6 @@ jobs:
         run: |
           mkdir -p /home/runner/project/build/service-pdf
           make unit-test-coverage
-
-      - name: Run SonarQube
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Upload Junit
         uses: actions/upload-artifact@v3

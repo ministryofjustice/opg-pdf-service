@@ -1,5 +1,10 @@
 on:
   workflow_call:
+    secrets:
+      SONAR_TOKEN:
+        required: true
+      SONAR_HOST_URL:
+        required: true
 
 jobs:
   publish_unit_tests:
@@ -35,3 +40,9 @@ jobs:
           file: "/home/runner/work/opg-pdf-service/opg-pdf-service/coverage/clover.xml"
           min-line-coverage: 89
           min-method-coverage: 100
+
+      - name: Run SonarQube
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
