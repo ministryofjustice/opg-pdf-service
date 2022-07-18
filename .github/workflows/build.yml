@@ -16,72 +16,21 @@ defaults:
 jobs:
   test:
     name: Test PDF Service
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
+    uses: ./.github/workflows/test_job.yml
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Dependencies from Cache
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Run Javascript Linting
-        run: |
-          make lint-test
-
-      - name: Run Unit Tests & Generate Coverage Report
-        run: |
-          mkdir -p /home/runner/project/build/service-pdf
-          make unit-test-coverage
-
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always() && ${{ github.actor != 'dependabot[bot]' }}
-        with:
-          check_name: "Unit Test Results"
-          files: test-results/junit/results.xml
-
-      - name: Run SonarQube
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-      - name: Coverage Report
-        uses: lucassabreu/comment-coverage-clover@main
-        with:
-          file: "coverage/clover.xml"
-          min-line-coverage: 89
-          min-method-coverage: 100
-
-      - name: Upload Junit
-        uses: actions/upload-artifact@v3
-        with:
-          name: junit
-          path: |
-            test-results/junit
-
-      - name: Upload Coverage
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage
-          path: |
-            /home/runner/project/build/service-pdf
+  publish_unit_tests:
+    name: Publish Unit Tests
+    needs: ['test']
+    uses: ./.github/workflows/publish_unit_tests_job.yml
 
   build:
     name: "Build & Push Containers"
     runs-on: ubuntu-latest
-    needs: test
+    if: github.actor != 'dependabot[bot]'
+    needs: ['publish_unit_tests']
     outputs:
       tag: ${{ steps.bump_version.outputs.tag }}
     steps:
