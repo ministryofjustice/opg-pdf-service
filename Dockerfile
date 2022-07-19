@@ -12,6 +12,7 @@ RUN apk add --no-cache \
       yarn
 
 RUN apk update && \
+    apk upgrade busybox --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main && \
     apk upgrade \
     libssl1.1 \
     libcrypto1.1 && \
