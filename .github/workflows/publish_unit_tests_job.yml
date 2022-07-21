@@ -29,11 +29,11 @@ jobs:
           path: coverage
 
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           check_name: "Unit Test Results"
-          files: test-results/junit/results.xml
+          junit_files: test-results/junit/results.xml
 
       - name: Coverage Report
         uses: lucassabreu/comment-coverage-clover@main
