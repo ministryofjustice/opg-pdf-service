@@ -33,7 +33,7 @@ const app = polka()
     res.end(Buffer.from(result, 'binary'));
   });
 
-app.get('/health-check', async (req, res) => {
+app.get('/health-check', async (_req, res) => {
   try {
     if (process.uptime() > 0) {
       return res.end('OK');
