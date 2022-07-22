@@ -28,7 +28,7 @@ const generatePdf = async (html, options) => {
     pdfDoc.setSubject(options.subject);
   }
 
-  return await pdfDoc.save();
+  return pdfDoc.save();
 };
 
 export default generatePdf;
