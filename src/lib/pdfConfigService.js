@@ -4,7 +4,7 @@ class PdfConfigService {
     return Number.isInteger(value) ? value : 0;
   }
   static stripAnchorTagsFromHtml(value) {
-    return (this.stripAnchorTagsFromHtmlValue = value == 'true'); // jshint ignore:line
+    return value === 'true';
   }
 
   static title(title) {
@@ -20,7 +20,7 @@ class PdfConfigService {
   }
 
   static printBackground(value) {
-    return (this.printBackgroundValue = value == 'true'); // jshint ignore:line
+    return value === 'true';
   }
 }
 
