@@ -37,7 +37,7 @@
     "jshint": "^2.13.5",
     "prettier": "^2.7.1",
     "redoc-cli": "^0.13.19",
-    "supertest": "^6.2.4"
+    "supertest": "^6.3.0"
   },
   "jest-junit": {
     "outputDirectory": "./test-results/junit",
