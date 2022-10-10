@@ -8,7 +8,7 @@
         {
             "automerge": true,
             "groupName": "Patch & Minor Updates",
-            "groupSlug": "all-minor-patch",
+            "groupSlug": "all-minor-patch-updates",
             "matchPackagePatterns": [
                 "*"
             ],
@@ -16,11 +16,12 @@
                 "minor",
                 "patch"
             ],
+            "schedule": ["after 6am and before 7am on Thursday"],
             "stabilityDays": 5
         },
         {
-            "groupName": "Major Package Updates",
-            "groupSlug": "all-minor-patch",
+            "groupName": "Major Updates",
+            "groupSlug": "all-major-updates",
             "matchPackagePatterns": [
                 "*"
             ],
@@ -31,7 +32,7 @@
     ],
     "vulnerabilityAlerts": {
         "groupName": "Vulnerability Patches",
-        "schedule": ["* 6 * * *"],
+        "schedule": ["after 6am and before 7am every weekday"],
         "dependencyDashboardApproval": false,
         "stabilityDays": 0,
         "rangeStrategy": "update-lockfile",
