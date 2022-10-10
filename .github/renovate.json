@@ -1,0 +1,47 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:base",
+        "schedule:earlyMondays"
+    ],
+    "packageRules": [
+        {
+            "automerge": true,
+            "groupName": "Patch & Minor Updates",
+            "groupSlug": "all-minor-patch",
+            "matchPackagePatterns": [
+                "*"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
+            "stabilityDays": 5,
+            "rangeStrategy": "update-lockfile"
+        },
+        {
+            "groupName": "Major Package Updates",
+            "groupSlug": "all-minor-patch",
+            "matchPackagePatterns": [
+                "*"
+            ],
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "rangeStrategy": "update-lockfile"
+        }
+    ],
+    "vulnerabilityAlerts": {
+        "groupName": "Vulnerability Patches",
+        "schedule": ["* 6 * * *"],
+        "dependencyDashboardApproval": false,
+        "stabilityDays": 0,
+        "rangeStrategy": "update-lockfile",
+        "commitMessagePrefix": "[SECURITY]",
+        "branchTopic": "{{{datasource}}}-{{{depName}}}-vulnerability",
+        "prCreation": "immediate"
+    },
+    "ignoreDeps": [
+        "anothrNick/github-tag-action"
+    ]
+}
