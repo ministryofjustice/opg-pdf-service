@@ -16,6 +16,7 @@
                 "minor",
                 "patch"
             ],
+            "schedule": ["* 6 4 * *"],
             "stabilityDays": 5
         },
         {
