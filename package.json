@@ -22,7 +22,7 @@
     "esm": "^3.2.25",
     "pdf-lib": "^1.17.1",
     "polka": "^0.5.2",
-    "puppeteer": "^18.0.5"
+    "puppeteer": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.19.3",
