@@ -4,6 +4,7 @@
         "config:base",
         "schedule:earlyMondays"
     ],
+    "lockFileMaintenance": { "enabled": true },
     "packageRules": [
         {
             "automerge": true,
