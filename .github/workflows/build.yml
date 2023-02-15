@@ -22,9 +22,6 @@ jobs:
     name: Publish Unit Tests
     needs: ['test']
     uses: ./.github/workflows/publish_unit_tests_job.yml
-    secrets:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   build:
     name: "Build & Push Containers"
