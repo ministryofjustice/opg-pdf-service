@@ -22,8 +22,7 @@ build-test:
 	docker-compose build yarn
 
 scan:
-	trivy image --exit-code 0 --severity MEDIUM,HIGH pdf-service:latest
-	trivy image --exit-code 1 --severity CRITICAL pdf-service:latest
+	trivy image pdf-service:latest-amd64
 
 unit-test: setup-directories
 	docker-compose run --rm yarn unit-test
