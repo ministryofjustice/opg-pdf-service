@@ -1,5 +1,5 @@
 ARG ARCH=
-FROM ${ARCH}alpine as base
+FROM ${ARCH}alpine:3 as base
 
 RUN apk add --no-cache \
       chromium \
@@ -26,6 +26,8 @@ RUN addgroup -S node && adduser -S -g node node \
     && mkdir -p /home/node/Downloads /app \
     && chown -R node:node /home/node \
     && chown -R node:node /app
+# Patch Vulnerabilities
+RUN apk upgrade --no-cache ffmpeg-libs libcrypto3 libssl3
 USER node
 CMD [ "node", "-r", "esm", "src/server.js" ]
 
