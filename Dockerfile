@@ -27,7 +27,7 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /home/node \
     && chown -R node:node /app
 # Patch Vulnerabilities
-RUN apk upgrade --no-cache ffmpeg-libs libcrypto3 libssl3
+RUN apk upgrade --no-cache ffmpeg-libs libcrypto3 libssl3 libxml2 
 USER node
 CMD [ "node", "-r", "esm", "src/server.js" ]
 
