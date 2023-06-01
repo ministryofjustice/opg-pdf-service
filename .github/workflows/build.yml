@@ -66,10 +66,10 @@ jobs:
         run: |
           make test-image
 
-      - name: Upload Junit
+      - name: Upload Inspec Junit
         uses: actions/upload-artifact@v3
         with:
-          name: junit
+          name: inspec
           path: |
             test-results/junit
 
