@@ -22,7 +22,7 @@ jobs:
 
   publish_unit_tests:
     name: Publish Unit Tests
-    needs: ['test']
+    needs: ['test', 'build']
     uses: ./.github/workflows/publish_unit_tests_job.yml
 
   build:
@@ -55,9 +55,23 @@ jobs:
         run: |
           make build
 
-      - name: Test Container Image Runs
+      - name: Install Inspec for Image Tests
         run: |
-          make test-container
+          curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
+          inspec --chef-license=accept
+
+      - name: Test Image with Inspec
+        env:
+          CHEF_LICENSE: accept
+        run: |
+          make test-image
+
+      - name: Upload Inspec Junit
+        uses: actions/upload-artifact@v3
+        with:
+          name: inspec
+          path: |
+            test-results/junit
 
       - name: Scan amd64 Image with Trivy
         uses: aquasecurity/trivy-action@master

@@ -21,10 +21,10 @@ build-local:
 build-test:
 	docker-compose build yarn
 
-test-container:
+test-image: setup-directories
 	docker run --rm -d --name pdf-service pdf-service:latest-amd64
 	sleep 2
-	docker exec pdf-service sh -c "wget -O /dev/null -S 'http://localhost:80/health-check' 2>&1 | grep 'HTTP/1.1 200 OK' || exit 1"
+	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
 	docker container kill pdf-service
 
 scan:
