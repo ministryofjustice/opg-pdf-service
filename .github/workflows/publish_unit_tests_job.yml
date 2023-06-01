@@ -15,6 +15,13 @@ jobs:
           name: junit
           path: test-results/junit
 
+      - name: Download Junit
+        id: download_inspec
+        uses: actions/download-artifact@v3
+        with:
+          name: inspec
+          path: test-results/junit
+
       - name: Download Coverage
         id: download_coverage
         uses: actions/download-artifact@v3

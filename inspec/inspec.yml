@@ -1,0 +1,9 @@
+---
+name: OPG PDF Service Container Image
+title: OPG PDF Service Container Image
+maintainer: OPG
+copyright: Copyright (c) 2020 Crown Copyright (Ministry of Justice)
+copyright_email: opgteam@digital.justice.gov.uk
+license: MIT
+summary: An InSpec Compliance Profile for OPG NGINX Container
+version: 0.1.0
