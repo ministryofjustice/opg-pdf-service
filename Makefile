@@ -21,6 +21,12 @@ build-local:
 build-test:
 	docker-compose build yarn
 
+test-container:
+	docker run --rm -d --name pdf-service pdf-service:latest-amd64
+	sleep 2
+	docker exec pdf-service sh -c "wget -O /dev/null -S 'http://localhost:80/health-check' 2>&1 | grep 'HTTP/1.1 200 OK' || exit 1"
+	docker container kill pdf-service
+
 scan:
 	trivy image pdf-service:latest-amd64
 
