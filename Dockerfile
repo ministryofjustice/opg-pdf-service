@@ -3,6 +3,7 @@ FROM ${ARCH}alpine:3 as base
 
 RUN apk add --no-cache \
       chromium \
+      curl \
       nss \
       freetype \
       harfbuzz \
