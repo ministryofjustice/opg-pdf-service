@@ -8,12 +8,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Download Junit
+      - name: Download Node Junit
         id: download_junit
         uses: actions/download-artifact@v3
         with:
           name: junit
           path: test-results/junit
+
+      - name: Download Inspec Junit
+        id: download_inspec
+        uses: actions/download-artifact@v3
+        with:
+          name: inspec
+          path: test-results/inspec
 
       - name: Download Coverage
         id: download_coverage
@@ -23,11 +30,13 @@ jobs:
           path: coverage
 
       - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
+        uses: EnricoMi/publish-unit-test-result-action@v2.7.0
         if: always()
         with:
           check_name: "Unit Test Results"
-          junit_files: test-results/junit/results.xml
+          files: |
+            test-results/junit/*.xml
+            test-results/inspec/*.xml
 
       - name: Coverage Report
         uses: lucassabreu/comment-coverage-clover@main
