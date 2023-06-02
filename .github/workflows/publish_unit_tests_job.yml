@@ -22,6 +22,11 @@ jobs:
           name: inspec
           path: test-results/junit/pdf-service-inspec.xml
 
+      - name: check paths
+        run: |
+          ls -alt
+          cd test-results/junit && ls -alt
+
       - name: Download Coverage
         id: download_coverage
         uses: actions/download-artifact@v3
