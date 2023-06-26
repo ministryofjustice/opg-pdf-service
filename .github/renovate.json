@@ -4,6 +4,7 @@
         "config:base",
         "schedule:earlyMondays"
     ],
+    "branchPrefix": "renovate-",
     "lockFileMaintenance": { "enabled": true },
     "packageRules": [
         {
