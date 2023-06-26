@@ -9,7 +9,7 @@ RUN apk add --no-cache \
       harfbuzz \
       ca-certificates \
       ttf-liberation \
-      nodejs \
+      nodejs=18.16.1-r0 \
       yarn
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
