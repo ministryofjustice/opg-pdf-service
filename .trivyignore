@@ -1,3 +1,4 @@
 # Ignore Yarn DevDependency
 CVE-2022-33987
 CVE-2023-2251
+CVE-2022-25883 #semver
