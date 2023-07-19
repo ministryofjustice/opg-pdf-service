@@ -1,6 +1,6 @@
 export DOCKER_BUILDKIT=1
 
-all: build-all scan unit-test-coverage
+all: build-all scan lint-test unit-test-coverage test-image
 
 build-all: build build-test build-local
 
@@ -17,9 +17,9 @@ build-amd64 build-arm64v8:
 		.
 
 build-local:
-	docker-compose build pdf-service
+	docker compose build pdf-service
 build-test:
-	docker-compose build yarn
+	docker compose build pdf-service-test
 
 test-image: setup-directories
 	docker run --rm -d --name pdf-service pdf-service:latest-amd64
@@ -31,14 +31,14 @@ scan:
 	trivy image pdf-service:latest-amd64
 
 unit-test: setup-directories
-	docker-compose run --rm yarn unit-test
+	docker compose run --rm pdf-service-test unit-test
 
 unit-test-coverage: build-test setup-directories
-	docker-compose run --rm yarn unit-test-coverage
+	docker compose run --rm pdf-service-test unit-test-coverage
 
 lint-test: setup-directories
-	docker-compose run --rm yarn lint:check
-	docker-compose run --rm yarn jshint
+	docker compose run --rm pdf-service-test lint:check
+	docker compose run --rm pdf-service-test jshint
 
 setup-directories:
 	mkdir -p -m 0777 ./test-results/junit
