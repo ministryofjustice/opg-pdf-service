@@ -11,7 +11,7 @@
 
 The following service allows you to post html to an endpoint at `/generate-pdf` and returns a `application/pdf` response containing a PDF.
 
-The service automatically runs on docker-compose up. Its entry point is `npm run start:webserver`
+The service automatically runs on docker compose up. Its entry point is `npm run start:webserver`
 
 To start the service locally without docker, run `npm run start:webserver`.
 

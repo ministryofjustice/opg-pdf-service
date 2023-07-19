@@ -78,6 +78,8 @@ jobs:
         with:
           image-ref: pdf-service:latest-amd64
           format: 'template'
+          exit-code: '1'
+          ignore-unfixed: true
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results-amd64.sarif'
 
