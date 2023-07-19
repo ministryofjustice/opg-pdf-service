@@ -13,8 +13,8 @@ services:
     environment:
       PDF_SERVICE_PORT: 8000
 
-  yarn:
-    container_name: yarn-pdf-service
+  pdf-service-test:
+    container_name: pdf-service-test
     image: pdf-service:test
     build:
       context: .
