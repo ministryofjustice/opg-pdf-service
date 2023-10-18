@@ -28,7 +28,7 @@ test-image: setup-directories
 	docker container kill pdf-service
 
 scan:
-	trivy image pdf-service:latest-amd64
+	trivy image --exit-code=1 pdf-service:latest-amd64
 
 unit-test: setup-directories
 	docker compose run --rm pdf-service-test unit-test
