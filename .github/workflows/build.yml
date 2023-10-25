@@ -23,6 +23,7 @@ jobs:
   publish_unit_tests:
     name: Publish Unit Tests
     needs: ['test', 'build']
+    if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/publish_unit_tests_job.yml
 
   build:
