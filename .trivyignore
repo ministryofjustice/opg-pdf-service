@@ -2,3 +2,4 @@
 CVE-2022-25883 #semver
 CVE-2023-26115 #word-wrap
 CVE-2023-45133 #@babel/traverse
+CVE-2023-46234 #redoc/cli
