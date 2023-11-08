@@ -1,7 +1,7 @@
-const bodyParser = require('body-parser');
-const polka = require('polka');
-import GeneratePdf from './lib/generatePdf';
-import pdfService from './lib/pdfConfigService';
+import bodyParser from 'body-parser';
+import polka from 'polka';
+import GeneratePdf from './lib/generatePdf.js';
+import pdfService from './lib/pdfConfigService.js';
 
 const app = polka()
   .use(bodyParser.text({ type: 'text/html', limit: '2000kb' }))
@@ -53,4 +53,4 @@ app.get('/health-check', async (_req, res) => {
   }
 });
 
-module.exports = app;
+export default app;

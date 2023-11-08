@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-const app = require('./app');
+import app from './app.js';
 
 const port = process.env.PDF_SERVICE_PORT || 80;
 

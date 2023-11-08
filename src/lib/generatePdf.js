@@ -1,5 +1,5 @@
-import { htmlToPdf } from './htmlToPdf';
-import stripAnchorTags from './stripAnchorTags';
+import { htmlToPdf } from './htmlToPdf.js';
+import stripAnchorTags from './stripAnchorTags.js';
 
 const generatePdf = async (html, options) => {
   if (options.stripTags) {
