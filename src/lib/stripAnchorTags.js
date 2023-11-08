@@ -1,4 +1,4 @@
-const cheerio = require('cheerio');
+import cheerio from 'cheerio';
 
 const stripAnchorTags = async (html) => {
   const $ = cheerio.load(html);
