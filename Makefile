@@ -23,7 +23,7 @@ build-test:
 
 test-image: setup-directories
 	docker run --rm -d --name pdf-service pdf-service:latest-amd64
-	sleep 2
+	sleep 10
 	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
 	docker container kill pdf-service
 
