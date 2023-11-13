@@ -30,7 +30,7 @@ RUN addgroup -S node && adduser -S -g node node \
 # Patch Vulnerabilities
 RUN apk upgrade --no-cache cups-libs ffmpeg-libs libcrypto3 libssl3 libwebp libxml2 minizip
 USER node
-CMD [ "node", "-r", "esm", "src/server.js" ]
+CMD [ "node", "src/server.js" ]
 
 FROM base as test
 RUN yarn install
