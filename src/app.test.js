@@ -70,9 +70,20 @@ describe('Given the app gets an api request to an endpoint', () => {
       const convert = fromBuffer(response.body, options);
       const pageToConvertAsImage = 1;
       await convert(pageToConvertAsImage, { responseType: 'image' });
-      const baseline_image = PNG.sync.read(readFileSync('/app/src/baseline/logo-pdf.1.png'));
-      const generated_image = PNG.sync.read(readFileSync('/app/test-results/logo-pdf.1.png'));
-      const match = pixelmatch(baseline_image.data, generated_image.data, null, 600, 600, {threshold: 0.1});
+      const baseline_image = PNG.sync.read(
+        readFileSync('/app/src/baseline/logo-pdf.1.png'),
+      );
+      const generated_image = PNG.sync.read(
+        readFileSync('/app/test-results/logo-pdf.1.png'),
+      );
+      const match = pixelmatch(
+        baseline_image.data,
+        generated_image.data,
+        null,
+        600,
+        600,
+        { threshold: 0.1 },
+      );
       expect(match).toBe(0);
     });
   });
