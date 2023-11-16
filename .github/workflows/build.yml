@@ -61,8 +61,6 @@ jobs:
           curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec
 
       - name: Test Image with Inspec
-        env:
-          CHEF_LICENSE: accept
         run: |
           make test-image
 
