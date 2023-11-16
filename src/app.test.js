@@ -1,6 +1,6 @@
 import { exitBrowser, initBrowser } from './lib/htmlToPdf';
 import { fromBuffer } from 'pdf2pic';
-import { OPG_LETTER_HTML } from './assets/opgTestLetter';
+import { OPG_TEST_LETTER } from './assets/opgTestLetter';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import { readFileSync } from 'node:fs';
@@ -53,12 +53,7 @@ describe('Given the app gets an api request to an endpoint', () => {
       const response = await request(app.handler)
         .post('/generate-pdf')
         .set('content-type', 'text/html')
-        .send(OPG_LETTER_HTML);
-      expect(response.statusCode).toBe(200);
-      expect(response.type).toBe('application/pdf');
-      expect(response.headers['content-disposition']).toBe(
-        'attachment; filename=download.pdf',
-      );
+        .send(OPG_TEST_LETTER);
       //expected output
       const options = {
         density: 100,

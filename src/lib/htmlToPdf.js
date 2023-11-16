@@ -14,6 +14,13 @@ export async function initBrowser() {
       '--disable-gpu',
     ],
   });
+
+  // This will happen when you call browser.close(), not just when problems occur
+  browser.on('disconnected', async () => {
+    console.log('Browser disconnected');
+
+    browser = null;
+  });
 }
 
 export async function exitBrowser() {
@@ -27,13 +34,6 @@ export async function exitBrowser() {
 export const htmlToPdf = async (html, options) => {
   if (browser === null) {
     await initBrowser();
-
-    // This will happen when you call browser.close(), not just when problems occur
-    browser.on('disconnected', async () => {
-      console.log('Browser disconnected');
-
-      browser = null;
-    });
   }
 
   let pdf;

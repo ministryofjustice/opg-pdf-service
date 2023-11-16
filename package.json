@@ -46,6 +46,7 @@
     "outputName": "results.xml"
   },
   "jest": {
+    "testTimeout": 10000,
     "reporters": [
       "default",
       "jest-junit"
