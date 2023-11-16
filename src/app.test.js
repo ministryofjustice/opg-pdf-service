@@ -1,6 +1,6 @@
 import { exitBrowser, initBrowser } from './lib/htmlToPdf';
 import { fromBuffer } from 'pdf2pic';
-import { OPG_LETTER_HTML } from './assets/image';
+import { OPG_LETTER_HTML } from './assets/opgTestLetter';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import { readFileSync } from 'node:fs';
