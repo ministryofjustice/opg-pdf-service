@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 
 let browser = null;
 
-async function initBrowser() {
+export async function initBrowser() {
   browser = await puppeteer.launch({
     args: [
       // Required for Docker version of Puppeteer

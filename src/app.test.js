@@ -1,6 +1,6 @@
-import { exitBrowser } from './lib/htmlToPdf';
+import { exitBrowser, initBrowser } from './lib/htmlToPdf';
 import { fromBuffer } from 'pdf2pic';
-import { image } from './assets/image';
+import { OPG_LETTER_HTML } from './assets/image';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import { readFileSync } from 'node:fs';
@@ -10,8 +10,9 @@ import app from './app';
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`;
 
-const OPG_LETTER_HTML = `<html><head><style>img{height:100pt;}body{font-family: Helvetica, Arial, sans-serif;
-  line-height: 140%;}p{font-size:20pt}</style></head><body><p>Testing</p>\r\n${image}`;
+beforeAll(async () => {
+  await initBrowser();
+});
 
 afterAll(async () => {
   await exitBrowser();
