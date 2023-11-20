@@ -121,7 +121,7 @@ jobs:
       - name: Push Container
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          PDF_SERVICE_ECR_REPOSITORY: pdf_service
+          PDF_SERVICE_ECR_REPOSITORY: pdf-service
         if: github.actor != 'renovate[bot]'
         run: |
           make create-manifest-version VERSION=${{ steps.bump_version.outputs.tag }}
