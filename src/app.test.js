@@ -10,10 +10,6 @@ import app from './app';
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`;
 
-beforeAll(async () => {
-  await initBrowser();
-});
-
 afterAll(async () => {
   await exitBrowser();
 });

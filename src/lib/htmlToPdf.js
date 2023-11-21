@@ -4,6 +4,7 @@ let browser = null;
 
 export async function initBrowser() {
   browser = await puppeteer.launch({
+    headless: 'new',
     args: [
       // Required for Docker version of Puppeteer
       '--no-sandbox',
