@@ -130,6 +130,19 @@ jobs:
             make create-manifest-version VERSION=main-${{ steps.bump_version.outputs.tag }}
             make create-manifest-version VERSION=latest
           fi
+      
+      - name: Push Deprecated Container
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          PDF_SERVICE_ECR_REPOSITORY: pdf_service
+        if: github.actor != 'renovate[bot]'
+        run: |
+          make create-manifest-version VERSION=${{ steps.bump_version.outputs.tag }}
+
+          if [ $BRANCH_NAME == "main" ]; then
+            make create-manifest-version VERSION=main-${{ steps.bump_version.outputs.tag }}
+            make create-manifest-version VERSION=latest
+          fi
 
   push-tags:
     runs-on: ubuntu-latest
