@@ -15,6 +15,14 @@ afterAll(async () => {
 });
 
 describe('Given the app gets an api request to an endpoint', () => {
+  describe('GET /health-check', () => {
+    test('It should respond with a http status code of 200', async () => {
+      await request(app.handler).get('/health-check').expect(200);
+    });
+  });
+});
+
+describe('Given the app gets an api request to an endpoint', () => {
   describe('POST /generate-pdf', () => {
     test('It should respond with a valid PDF and correct headers', async () => {
       const response = await request(app.handler)
@@ -81,10 +89,3 @@ describe('Given the app gets an api request to an endpoint', () => {
   });
 });
 
-describe('Given the app gets an api request to an endpoint', () => {
-  describe('GET /health-check', () => {
-    test('It should respond with a http status code of 200', async () => {
-      await request(app.handler).get('/health-check').expect(200);
-    });
-  });
-});
