@@ -66,7 +66,7 @@ describe('Given the app gets an api request to an endpoint', () => {
       const options = {
         density: 100,
         saveFilename: 'logo-pdf',
-        savePath: '/app/test-results',
+        savePath: '/app/test-results/images',
         format: 'png',
         width: 600,
         height: 600,
@@ -78,7 +78,7 @@ describe('Given the app gets an api request to an endpoint', () => {
         readFileSync('/app/src/baseline/logo-pdf.1.png'),
       );
       const generated_image = PNG.sync.read(
-        readFileSync('/app/test-results/logo-pdf.1.png'),
+        readFileSync('/app/test-results/images/logo-pdf.1.png'),
       );
       const { width, height } = baseline_image;
       const diff = new PNG({ width, height });
@@ -91,7 +91,7 @@ describe('Given the app gets an api request to an endpoint', () => {
         { threshold: 0.1 },
       );
       writeFileSync(
-        '/app/test-results/logo-pdf.1.diff.png',
+        '/app/test-results/images/logo-pdf.1.diff.png',
         PNG.sync.write(diff),
       );
 
