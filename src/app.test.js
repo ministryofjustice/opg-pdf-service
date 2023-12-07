@@ -3,12 +3,16 @@ import { fromBuffer } from 'pdf2pic';
 import { OPG_TEST_LETTER } from './assets/opgTestLetter';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 
 import request from 'supertest';
 import app from './app';
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`;
+
+beforeEach(async () => {
+  await initBrowser();
+});
 
 afterAll(async () => {
   await exitBrowser();
@@ -76,14 +80,21 @@ describe('Given the app gets an api request to an endpoint', () => {
       const generated_image = PNG.sync.read(
         readFileSync('/app/test-results/logo-pdf.1.png'),
       );
+      const { width, height } = baseline_image;
+      const diff = new PNG({ width, height });
       const match = pixelmatch(
         baseline_image.data,
         generated_image.data,
-        null,
+        diff.data,
         600,
         600,
         { threshold: 0.1 },
       );
+      writeFileSync(
+        '/app/test-results/logo-pdf.1.diff.png',
+        PNG.sync.write(diff),
+      );
+
       expect(match).toBe(0);
     });
   });
