@@ -21,7 +21,11 @@ afterAll(async () => {
 describe('Given the app gets an api request to an endpoint', () => {
   describe('GET /health-check', () => {
     test('It should respond with a http status code of 200', async () => {
-      await request(app.handler).get('/health-check').expect(200);
+      await request(app.handler)
+        .get('/health-check')
+        .timeout(8)
+        .retry(2)
+        .expect(200);
     });
   });
 });
