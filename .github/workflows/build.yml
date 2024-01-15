@@ -74,20 +74,14 @@ jobs:
           path: |
             test-results/junit
 
-      - name: Scan amd64 Image with Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: pdf-service:latest-amd64
-          exit-code: '1'
-          ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results-amd64.sarif'
+      - name: Run Trivy
+        run: make scan
 
-      - name: Upload Trivy scan results for amd64 image to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v2
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
-          sarif_file: 'trivy-results-amd64.sarif'
+          sarif_file: 'test-results/trivy.sarif'
 
       - name: Bump version
         id: bump_version

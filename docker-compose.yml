@@ -25,3 +25,10 @@ services:
       - "./coverage:/app/coverage"
       - "./test-results:/app/test-results"
       - "~/.yarn-cache/v6/pdf-service:/usr/local/share/.cache/yarn/v6"
+  trivy:
+    image: aquasec/trivy:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./.trivy-cache:/root/.cache
+      - ./test-results:/test-results
+      - ./.trivyignore:/.trivyignore
