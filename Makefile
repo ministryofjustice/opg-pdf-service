@@ -14,6 +14,7 @@ build-amd64 build-arm64v8:
 		--target production \
 		--tag pdf-service:latest-${ARCH} \
 		--build-arg ARCH=${ARCH}/ \
+		--no-cache \
 		.
 
 build-local:
@@ -27,9 +28,6 @@ test-image: setup-directories
 	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
 	docker container kill pdf-service
 
-scan:
-	trivy image --exit-code=1 pdf-service:latest-amd64
-
 unit-test: setup-directories
 	docker compose run --rm pdf-service-test unit-test
 
@@ -41,8 +39,7 @@ lint-test: setup-directories
 	docker compose run --rm pdf-service-test jshint
 
 setup-directories:
-	mkdir -p -m 0777 ./test-results/junit
-	mkdir -p -m 0777 ./coverage
+	mkdir -p -m 0777 test-results/junit .trivy-cache coverage
 
 VERSION ?= latest
 create-manifest-version:
@@ -54,3 +51,7 @@ create-manifest-version:
 		--amend $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-amd64 \
 		--amend $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-arm64v8
 	docker manifest push $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)
+
+scan: setup-directories
+	docker compose run --rm trivy image --format table --exit-code 0 pdf-service:latest-amd64
+	docker compose run --rm trivy image --format sarif --output /test-results/trivy.sarif --exit-code 1 pdf-service:latest-amd64
