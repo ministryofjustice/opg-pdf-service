@@ -7,3 +7,4 @@ openapi/docs/
 package-lock.json
 .DS_Store
 .vscode
+.trivy-cache
