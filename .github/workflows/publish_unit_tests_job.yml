@@ -7,24 +7,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Download Node Junit
         id: download_junit
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: junit
           path: test-results/junit
 
       - name: Download Inspec Junit
         id: download_inspec
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: inspec
           path: test-results/inspec
 
       - name: Download Coverage
         id: download_coverage
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: coverage
           path: coverage
