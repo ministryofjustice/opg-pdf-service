@@ -6,8 +6,8 @@ jobs:
     name: Test PDF Service
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
 
@@ -33,14 +33,14 @@ jobs:
           make unit-test-coverage
 
       - name: Upload Junit
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: junit
           path: |
             test-results/junit
 
       - name: Upload Coverage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: |
