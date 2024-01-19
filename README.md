@@ -102,6 +102,6 @@ The root of this project contains a `.pre-commit-config.yaml` file used with [pr
 
 ## Render Diffs
 
-To aid in catchign rendering differences betwen versions, there's a test 'It should respond with a consistently rendered PDF' that runs an example html file in `src/assets/opgTestLetter.js` through the PDF process and then renders it as an image in `test-results/images/logo.pdf.1.png`. The outputs of this are checked against a baseline in `/src/baseline/logo.pfd.1.png`.
+To aid in catching rendering differences betwen versions, there's a test 'It should respond with a consistently rendered PDF' that runs an example html file in `src/assets/opgTestLetter.js` through the PDF process and then renders it as an image in `test-results/images/logo.pdf.1.png`. The outputs of this are checked against a baseline in `/src/baseline/logo.pfd.1.png`.
 
 The test will check for 0 diff in output render between builds, so will fail if the HTML is converted differently for some reason i.e. a dependency update.  A diff file in created at `test-results/images/logo-pdf.1.diff.png` where red pixels will show drift.
