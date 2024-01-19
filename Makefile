@@ -40,6 +40,9 @@ lint-test: setup-directories
 
 setup-directories:
 	mkdir -p -m 0777 test-results/junit .trivy-cache coverage
+	mkdir -p -m 0777 ./test-results/junit
+	mkdir -p -m 0777 ./test-results/images
+	mkdir -p -m 0777 ./coverage
 
 VERSION ?= latest
 create-manifest-version:

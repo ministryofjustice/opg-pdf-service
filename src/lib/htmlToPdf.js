@@ -2,8 +2,9 @@ import puppeteer from 'puppeteer';
 
 let browser = null;
 
-async function initBrowser() {
+export async function initBrowser() {
   browser = await puppeteer.launch({
+    headless: 'new',
     args: [
       // Required for Docker version of Puppeteer
       '--no-sandbox',
@@ -12,7 +13,16 @@ async function initBrowser() {
       // because Docker’s default for /dev/shm is 64MB
       '--disable-dev-shm-usage',
       '--disable-gpu',
+      '--single-process',
+      '--disable-extensions',
     ],
+  });
+
+  // This will happen when you call browser.close(), not just when problems occur
+  browser.on('disconnected', async () => {
+    console.log('Browser disconnected');
+
+    browser = null;
   });
 }
 
@@ -27,13 +37,6 @@ export async function exitBrowser() {
 export const htmlToPdf = async (html, options) => {
   if (browser === null) {
     await initBrowser();
-
-    // This will happen when you call browser.close(), not just when problems occur
-    browser.on('disconnected', async () => {
-      console.log('Browser disconnected');
-
-      browser = null;
-    });
   }
 
   let pdf;
