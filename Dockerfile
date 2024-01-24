@@ -35,6 +35,7 @@ CMD [ "node", "src/server.js" ]
 FROM base as test
 RUN yarn install
 COPY . .
+RUN apk add graphicsmagick ghostscript
 
 RUN addgroup -S node && adduser -S -g node node \
     && mkdir -p /home/node/Downloads /app \

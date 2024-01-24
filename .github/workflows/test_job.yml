@@ -38,6 +38,14 @@ jobs:
           name: junit
           path: |
             test-results/junit
+      
+      - name: Upload Image Diff Data
+        uses: actions/upload-artifact@v3
+        id: upload-image-diff
+        with:
+          name: image-diff
+          path: |
+            test-results/images
 
       - name: Upload Coverage
         uses: actions/upload-artifact@v3

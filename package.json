@@ -8,8 +8,8 @@
     "test": "CI=true jest --coverage",
     "test:watch": "jest --watch",
     "start:webserver": "node -r esm src/server.js",
-    "unit-test": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
-    "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true",
+    "unit-test": "jest --ci --runInBand --reporters=default --reporters=jest-junit --detectOpenHandles --forceExit",
+    "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true  --detectOpenHandles --forceExit",
     "lint:check": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ignore-path .gitignore .",
     "jshint": "jshint src/",
@@ -35,6 +35,8 @@
     "jest": "29.7.0",
     "jest-junit": "14.0.1",
     "jshint": "2.13.6",
+    "pdf2pic": "^3.0.3",
+    "pixelmatch": "^5.3.0",
     "prettier": "2.8.8",
     "redoc-cli": "0.13.21",
     "supertest": "6.3.3"
@@ -44,6 +46,7 @@
     "outputName": "results.xml"
   },
   "jest": {
+    "testTimeout": 15000,
     "reporters": [
       "default",
       "jest-junit"
