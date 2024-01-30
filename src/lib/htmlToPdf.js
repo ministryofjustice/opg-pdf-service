@@ -13,7 +13,6 @@ export async function initBrowser() {
       // because Docker’s default for /dev/shm is 64MB
       '--disable-dev-shm-usage',
       '--disable-gpu',
-      '--single-process',
       '--disable-extensions',
     ],
   });
