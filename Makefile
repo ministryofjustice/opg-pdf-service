@@ -22,11 +22,24 @@ build-local:
 build-test:
 	docker compose build pdf-service-test
 
-test-image: setup-directories
-	docker run --rm -d --name pdf-service pdf-service:latest-amd64
+test-image: setup-directories start-container run-inspec stop-container
+
+load-test-image: setup-directories start-container run-load stop-container
+
+start-container:
+	docker run --cpus=0.5 --memory=1G --rm -d --name pdf-service pdf-service:latest-amd64
 	sleep 2
-	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
+
+stop-container:
 	docker container kill pdf-service
+
+run-inspec:
+	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
+
+LOAD_REQUESTS_TOTAL=100
+LOAD_PARALLELISM=18
+run-load:
+	yes "make run-inspec" | head -n $(LOAD_REQUESTS_TOTAL) | xargs -0 | parallel --jobs $(LOAD_PARALLELISM)
 
 unit-test: setup-directories
 	docker compose run --rm pdf-service-test unit-test
