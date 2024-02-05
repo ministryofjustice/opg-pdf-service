@@ -1,9 +1,8 @@
 import { exitBrowser, initBrowser } from './lib/htmlToPdf';
 import { fromBuffer } from 'pdf2pic';
-import { OPG_TEST_LETTER } from './assets/opgTestLetter';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 
 import request from 'supertest';
 import app from './app';
@@ -62,44 +61,56 @@ describe('Given the app gets an api request to an endpoint', () => {
 
   describe('POST /generate-pdf with known HTML', () => {
     test('It should respond with a consistently rendered PDF', async () => {
-      const response = await request(app.handler)
-        .post('/generate-pdf')
-        .set('content-type', 'text/html')
-        .send(OPG_TEST_LETTER);
-      //expected output
-      const options = {
-        density: 100,
-        saveFilename: 'logo-pdf',
-        savePath: '/app/test-results/images',
-        format: 'png',
-        width: 600,
-        height: 600,
-      };
-      const convert = fromBuffer(response.body, options);
-      const pageToConvertAsImage = 1;
-      await convert(pageToConvertAsImage, { responseType: 'image' });
-      const baseline_image = PNG.sync.read(
-        readFileSync('/app/src/baseline/logo-pdf.1.png'),
-      );
-      const generated_image = PNG.sync.read(
-        readFileSync('/app/test-results/images/logo-pdf.1.png'),
-      );
-      const { width, height } = baseline_image;
-      const diff = new PNG({ width, height });
-      const match = pixelmatch(
-        baseline_image.data,
-        generated_image.data,
-        diff.data,
-        600,
-        600,
-        { threshold: 0.1 },
-      );
-      writeFileSync(
-        '/app/test-results/images/logo-pdf.1.diff.png',
-        PNG.sync.write(diff),
+      const files = readdirSync('/app/src/baseline').filter((file) =>
+        file.endsWith('.html'),
       );
 
-      expect(match).toBe(0);
+      const matchPromises = files.map(async (file) => {
+        const name = file.substring(0, file.length - 5);
+
+        const response = await request(app.handler)
+          .post('/generate-pdf')
+          .set('content-type', 'text/html')
+          .send(readFileSync(`/app/src/baseline/${name}.html`));
+        //expected output
+        const options = {
+          density: 100,
+          saveFilename: name,
+          savePath: '/app/test-results/images',
+          format: 'png',
+          width: 600,
+          height: 600,
+        };
+        const convert = fromBuffer(response.body, options);
+        const pageToConvertAsImage = 1;
+        await convert(pageToConvertAsImage, { responseType: 'image' });
+        const baseline_image = PNG.sync.read(
+          readFileSync(`/app/src/baseline/${name}.png`),
+        );
+        const generated_image = PNG.sync.read(
+          readFileSync(`/app/test-results/images/${name}.1.png`),
+        );
+        const { width, height } = baseline_image;
+        const diff = new PNG({ width, height });
+        const match = pixelmatch(
+          baseline_image.data,
+          generated_image.data,
+          diff.data,
+          600,
+          600,
+          { threshold: 0.1 },
+        );
+        writeFileSync(
+          `/app/test-results/images/${name}.diff.png`,
+          PNG.sync.write(diff),
+        );
+
+        return match;
+      });
+
+      const matches = await Promise.all(matchPromises);
+
+      expect(matches).toStrictEqual(new Array(files.length).fill(0));
     });
   });
 });
