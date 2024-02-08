@@ -79,7 +79,7 @@ describe('Given the app gets an api request to an endpoint', () => {
           savePath: '/app/test-results/images',
           format: 'png',
           width: 600,
-          height: 600,
+          preserveAspectRatio: true,
         };
         const convert = fromBuffer(response.body, options);
         const pageToConvertAsImage = 1;
@@ -96,8 +96,8 @@ describe('Given the app gets an api request to an endpoint', () => {
           baseline_image.data,
           generated_image.data,
           diff.data,
-          600,
-          600,
+          baseline_image.width,
+          baseline_image.height,
           { threshold: 0.1 },
         );
         writeFileSync(
