@@ -102,6 +102,13 @@ The root of this project contains a `.pre-commit-config.yaml` file used with [pr
 
 ## Render Diffs
 
-To aid in catching rendering differences between versions, there's a test 'It should respond with a consistently rendered PDF' that runs an example html file in `src/assets/opgTestLetter.js` through the PDF process and then renders it as an image in `test-results/images/logo-pdf.1.png`. The outputs of this are checked against a baseline in `/src/baseline/logo-pdf.1.png`.
+To aid in catching rendering differences between versions, there's a test 'It should respond with a consistently rendered PDF' that runs an all HTML files `src/baseline` through the PDF process and then renders them as an image in `test-results/images`. The outputs of this are checked against the baseline images in `src/baseline`.
 
-The test will check for 0 diff in output render between builds, so will fail if the HTML is converted differently for some reason i.e. a dependency update.  A diff file in created at `test-results/images/logo-pdf.1.diff.png` where red pixels will show drift.
+The test will check for 0 diff in output render between builds, so will fail if the HTML is converted differently for some reason i.e. a dependency update. If the test fails, diff files are created in `test-results/images` where red pixels will show drift.
+
+To add a new baseline letter:
+
+- Add the HTML file to `src/baseline`
+- Run the tests `make build-test unit-test` to generate baseline images and diffs
+- Copy the new image file from `test-results/images` into `src/baseline`
+- Re-run the tests to ensure they pass
