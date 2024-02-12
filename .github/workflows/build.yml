@@ -56,6 +56,15 @@ jobs:
         run: |
           make build
 
+      - name: Run Trivy
+        run: make scan
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'test-results/trivy.sarif'
+
       - name: Install Inspec for Image Tests
         run: |
           curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec -v 5
@@ -66,22 +75,19 @@ jobs:
           CHEF_LICENSE: accept
         run: |
           make test-image
-
+          
       - name: Upload Inspec Junit
         uses: actions/upload-artifact@v4
         with:
           name: inspec
           path: |
             test-results/junit
-
-      - name: Run Trivy
-        run: make scan
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: 'test-results/trivy.sarif'
+            
+      - name: Load Test Image with Inspec
+        env:
+          CHEF_LICENSE: accept
+        run: |
+          make load-test-image
 
       - name: Bump version
         id: bump_version
