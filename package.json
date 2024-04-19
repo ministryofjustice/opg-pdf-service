@@ -10,8 +10,8 @@
     "start:webserver": "node -r esm src/server.js",
     "unit-test": "jest --ci --runInBand --reporters=default --reporters=jest-junit --detectOpenHandles --forceExit",
     "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true  --detectOpenHandles --forceExit",
-    "lint:check": "eslint --ignore-path .gitignore .",
-    "lint:fix": "eslint --fix --ignore-path .gitignore .",
+    "lint:check": "eslint --ignore-pattern .gitignore .",
+    "lint:fix": "eslint --fix --ignore-pattern .gitignore .",
     "jshint": "jshint src/",
     "redoc:build": "redoc-cli bundle openapi/openapi.yaml -o openapi/docs/index.html"
   },
