@@ -2,15 +2,15 @@ ARG ARCH=
 FROM ${ARCH}alpine:3.19 as base
 
 RUN apk add --no-cache \
-      chromium \
-      curl \
-      nss \
-      freetype \
-      harfbuzz \
-      ca-certificates \
-      ttf-liberation \
-      nodejs \
-      yarn
+    chromium \
+    curl \
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-liberation \
+    nodejs \
+    yarn
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
@@ -21,7 +21,7 @@ COPY yarn.lock ./yarn.lock
 
 FROM base as production
 RUN yarn install --production
-COPY . .
+COPY src src
 
 RUN addgroup -S node && adduser -S -g node node \
     && mkdir -p /home/node/Downloads /app \
@@ -34,7 +34,12 @@ CMD [ "node", "src/server.js" ]
 
 FROM base as test
 RUN yarn install
-COPY . .
+COPY src src
+COPY .jshintrc .jshintrc
+COPY babel.config.cjs babel.config.cjs
+COPY eslint.config.js eslint.config.js
+COPY .prettierrc .prettierrc
+
 RUN apk add graphicsmagick ghostscript
 
 RUN addgroup -S node && adduser -S -g node node \
