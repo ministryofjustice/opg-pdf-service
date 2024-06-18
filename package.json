@@ -41,6 +41,9 @@
     "redoc-cli": "0.13.21",
     "supertest": "7.0.0"
   },
+  "resolutions": {
+    "braces": "3.0.3"
+  },
   "jest-junit": {
     "outputDirectory": "./test-results/junit",
     "outputName": "results.xml"
