@@ -3,3 +3,8 @@ GHSA-c827-hfw6-qwvm #rustix
 
 # WS Puppeteer dependency HIGH but not exploitable in our implementation
 CVE-2024-37890
+
+# elliptic is dependency of redoc-cli which is dev only
+CVE-2024-42459
+CVE-2024-42460
+CVE-2024-42461
