@@ -36,7 +36,7 @@ stop-container:
 run-inspec:
 	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
 
-LOAD_PARALLELISM=18
+LOAD_PARALLELISM=12
 LOAD_REQUESTS_TOTAL=200
 
 run-load:
