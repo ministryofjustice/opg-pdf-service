@@ -1,5 +1,5 @@
 # FFMPEG Rust dep
-GHSA-c827-hfw6-qwvm #rustix
+CVE-2024-43806 #rustix
 
 # WS Puppeteer dependency HIGH but not exploitable in our implementation
 CVE-2024-37890
@@ -9,5 +9,5 @@ CVE-2024-42459
 CVE-2024-42460
 CVE-2024-42461
 
-<!-- micromatch is a dependency of jest which is used for testing purposes only -->
+# micromatch is a dependency of jest which is used for testing purposes only
 CVE-2024-4067
