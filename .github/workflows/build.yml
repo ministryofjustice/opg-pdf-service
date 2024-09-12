@@ -127,6 +127,7 @@ jobs:
 
           if [ $BRANCH_NAME == "main" ]; then
             make create-manifest-version VERSION=main-${{ steps.bump_version.outputs.tag }}
+            make create-manifest-version VERSION=main-${{ steps.bump_version.outputs.tag }}-$(date +"%Y%m%d%H%M%S")
             make create-manifest-version VERSION=latest
           fi
       
@@ -140,6 +141,7 @@ jobs:
 
           if [ $BRANCH_NAME == "main" ]; then
             make create-manifest-version VERSION=main-${{ steps.bump_version.outputs.tag }}
+            make create-manifest-version VERSION=main-${{ steps.bump_version.outputs.tag }}-$(date +"%Y%m%d%H%M%S")
             make create-manifest-version VERSION=latest
           fi
 
