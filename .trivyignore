@@ -8,6 +8,7 @@ CVE-2024-37890
 CVE-2024-42459
 CVE-2024-42460
 CVE-2024-42461
+CVE-2024-48949
 
 # micromatch is a dependency of jest which is used for testing purposes only
 CVE-2024-4067
