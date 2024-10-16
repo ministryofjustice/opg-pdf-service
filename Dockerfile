@@ -1,5 +1,5 @@
 ARG ARCH=
-FROM ${ARCH}alpine:3.20 as base
+FROM ${ARCH}alpine:3.19 as base
 
 RUN apk add --no-cache \
     chromium \
