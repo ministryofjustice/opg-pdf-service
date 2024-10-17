@@ -1,6 +1,3 @@
-# FFMPEG Rust dep
-CVE-2024-43806 #rustix
-
 # WS Puppeteer dependency HIGH but not exploitable in our implementation
 CVE-2024-37890
 
