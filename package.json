@@ -49,6 +49,9 @@
     "outputName": "results.xml"
   },
   "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!pixelmatch).+\\.js$"
+    ],
     "testTimeout": 15000,
     "reporters": [
       "default",
