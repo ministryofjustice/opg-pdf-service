@@ -13,7 +13,7 @@
     "lint:check": "eslint --ignore-pattern .gitignore .",
     "lint:fix": "eslint --fix --ignore-pattern .gitignore .",
     "jshint": "jshint src/",
-    "redoc:build": "redoc-cli bundle openapi/openapi.yaml -o openapi/docs/index.html"
+    "redoc:build": "redocly build-docs pdf -o openapi/docs/index.html"
   },
   "author": "Ministry of Justice",
   "license": "MIT",
@@ -28,6 +28,7 @@
     "@babel/core": "7.25.8",
     "@babel/eslint-parser": "7.25.8",
     "@babel/preset-env": "7.25.8",
+    "@redocly/cli": "^1.25.8",
     "babel-jest": "29.7.0",
     "eslint": "9.12.0",
     "eslint-config-prettier": "9.1.0",
@@ -38,7 +39,6 @@
     "pdf2pic": "^3.0.3",
     "pixelmatch": "6.0.0",
     "prettier": "3.3.3",
-    "redoc-cli": "0.13.21",
     "supertest": "7.0.0"
   },
   "resolutions": {
