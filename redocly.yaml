@@ -1,0 +1,16 @@
+extends:
+  - recommended
+
+apis:
+  pdf:
+    root: ./openapi/openapi.yaml
+    rules:
+      no-ambiguous-paths: error
+
+theme:
+  openapi:
+    schemaExpansionLevel: 2
+    generateCodeSamples:
+      languages:
+        - lang: PHP
+        - lang: Go
