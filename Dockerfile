@@ -1,5 +1,4 @@
-ARG ARCH=
-FROM ${ARCH}alpine:3.20 as base
+FROM alpine:3.20 AS base
 
 RUN apk add --no-cache \
     chromium \
@@ -19,7 +18,7 @@ WORKDIR /app
 COPY package.json ./package.json
 COPY yarn.lock ./yarn.lock
 
-FROM base as production
+FROM base AS production
 RUN yarn install --production
 COPY src src
 
@@ -32,7 +31,7 @@ RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3
 USER node
 CMD [ "node", "src/server.js" ]
 
-FROM base as test
+FROM base AS test
 RUN yarn install
 COPY src src
 COPY .jshintrc .jshintrc
