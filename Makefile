@@ -5,15 +5,21 @@ all: build-all scan lint-test unit-test-coverage test-image
 build-all: build build-test build-local
 
 build:
-	${MAKE} build-amd64 build-arm64v8 -j 2
+	${MAKE} build-amd64 build-arm64 -j 2
 
-build-amd64: ARCH=amd64
-build-arm64v8: ARCH=arm64v8
-build-amd64 build-arm64v8:
+build-amd64: 
+	${MAKE} build-image ARCH=linux/amd64 TAG=amd64
+
+build-arm64: 
+	${MAKE} build-image ARCH=linux/arm64/v8 TAG=arm64v8
+
+build-arm64v8: ARCH=linux/arm64/v8
+
+build-image:
 	docker build \
 		--target production \
-		--tag pdf-service:latest-${ARCH} \
-		--build-arg ARCH=${ARCH}/ \
+		--platform $(ARCH) \
+		--tag pdf-service:latest-$(TAG) \
 		--no-cache \
 		.
 
