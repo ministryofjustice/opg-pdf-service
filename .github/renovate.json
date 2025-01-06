@@ -65,8 +65,5 @@
         "commitMessagePrefix": "[SECURITY]",
         "branchTopic": "{{{datasource}}}-{{{depName}}}-vulnerability",
         "prCreation": "immediate"
-    },
-    "ignoreDeps": [
-        "anothrNick/github-tag-action"
-    ]
+    }
 }
