@@ -9,6 +9,7 @@ build:
 		--platform linux/amd64,linux/arm64/v8 \
 		--tag pdf-service:latest \
 		--target production \
+		--provenance false \
 		--no-cache \
 		.
 
