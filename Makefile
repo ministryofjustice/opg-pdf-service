@@ -5,8 +5,7 @@ all: build-all scan lint-test unit-test-coverage test-image
 build-all: build build-test build-local
 
 build:
-	docker buildx build \
-		--platform linux/amd64,linux/arm64/v8 \
+	docker build \
 		--tag pdf-service:latest \
 		--target production \
 		--no-cache \
