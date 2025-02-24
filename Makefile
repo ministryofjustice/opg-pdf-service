@@ -5,21 +5,9 @@ all: build-all scan lint-test unit-test-coverage test-image
 build-all: build build-test build-local
 
 build:
-	${MAKE} build-amd64 build-arm64 -j 2
-
-build-amd64: 
-	${MAKE} build-image ARCH=linux/amd64 TAG=amd64
-
-build-arm64: 
-	${MAKE} build-image ARCH=linux/arm64/v8 TAG=arm64v8
-
-build-arm64v8: ARCH=linux/arm64/v8
-
-build-image:
 	docker build \
+		--tag pdf-service:latest \
 		--target production \
-		--platform $(ARCH) \
-		--tag pdf-service:latest-$(TAG) \
 		--no-cache \
 		.
 
@@ -33,7 +21,7 @@ test-image: setup-directories start-container run-inspec stop-container
 load-test-image: setup-directories start-container run-load stop-container
 
 start-container:
-	docker run --cpus=0.5 --memory=1G -p 8000:80 --rm -d --name pdf-service pdf-service:latest-amd64
+	docker run --cpus=0.5 --memory=1G -p 8000:80 --rm -d --name pdf-service pdf-service:latest
 	sleep 8
 
 stop-container:
@@ -68,17 +56,6 @@ setup-directories:
 	mkdir -p -m 0777 ./test-results/load-test-pdfs
 	mkdir -p -m 0777 ./coverage
 
-VERSION ?= latest
-create-manifest-version:
-	docker tag pdf-service:latest-amd64 $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-amd64
-	docker tag pdf-service:latest-arm64v8 $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-arm64v8
-	docker push $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-amd64
-	docker push $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-arm64v8
-	docker manifest create $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION) \
-		--amend $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-amd64 \
-		--amend $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)-arm64v8
-	docker manifest push $(ECR_REGISTRY)/$(PDF_SERVICE_ECR_REPOSITORY):$(VERSION)
-
 scan: setup-directories
-	docker compose run --rm trivy image --format table --exit-code 0 pdf-service:latest-amd64
-	docker compose run --rm trivy image --format sarif --severity HIGH,CRITICAL --output /test-results/trivy.sarif --exit-code 1 pdf-service:latest-amd64
+	docker compose run --rm trivy image --format table --exit-code 0 pdf-service:latest
+	docker compose run --rm trivy image --format sarif --severity HIGH,CRITICAL --output /test-results/trivy.sarif --exit-code 1 pdf-service:latest
