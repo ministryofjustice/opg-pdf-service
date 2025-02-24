@@ -5,11 +5,11 @@ all: build-all scan lint-test unit-test-coverage test-image
 build-all: build build-test build-local
 
 build:
-	docker buildx build \
-		--platform linux/amd64,linux/arm64/v8 \
+	docker build \
 		--tag pdf-service:latest \
 		--target production \
 		--no-cache \
+		--load \
 		.
 
 build-local:
@@ -29,6 +29,7 @@ stop-container:
 	docker container kill pdf-service
 
 run-inspec:
+	docker ps
 	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
 
 LOAD_PARALLELISM=14
