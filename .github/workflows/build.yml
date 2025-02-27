@@ -133,9 +133,9 @@ jobs:
             docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}
             docker tag pdf-service:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.tag }}-$(date +"%Y%m%d%H%M%S")
             # We want all of the tags pushed
-            docker push  --all-tags $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY
+            docker manifest push --all-tags $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY
           else
-            docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
+            docker manifest push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.tag }}
           fi
 
   push-tags:
