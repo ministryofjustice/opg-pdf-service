@@ -51,4 +51,4 @@ setup-directories:
 
 scan: setup-directories
 	docker compose run --rm trivy image --format table --exit-code 0 pdf-service:latest
-	docker compose run --rm trivy image --format sarif --severity HIGH,CRITICAL --output /test-results/trivy.sarif --exit-code 1 pdf-service:latest
+	docker compose run --rm trivy image --format sarif --output /test-results/trivy.sarif --exit-code 1 pdf-service:latest
