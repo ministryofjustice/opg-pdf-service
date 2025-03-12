@@ -1,5 +1,3 @@
-version: "2.1"
-
 services:
   pdf-service:
     container_name: pdf-service
