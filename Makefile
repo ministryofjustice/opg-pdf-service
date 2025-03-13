@@ -14,8 +14,9 @@ test-image: setup-directories start-container run-inspec stop-container
 load-test-image: setup-directories start-container run-load stop-container
 
 start-container:
-	docker run --cpus=0.5 --memory=1G -p 8000:80 --rm -d --name pdf-service pdf-service:latest
+	docker run --cpus=0.5 --memory=1G -p 8000:80 --rm -d --name pdf-service 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
 	sleep 8
+	docker ps -a
 
 stop-container:
 	docker container kill pdf-service
@@ -50,5 +51,5 @@ setup-directories:
 	mkdir -p -m 0777 ./coverage
 
 scan: setup-directories
-	docker compose run --rm trivy image --format table --exit-code 0 pdf-service:latest
-	docker compose run --rm trivy image --format sarif --output /test-results/trivy.sarif --exit-code 1 pdf-service:latest
+	docker compose run --rm trivy image --format table --exit-code 0 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
+	docker compose run --rm trivy image --format sarif --output /test-results/trivy.sarif --exit-code 1 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
