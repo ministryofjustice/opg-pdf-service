@@ -16,6 +16,7 @@ load-test-image: setup-directories start-container run-load stop-container
 start-container:
 	docker run --cpus=0.5 --memory=1G -p 8000:80 --rm -d --name pdf-service pdf-service:latest
 	sleep 8
+	docker ps
 
 stop-container:
 	docker container kill pdf-service
