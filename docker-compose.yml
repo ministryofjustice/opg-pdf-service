@@ -4,9 +4,6 @@ services:
     image: pdf-service:latest
     build:
       context: .
-      platforms:
-        - "linux/arm64/v8"
-        - "linux/amd64"
       dockerfile: Dockerfile
       target: production
     ports:
