@@ -6,8 +6,8 @@ jobs:
     name: Test PDF Service
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/setup-node@v4.3.0
         with:
           node-version-file: '.nvmrc'
 
@@ -15,7 +15,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
       - name: Dependencies from Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v4.2.3
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -33,15 +33,15 @@ jobs:
           make unit-test-coverage
 
       - name: Upload Junit
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: junit
           path: |
             test-results/junit
-      
+
       - name: Upload Image Diff Data
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         id: upload-image-diff
         with:
           name: image-diff
@@ -49,7 +49,7 @@ jobs:
             test-results/images
 
       - name: Upload Coverage
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: coverage
           path: |
