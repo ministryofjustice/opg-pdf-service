@@ -27,7 +27,7 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /home/node \
     && chown -R node:node /app
 # Patch Vulnerabilities
-RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libssl3 libwebp libxml2 minizip
+RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libssl3 libwebp libxml2 mbedtls minizip xz-libs
 USER node
 CMD [ "node", "src/server.js" ]
 
