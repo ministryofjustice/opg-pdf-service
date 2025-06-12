@@ -56,7 +56,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        uses: ministryofjustice/opg-github-actions/.github/actions/semver-tag@c9c5dfb290b8f614df0884928c521165ba83d630 # v3.1.4
+        uses: ministryofjustice/opg-github-actions/.github/actions/semver-tag-with-workflow-dispatch@support-workflow-dispatch
         with:
           default_bump: minor
           releases_enabled: false
@@ -129,21 +129,21 @@ jobs:
         with:
           sarif_file: 'test-results/trivy.sarif'
 
-      - name: Tag & Push
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          PDF_SERVICE_ECR_REPOSITORY: pdf-service
-        if: github.actor != 'renovate[bot]'
-        run: |
-          docker tag $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.created_tag }}
-          if [ $BRANCH_NAME == "main" ]; then
-            docker tag $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.created_tag }}
-            docker tag $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.created_tag }}-$(date +"%Y%m%d%H%M%S")
-            # We want all of the tags pushed
-            docker push  --all-tags $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY
-          else
-            docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.created_tag }}
-          fi
+      # - name: Tag & Push
+      #   env:
+      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     PDF_SERVICE_ECR_REPOSITORY: pdf-service
+      #   if: github.actor != 'renovate[bot]'
+      #   run: |
+      #     docker tag $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.created_tag }}
+      #     if [ $BRANCH_NAME == "main" ]; then
+      #       docker tag $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.created_tag }}
+      #       docker tag $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:latest $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:main-${{ steps.bump_version.outputs.created_tag }}-$(date +"%Y%m%d%H%M%S")
+      #       # We want all of the tags pushed
+      #       docker push  --all-tags $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY
+      #     else
+      #       docker push $ECR_REGISTRY/$PDF_SERVICE_ECR_REPOSITORY:${{ steps.bump_version.outputs.created_tag }}
+      #     fi
 
   push-tags:
     runs-on: ubuntu-latest
