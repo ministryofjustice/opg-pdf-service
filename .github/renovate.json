@@ -22,16 +22,6 @@
             "stabilityDays": 5
         },
         {
-            "groupName": "Major Updates",
-            "groupSlug": "all-major-updates",
-            "matchPackagePatterns": [
-                "*"
-            ],
-            "matchUpdateTypes": [
-                "major"
-            ]
-        },
-        {
             "description": "Github Actions: bundle all updates together",
             "groupSlug": "all-github-action-updates",
             "labels": [
@@ -55,6 +45,12 @@
             ]
         }
     ],
+    "major": {
+        "labels": [
+            "Dependencies",
+            "Renovate"
+        ]
+    },
     "vulnerabilityAlerts": {
         "groupName": "Vulnerability Patches",
         "schedule": [
