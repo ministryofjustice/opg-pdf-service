@@ -19,7 +19,7 @@ COPY package.json ./package.json
 COPY yarn.lock ./yarn.lock
 
 FROM base AS production
-RUN yarn install --production
+RUN yarn install --production --ignore-scripts --frozen-lockfile
 COPY src src
 
 RUN addgroup -S node && adduser -S -g node node \
@@ -32,7 +32,7 @@ USER node
 CMD [ "node", "src/server.js" ]
 
 FROM base AS test
-RUN yarn install
+RUN yarn install --ignore-scripts --frozen-lockfile
 COPY src src
 COPY .jshintrc .jshintrc
 COPY babel.config.cjs babel.config.cjs
