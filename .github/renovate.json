@@ -19,7 +19,7 @@
                 "patch"
             ],
             "schedule": "* 0-6 1 * *",
-            "stabilityDays": 5
+            "minimumReleaseAge": "5 days"
         },
         {
             "description": "Github Actions: bundle all updates together",
@@ -39,7 +39,7 @@
                 "patch",
                 "digest"
             ],
-            "stabilityDays": 3,
+            "minimumReleaseAge": "3 days",
             "matchManagers": [
                 "github-actions"
             ]
@@ -49,7 +49,8 @@
         "labels": [
             "Dependencies",
             "Renovate"
-        ]
+        ],
+        "minimumReleaseAge": "3 days"
     },
     "vulnerabilityAlerts": {
         "groupName": "Vulnerability Patches",
@@ -57,7 +58,7 @@
             "after 6am and before 7am every weekday"
         ],
         "dependencyDashboardApproval": false,
-        "stabilityDays": 0,
+        "minimumReleaseAge": null,
         "rangeStrategy": "update-lockfile",
         "commitMessagePrefix": "[SECURITY]",
         "branchTopic": "{{{datasource}}}-{{{depName}}}-vulnerability",
