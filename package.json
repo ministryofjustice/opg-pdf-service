@@ -38,7 +38,7 @@
     "jest-junit": "16.0.0",
     "jshint": "2.13.6",
     "pdf2pic": "^3.0.3",
-    "pixelmatch": "6.0.0",
+    "pixelmatch": "7.1.0",
     "prettier": "3.6.2",
     "supertest": "7.1.4"
   },
