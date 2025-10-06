@@ -19,9 +19,13 @@ export async function initBrowser() {
 
   // This will happen when you call browser.close(), not just when problems occur
   browser.on('disconnected', async () => {
-    console.log('Browser disconnected');
+    console.log('> Browser disconnected');
 
     browser = null;
+  });
+
+  browser.on('targetcreated', async () => {
+    console.log('> PDF requested');
   });
 }
 
@@ -42,10 +46,10 @@ export const htmlToPdf = async (html, options) => {
 
   const page = await browser.newPage();
 
-  page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
+  page.on('console', (msg) => console.log('>- page logged: ', msg.text()));
   page.on('requestfailed', (request) => {
     console.log(
-      'REQUEST_FAILED:',
+      '>- page request failed: ',
       request.url() + ' ' + request.failure().errorText,
     );
   });
