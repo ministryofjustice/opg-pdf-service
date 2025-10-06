@@ -42,9 +42,12 @@ export const htmlToPdf = async (html, options) => {
 
   const page = await browser.newPage();
 
-  page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-  page.on('requestfailed', request => {
-    console.log('REQUEST_FAILED:', request.url() + ' ' + request.failure().errorText);
+  page.on('console', (msg) => console.log('PAGE LOG:', msg.text()));
+  page.on('requestfailed', (request) => {
+    console.log(
+      'REQUEST_FAILED:', 
+      request.url() + ' ' + request.failure().errorText
+    );
   });
 
   try {
