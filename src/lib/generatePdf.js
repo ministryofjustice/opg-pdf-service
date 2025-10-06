@@ -6,7 +6,7 @@ const generatePdf = async (html, options) => {
     html = await stripAnchorTags(html);
   }
   return await htmlToPdf(html, {
-    waitUntil: 'load',
+    waitUntil: 'networkidle0',
     marginTop: options.marginTop,
     marginBottom: options.marginBottom,
     marginLeft: options.marginLeft,
