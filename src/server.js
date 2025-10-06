@@ -5,7 +5,7 @@ import { initBrowser } from './lib/htmlToPdf.js';
 
 const port = process.env.PDF_SERVICE_PORT || 80;
 
-await initBrowser();
+initBrowser();
 
 const server = app.listen(port, (err) => {
   if (err) throw err;
