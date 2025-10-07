@@ -54,7 +54,7 @@ export const htmlToPdf = async (html, options) => {
         ' error: ' +
         request.failure().errorText +
         ' status: ' +
-        request.response().status(),
+        request.response()?.status(),
     );
   });
   page.on('request', (request) => {
