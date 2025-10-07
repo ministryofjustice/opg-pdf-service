@@ -53,6 +53,12 @@ export const htmlToPdf = async (html, options) => {
       request.url() + ' ' + request.failure().errorText,
     );
   });
+  page.on('request', (request) => {
+    console.log(
+      '>- page request: ',
+      request.url() + ' ' + JSON.stringify(request.headers()),
+    );
+  });
 
   try {
     await page.emulateMediaType(
