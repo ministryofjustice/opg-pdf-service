@@ -9,6 +9,10 @@ export async function initBrowser() {
       // Required for Docker version of Puppeteer
       '--no-sandbox',
       '--disable-setuid-sandbox',
+      //for UML external url issues
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins',
+      '--disable-site-isolation-trials',
       // This will write shared memory files into /tmp instead of /dev/shm,
       // because Docker’s default for /dev/shm is 64MB
       '--disable-dev-shm-usage',
