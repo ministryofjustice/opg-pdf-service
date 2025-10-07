@@ -50,7 +50,9 @@ export const htmlToPdf = async (html, options) => {
   page.on('requestfailed', (request) => {
     console.log(
       '>- page request failed: ',
-      request.url() + ' error: ' + request.failure().errorText + ' status: ' + request.response().status(),
+      request.url() + 
+        ' error: ' + request.failure().errorText + 
+        ' status: ' + request.response().status(),
     );
   });
   page.on('request', (request) => {
