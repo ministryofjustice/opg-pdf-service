@@ -9,10 +9,6 @@ export async function initBrowser() {
       // Required for Docker version of Puppeteer
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      //for UML external url issues
-      '--disable-web-security',
-      '--disable-features=IsolateOrigins',
-      '--disable-site-isolation-trials',
       // This will write shared memory files into /tmp instead of /dev/shm,
       // because Docker’s default for /dev/shm is 64MB
       '--disable-dev-shm-usage',
@@ -48,25 +44,26 @@ export const htmlToPdf = async (html, options) => {
 
   let pdf;
 
-  const page = await browser.newPage();
+  const context = await browser.createBrowserContext();
+  const page    = await context.newPage();
 
-  page.on('console', (msg) => console.log('>- page logged: ', msg.text()));
-  page.on('requestfailed', (request) => {
-    console.log(
-      '>- page request failed: ',
-      request.url() +
-        ' error: ' +
-        request.failure().errorText +
-        ' status: ' +
-        request.response()?.status(),
-    );
-  });
-  page.on('request', (request) => {
-    console.log(
-      '>- page request: ',
-      request.url() + ' ' + JSON.stringify(request.headers()),
-    );
-  });
+  // page.on('console', (msg) => console.log('>- page logged: ', msg.text()));
+  // page.on('requestfailed', (request) => {
+  //   console.log(
+  //     '>- page request failed: ',
+  //     request.url() +
+  //       ' error: ' +
+  //       request.failure().errorText +
+  //       ' status: ' +
+  //       request.response()?.status(),
+  //   );
+  // });
+  // page.on('request', (request) => {
+  //   console.log(
+  //     '>- page request: ',
+  //     request.url() + ' ' + JSON.stringify(request.headers()),
+  //   );
+  // });
 
   try {
     await page.emulateMediaType(
@@ -86,7 +83,7 @@ export const htmlToPdf = async (html, options) => {
       format: 'A4',
     });
   } finally {
-    await page.close();
+    await context.close();
   }
 
   return pdf;
