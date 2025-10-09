@@ -1,10 +1,15 @@
 import { htmlToPdf } from './htmlToPdf.js';
 import stripAnchorTags from './stripAnchorTags.js';
+import embedRemoteImages from './embedRemoteImages.js';
 
 const generatePdf = async (html, options) => {
   if (options.stripTags) {
     html = await stripAnchorTags(html);
   }
+  if (options.embedRemoteImages) {
+    html = await embedRemoteImages(html);
+  }
+
   return await htmlToPdf(html, {
     waitUntil: 'networkidle0',
     marginTop: options.marginTop,

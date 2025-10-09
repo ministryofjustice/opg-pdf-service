@@ -2,6 +2,7 @@ import bodyParser from 'body-parser';
 import polka from 'polka';
 import GeneratePdf from './lib/generatePdf.js';
 import pdfService from './lib/pdfConfigService.js';
+import embedRemoteImages from './lib/embedRemoteImages.js';
 
 const app = polka()
   .use(bodyParser.text({ type: 'text/html', limit: '2000kb' }))
