@@ -12,7 +12,7 @@ const embedRemoteImages = async (html) => {
     let $url = $(this).attr('src');
     let $parsedUrl = new URL($url);
 
-    if ($parsedUrl.protocol !== 'data') {
+    if ($parsedUrl.protocol !== 'data:') {
       // delete image url before attempting replacement
       // this will result in broken images if they're unable to be fetched
       $(this).attr('src', '');
