@@ -14,7 +14,7 @@ test-image: setup-directories start-container run-inspec stop-container
 load-test-image: setup-directories start-container run-load stop-container
 
 start-container:
-	docker run --memory=1G -p 8000:80 --rm -d --name pdf-service 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
+	docker run --cpus=0.5 --memory=1G -p 8000:80 --rm -d --name pdf-service 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
 	sleep 8
 
 stop-container:

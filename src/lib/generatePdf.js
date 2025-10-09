@@ -11,7 +11,7 @@ const generatePdf = async (html, options) => {
   }
 
   return await htmlToPdf(html, {
-    waitUntil: 'networkidle0',
+    waitUntil: 'load',
     marginTop: options.marginTop,
     marginBottom: options.marginBottom,
     marginLeft: options.marginLeft,

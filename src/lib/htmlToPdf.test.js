@@ -22,7 +22,7 @@ describe('Given you pass HTML to be returned into PDF', () => {
   describe('Given a PDF is valid and to be generated', () => {
     test('it should generate a PDF using puppeteer successfully', async () => {
       const pdf = await htmlToPdf(testHtml, {
-        waitUntil: 'networkidle0',
+        waitUntil: 'load',
         pageHeight: 2000,
         pageWidth: 1100,
       });
@@ -35,7 +35,7 @@ describe('Given you pass HTML to be returned into PDF', () => {
   describe('Given a PDF is valid with page sizing sent and to be generated', () => {
     test('it should generate a PDF using puppeteer successfully', async () => {
       const pdf = await htmlToPdf(testHtml, {
-        waitUntil: 'networkidle0',
+        waitUntil: 'load',
         pageHeight: 20,
         pageWidth: 40,
       });
