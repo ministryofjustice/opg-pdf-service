@@ -47,26 +47,36 @@ const fetchRemoteImage = (element, url) => {
       res.setEncoding('base64');
 
       if (res.statusCode !== 200) {
-        reject(
-          new Error(
-            '  - response error ' +
-              url.protocol +
-              '//' +
-              url.host +
-              '' +
-              url.pathname +
-              ' - ' +
-              res.statusCode +
-              ' ' +
-              res.statusMessage,
-          ),
-        );
+        let errorMsg = '';
+        res.on('data', (data) => {
+          errorMsg += data;
+        });
+
+        res.on('end', function () {
+          reject(
+            new Error(
+              '  - response error ' +
+                url.protocol +
+                '//' +
+                url.host +
+                '' +
+                url.pathname +
+                ' - ' +
+                res.statusCode +
+                ' ' +
+                res.statusMessage +
+                ' ' +
+                errorMsg,
+            ),
+          );
+        });
+        
         return;
       }
 
       let imageData = 'data:' + res.headers['content-type'] + ';base64,';
       res.on('data', (data) => {
-        body += data;
+        imageData += data;
       });
       res.on('end', function () {
         resolve([element, imageData]);
