@@ -11,7 +11,7 @@ class PdfConfigService {
   static embedRemoteImages(value) {
     return value === 'true';
   }
-  
+
   static title(title) {
     return title ? title : 'View LPA - View a lasting power of attorney';
   }

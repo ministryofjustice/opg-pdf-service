@@ -45,25 +45,19 @@ export const htmlToPdf = async (html, options) => {
   let pdf;
 
   const context = await browser.createBrowserContext();
-  const page    = await context.newPage();
+  const page = await context.newPage();
 
-  // page.on('console', (msg) => console.log('>- page logged: ', msg.text()));
-  // page.on('requestfailed', (request) => {
-  //   console.log(
-  //     '>- page request failed: ',
-  //     request.url() +
-  //       ' error: ' +
-  //       request.failure().errorText +
-  //       ' status: ' +
-  //       request.response()?.status(),
-  //   );
-  // });
-  // page.on('request', (request) => {
-  //   console.log(
-  //     '>- page request: ',
-  //     request.url() + ' ' + JSON.stringify(request.headers()),
-  //   );
-  // });
+  page.on('console', (msg) => console.log('  - page logged ', msg.text()));
+  page.on('requestfailed', (request) => {
+    console.log(
+      '  - page request failed ',
+      request.url() +
+        ' error: ' +
+        request.failure().errorText +
+        ' status: ' +
+        request.response()?.status(),
+    );
+  });
 
   try {
     await page.emulateMediaType(
