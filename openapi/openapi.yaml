@@ -25,6 +25,7 @@ paths:
       operationId: generate-pdf
       parameters:
         - $ref: '#/components/parameters/StripAnchorTags'
+        - $ref: '#/components/parameters/EmbedRemoteImages'
         - $ref: '#/components/parameters/MarginTop'
         - $ref: '#/components/parameters/MarginBottom'
         - $ref: '#/components/parameters/MarginLeft'
@@ -93,6 +94,15 @@ components:
       name: strip-anchor-tags
       in: header
       description: Strip all anchor tag hrefs from links on page.
+      required: false
+      schema:
+        type: boolean
+        items:
+          $ref: '#/components/schemas/HeaderValidation/properties/boolean-false'
+    EmbedRemoteImages:
+      name: embed-remote-images
+      in: header
+      description: Downloads images with a remote url and embeds them as base64 encoded data
       required: false
       schema:
         type: boolean
