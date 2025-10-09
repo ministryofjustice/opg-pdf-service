@@ -70,7 +70,7 @@ const fetchRemoteImage = (element, url) => {
             ),
           );
         });
-        
+
         return;
       }
 
