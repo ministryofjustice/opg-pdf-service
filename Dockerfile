@@ -20,30 +20,35 @@ COPY yarn.lock ./yarn.lock
 
 FROM base AS production
 RUN yarn install --production --ignore-scripts --frozen-lockfile
+
+# Patch Vulnerabilities
+RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libexpat libssl3 libwebp libxml2 mbedtls minizip sqlite-libs tiff xz-libs
+
 COPY src src
 
 RUN addgroup -S node && adduser -S -g node node \
     && mkdir -p /home/node/Downloads /app \
     && chown -R node:node /home/node \
     && chown -R node:node /app
-# Patch Vulnerabilities
-RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libexpat libssl3 libwebp libxml2 mbedtls minizip sqlite-libs tiff xz-libs
+
 USER node
 CMD [ "node", "src/server.js" ]
 
 FROM base AS test
 RUN yarn install --ignore-scripts --frozen-lockfile
+
+RUN apk add graphicsmagick ghostscript
+
 COPY src src
 COPY .jshintrc .jshintrc
 COPY babel.config.cjs babel.config.cjs
 COPY eslint.config.js eslint.config.js
 COPY .prettierrc .prettierrc
 
-RUN apk add graphicsmagick ghostscript
-
 RUN addgroup -S node && adduser -S -g node node \
     && mkdir -p /home/node/Downloads /app \
     && chown -R node:node /home/node \
     && chown -R node:node /app
+
 USER node
 ENTRYPOINT [ "yarn" ]

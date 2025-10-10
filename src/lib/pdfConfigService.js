@@ -3,7 +3,12 @@ class PdfConfigService {
     value = parseInt(value);
     return Number.isInteger(value) ? value : 0;
   }
+
   static stripAnchorTagsFromHtml(value) {
+    return value === 'true';
+  }
+
+  static embedRemoteImages(value) {
     return value === 'true';
   }
 
