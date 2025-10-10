@@ -8,11 +8,9 @@ const port = process.env.PDF_SERVICE_PORT || 80;
 
 initBrowser();
 
-const server = app
-  .use(loggerMiddleware)
-  .listen(port, (err) => {
-    if (err) throw err;
-    logger.info('Server started on :' + port);
-  });
+const server = app.use(loggerMiddleware).listen(port, (err) => {
+  if (err) throw err;
+  logger.info('Server started on :' + port);
+});
 
 export default server;

@@ -24,13 +24,13 @@ export const loggerMiddleware = pinoHttp({
   },
 
   serializers: {
-    req (req) {
+    req(req) {
       req.path = req.url;
       delete req.url;
       delete req.id;
-        
-      return req
-    }
+
+      return req;
+    },
   },
 
   customProps: function (req, res) {
