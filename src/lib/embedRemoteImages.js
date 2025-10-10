@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import { logger } from '../logging.js';
 import http from 'http';
 import https from 'https';
 
@@ -26,7 +27,7 @@ const embedRemoteImages = async (html) => {
         let [element, imageData] = result.value;
         element.attr('src', imageData);
       } else {
-        console.log(result.reason.message);
+        logger.error(result.reason.message);
       }
     });
   });
@@ -36,8 +37,8 @@ const embedRemoteImages = async (html) => {
 
 const fetchRemoteImage = (element, url) => {
   return new Promise(function (resolve, reject) {
-    console.log(
-      '  - requesting',
+    logger.debug(
+      'embedding image ',
       url.protocol + '//' + url.host + '' + url.pathname,
     );
 
@@ -55,7 +56,7 @@ const fetchRemoteImage = (element, url) => {
         res.on('end', function () {
           reject(
             new Error(
-              '  - response error ' +
+              'response error whilst fetching image ' +
                 url.protocol +
                 '//' +
                 url.host +
@@ -86,7 +87,7 @@ const fetchRemoteImage = (element, url) => {
     req.on('error', (e) => {
       reject(
         new Error(
-          '  - request error ' +
+          'request error whilst fetching image ' +
             url.protocol +
             '//' +
             url.host +
