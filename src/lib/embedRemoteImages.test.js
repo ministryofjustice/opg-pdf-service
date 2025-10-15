@@ -16,7 +16,15 @@ describe('Given you have a HTML document with remote images in it', () => {
     const result = await embedRemoteImages(testHtml);
 
     expect(result).not.toBeNull();
-    expect(result).not.toEqual(testHtml);
-    expect(result).toContain('data:');
+    expect(result).toEqual(`<html>
+<head>
+</head>
+<body>
+<img src="data:image/png;base64,[[whatever the Base 64 of of the image is]]"/>
+<img src="http://static-server/not_found.jpg"/>
+<img src="https://does-not-exist/not_found.jpg"/>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="/>
+</body>
+</html>`);
   });
 });
