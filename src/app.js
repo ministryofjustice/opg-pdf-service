@@ -10,6 +10,9 @@ const app = polka()
       stripTags: pdfService.stripAnchorTagsFromHtml(
         req.headers['strip-anchor-tags'],
       ),
+      embedRemoteImages: pdfService.embedRemoteImages(
+        req.headers['embed-remote-images'],
+      ),
       marginTop: pdfService.margin(req.headers['margin-top']),
       marginBottom: pdfService.margin(req.headers['margin-bottom']),
       marginLeft: pdfService.margin(req.headers['margin-left']),

@@ -61,7 +61,7 @@ describe('Given the app gets an api request to an endpoint', () => {
 
   describe('POST /generate-pdf with known HTML', () => {
     test('It should respond with a consistently rendered PDF', async () => {
-      const files = readdirSync('/app/src/baseline').filter((file) =>
+      const files = readdirSync('src/baseline').filter((file) =>
         file.endsWith('.html'),
       );
 
@@ -71,12 +71,12 @@ describe('Given the app gets an api request to an endpoint', () => {
         const response = await request(app.handler)
           .post('/generate-pdf')
           .set('content-type', 'text/html')
-          .send(readFileSync(`/app/src/baseline/${name}.html`));
+          .send(readFileSync(`src/baseline/${name}.html`));
         //expected output
         const options = {
           density: 100,
           saveFilename: name,
-          savePath: '/app/test-results/images',
+          savePath: 'test-results/images',
           format: 'png',
           width: 600,
           preserveAspectRatio: true,
@@ -85,10 +85,10 @@ describe('Given the app gets an api request to an endpoint', () => {
         const pageToConvertAsImage = 1;
         await convert(pageToConvertAsImage, { responseType: 'image' });
         const baseline_image = PNG.sync.read(
-          readFileSync(`/app/src/baseline/${name}.1.png`),
+          readFileSync(`src/baseline/${name}.1.png`),
         );
         const generated_image = PNG.sync.read(
-          readFileSync(`/app/test-results/images/${name}.1.png`),
+          readFileSync(`test-results/images/${name}.1.png`),
         );
         const { width, height } = baseline_image;
         const diff = new PNG({ width, height });
@@ -101,7 +101,7 @@ describe('Given the app gets an api request to an endpoint', () => {
           { threshold: 0.1 },
         );
         writeFileSync(
-          `/app/test-results/images/${name}.diff.png`,
+          `test-results/images/${name}.diff.png`,
           PNG.sync.write(diff),
         );
 
