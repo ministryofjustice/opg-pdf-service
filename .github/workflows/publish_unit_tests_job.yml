@@ -42,5 +42,5 @@ jobs:
         uses: lucassabreu/comment-coverage-clover@main
         with:
           file: "/home/runner/work/opg-pdf-service/opg-pdf-service/coverage/clover.xml"
-          #min-line-coverage: 89
-          #min-method-coverage: 100
+          min-line-coverage: 89
+          min-method-coverage: 90
