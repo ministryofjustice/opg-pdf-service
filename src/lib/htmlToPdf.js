@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import { logger } from '../logging.js';
 
 let browser = null;
 
@@ -19,8 +20,6 @@ export async function initBrowser() {
 
   // This will happen when you call browser.close(), not just when problems occur
   browser.on('disconnected', async () => {
-    console.log('Browser disconnected');
-
     browser = null;
   });
 }
@@ -40,7 +39,20 @@ export const htmlToPdf = async (html, options) => {
 
   let pdf;
 
-  const page = await browser.newPage();
+  const context = await browser.createBrowserContext();
+  const page = await context.newPage();
+
+  page.on('console', (msg) => logger.debug('page logged ' + msg.text()));
+  page.on('requestfailed', (request) => {
+    logger.info(
+      'page request failed ',
+      request.url() +
+        ' error: ' +
+        request.failure().errorText +
+        ' status: ' +
+        request.response()?.status(),
+    );
+  });
 
   try {
     await page.emulateMediaType(
@@ -60,7 +72,7 @@ export const htmlToPdf = async (html, options) => {
       format: 'A4',
     });
   } finally {
-    await page.close();
+    await context.close();
   }
 
   return pdf;
