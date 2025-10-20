@@ -28,6 +28,7 @@ export const loggerMiddleware = pinoHttp({
       req.path = req.url;
       delete req.url;
       delete req.id;
+      delete req.headers.title;
 
       return req;
     },
@@ -35,7 +36,7 @@ export const loggerMiddleware = pinoHttp({
 
   customProps: function (req, res) {
     return {
-      trace_id: req.headers['x-trace-id'],
+      trace_id: req.headers.traceparent?.split('-')[1],
     };
   },
 });
