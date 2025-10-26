@@ -24,7 +24,7 @@
     "esm": "^3.2.25",
     "pino-http": "^11.0.0",
     "polka": "^0.5.2",
-    "puppeteer": "22.15.0"
+    "puppeteer": "24.26.1"
   },
   "devDependencies": {
     "@babel/core": "7.28.4",
