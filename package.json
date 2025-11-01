@@ -27,12 +27,12 @@
     "puppeteer": "22.15.0"
   },
   "devDependencies": {
-    "@babel/core": "7.28.4",
-    "@babel/eslint-parser": "7.28.4",
-    "@babel/preset-env": "7.28.3",
+    "@babel/core": "7.28.5",
+    "@babel/eslint-parser": "7.28.5",
+    "@babel/preset-env": "7.28.5",
     "@redocly/cli": "^2.0.0",
     "babel-jest": "30.2.0",
-    "eslint": "9.36.0",
+    "eslint": "9.38.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.4",
     "jest": "30.2.0",
