@@ -31,6 +31,8 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /home/node \
     && chown -R node:node /app
 
+RUN rm -rf /usr/local/share/.cache/yarn
+
 USER node
 CMD [ "node", "src/server.js" ]
 
