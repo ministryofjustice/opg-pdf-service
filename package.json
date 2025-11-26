@@ -19,7 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "7.28.4",
-    "body-parser": "2.2.0",
+    "body-parser": "2.2.1",
     "cheerio": "^1.0.0-rc.12",
     "esm": "^3.2.25",
     "pino-http": "^11.0.0",
