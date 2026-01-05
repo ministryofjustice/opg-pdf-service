@@ -22,7 +22,7 @@ FROM base AS production
 RUN yarn install --production --ignore-scripts --frozen-lockfile
 
 # Patch Vulnerabilities
-RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libexpat libssl3 libwebp libxml2 mbedtls minizip sqlite-libs tiff xz-libs
+RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libexpat libsodium libssl3 libwebp libxml2 mbedtls minizip sqlite-libs tiff xz-libs
 
 COPY src src
 
