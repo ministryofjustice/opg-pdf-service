@@ -8,6 +8,15 @@
     "branchPrefix": "renovate-",
     "packageRules": [
         {
+            "groupName": "Alpine Updates",
+            "groupSlug": "alpine-updates",
+            "matchUpdateTypes": ["major", "minor", "patch"],
+            "schedule": "* 0-6 1 * *",
+            "minimumReleaseAge": "5 days",
+            "matchManagers": ["dockerfile"],
+            "matchPackageNames": ["alpine"]
+        },
+        {
             "automerge": true,
             "groupName": "Patch & Minor Updates",
             "groupSlug": "all-minor-patch-updates",
