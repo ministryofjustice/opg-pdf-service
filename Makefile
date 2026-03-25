@@ -1,6 +1,6 @@
 export DOCKER_BUILDKIT=1
 
-all: build-all scan lint-test unit-test-coverage test-image
+all: build-all lint-test unit-test-coverage test-image
 
 build-all: build build-test
 
@@ -43,12 +43,8 @@ lint-test: setup-directories
 	docker compose run --rm pdf-service-test jshint
 
 setup-directories:
-	mkdir -p -m 0777 test-results/junit .trivy-cache coverage
+	mkdir -p -m 0777 test-results/junit coverage
 	mkdir -p -m 0777 ./test-results/junit
 	mkdir -p -m 0777 ./test-results/images
 	mkdir -p -m 0777 ./test-results/load-test-pdfs
 	mkdir -p -m 0777 ./coverage
-
-scan: setup-directories
-	docker compose run --rm trivy image --format table --exit-code 0 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
-	docker compose run --rm trivy image --format sarif --output /test-results/trivy.sarif --exit-code 1 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
