@@ -6,13 +6,13 @@
         "schedule:earlyMondays"
     ],
     "branchPrefix": "renovate-",
+    "minimumReleaseAge": "7 days",
     "packageRules": [
         {
             "groupName": "Alpine Updates",
             "groupSlug": "alpine-updates",
             "matchUpdateTypes": ["major", "minor", "patch"],
             "schedule": "* 0-6 1 * *",
-            "minimumReleaseAge": "5 days",
             "matchManagers": ["dockerfile"],
             "matchPackageNames": ["alpine"]
         },
@@ -22,7 +22,6 @@
             "groupSlug": "all-minor-patch-updates",
             "matchUpdateTypes": ["minor", "patch"],
             "schedule": "* 0-6 1 * *",
-            "minimumReleaseAge": "5 days",
             "matchPackageNames": ["*"]
         },
         {
@@ -33,13 +32,11 @@
             "automerge": true,
             "schedule": ["after 6am and before 9am on Monday"],
             "matchUpdateTypes": ["minor", "patch", "digest"],
-            "minimumReleaseAge": "3 days",
             "matchManagers": ["github-actions"]
         }
     ],
     "major": {
-        "labels": ["Dependencies", "Renovate"],
-        "minimumReleaseAge": "3 days"
+        "labels": ["Dependencies", "Renovate"]
     },
     "vulnerabilityAlerts": {
         "groupName": "Vulnerability Patches",
