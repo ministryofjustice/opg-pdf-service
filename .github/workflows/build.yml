@@ -33,12 +33,6 @@ jobs:
     name: Test PDF Service
     uses: ./.github/workflows/test_job.yml
 
-  publish_unit_tests:
-    name: Publish Unit Tests
-    needs: ['test', 'push']
-    if: github.ref != 'refs/heads/main'
-    uses: ./.github/workflows/publish_unit_tests_job.yml
-
   create-tag:
     name: Create Tags
     uses: ./.github/workflows/create-tags.yml
@@ -145,7 +139,7 @@ jobs:
     name: End of PR Workflow
     runs-on: ubuntu-latest
     if: always()
-    needs: ['test', 'publish_unit_tests', 'create-tag', 'build', 'push']
+    needs: ['test', 'create-tag', 'build', 'push']
     steps:
       - name: End of PR Workflow
         run: |
