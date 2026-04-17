@@ -42,7 +42,6 @@ RUN yarn install --ignore-scripts --frozen-lockfile
 RUN apk add graphicsmagick ghostscript
 
 COPY src src
-COPY .jshintrc .jshintrc
 COPY babel.config.cjs babel.config.cjs
 COPY eslint.config.js eslint.config.js
 COPY .prettierrc .prettierrc
