@@ -25,6 +25,7 @@ services:
       - "./coverage:/app/coverage"
       - "./test-results:/app/test-results"
       - "~/.yarn-cache/v6/pdf-service:/usr/local/share/.cache/yarn/v6"
+      - ./:/app
 
   pdf-service-test-static-server:
     container_name: static-server

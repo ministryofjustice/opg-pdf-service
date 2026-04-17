@@ -13,7 +13,4 @@ repos:
     rev: 'd72e5408a82df0b0cb6b9c878fb8cb4e947c1859'  # frozen: v10.2.0
     hooks:
     -   id: eslint
--   repo: https://github.com/pre-commit/mirrors-jshint
-    rev: '882622d2d13597740358203e9f2e2ae5976cd149'  # frozen: v2.13.6
-    hooks:
-    -   id: jshint
+

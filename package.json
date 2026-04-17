@@ -37,7 +37,6 @@
     "eslint-plugin-prettier": "5.5.5",
     "jest": "30.3.0",
     "jest-junit": "16.0.0",
-    "jshint": "2.13.6",
     "pdf2pic": "^3.0.3",
     "pixelmatch": "7.1.0",
     "prettier": "3.8.1",
