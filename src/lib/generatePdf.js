@@ -21,7 +21,7 @@ const generatePdf = async (html, options) => {
     marginRight: options.marginRight,
     printBackground: options.printBackground,
     emulateMediaType: options.emulateMediaType
-      ? options.emulateMediaType // jshint ignore:line
+      ? options.emulateMediaType
       : 'print',
   });
 };
