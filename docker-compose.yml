@@ -28,6 +28,6 @@ services:
 
   pdf-service-test-static-server:
     container_name: static-server
-    image: docker.io/nginx:latest
+    image: docker.io/nginx:latest@sha256:1df1a963b5b8a3315c81c9d3c6fbd3324479a16c5e266bc6642c080be636145f
     volumes:
       - "./src/baseline/remote_image.jpg:/usr/share/nginx/html/remote_image.jpg"
