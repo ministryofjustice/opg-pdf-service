@@ -9,7 +9,7 @@
     "test:watch": "node --test --watch",
     "start:webserver": "node -r esm src/server.js",
     "unit-test": "node --test --test-reporter=junit --test-reporter-destination=test-results/junit/results.xml",
-    "unit-test-coverage": "NODE_V8_COVERAGE=coverage npm run unit-test -- --experimental-test-coverage",
+    "unit-test-coverage": "node --test --test-reporter=junit --test-reporter-destination=test-results/junit/results.xml --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info",
     "lint:check": "eslint --ignore-pattern .gitignore .",
     "lint:fix": "eslint --fix --ignore-pattern .gitignore .",
     "redoc:build": "redocly build-docs pdf -o openapi/docs/index.html"
@@ -17,7 +17,6 @@
   "author": "Ministry of Justice",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "7.29.2",
     "body-parser": "2.2.2",
     "cheerio": "^1.0.0-rc.12",
     "esm": "^3.2.25",
@@ -26,11 +25,7 @@
     "puppeteer": "22.15.0"
   },
   "devDependencies": {
-    "@babel/core": "7.29.6",
-    "@babel/eslint-parser": "7.28.6",
-    "@babel/preset-env": "7.29.2",
     "@redocly/cli": "^2.0.0",
-    "babel-jest": "30.3.0",
     "eslint": "9.39.4",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
