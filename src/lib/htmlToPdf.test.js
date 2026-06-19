@@ -1,4 +1,4 @@
-import { exitBrowser, htmlToPdf } from './htmlToPdf';
+import { exitBrowser, htmlToPdf } from './htmlToPdf.js';
 
 afterAll(async () => {
   await exitBrowser();

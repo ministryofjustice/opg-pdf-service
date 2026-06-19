@@ -1,4 +1,4 @@
-import stripAnchorTags from './stripAnchorTags';
+import stripAnchorTags from './stripAnchorTags.js';
 
 describe('Given you want to strip the href attribute from anchor tags in HTML', () => {
   test('It should generate HTML with no links should be exactly the same', async () => {

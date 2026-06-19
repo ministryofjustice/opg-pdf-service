@@ -1,11 +1,11 @@
-import { exitBrowser, initBrowser } from './lib/htmlToPdf';
+import { exitBrowser, initBrowser } from './lib/htmlToPdf.js';
 import { fromBuffer } from 'pdf2pic';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 
 import request from 'supertest';
-import app from './app';
+import app from './app.js';
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`;
 

@@ -1,4 +1,4 @@
-import pdfService from './pdfConfigService';
+import pdfService from './pdfConfigService.js';
 
 describe('Given you send a margin top', () => {
   test('It should update the value', () => {

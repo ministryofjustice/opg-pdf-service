@@ -1,4 +1,4 @@
-import embedRemoteImages from './embedRemoteImages';
+import embedRemoteImages from './embedRemoteImages.js';
 
 const testHtml = `<html><head>
 </head>

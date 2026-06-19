@@ -1,6 +1,5 @@
-import embedRemoteImages from './embedRemoteImages';
-import GeneratePdf from './generatePdf';
-import { exitBrowser } from './htmlToPdf';
+import GeneratePdf from './generatePdf.js';
+import { exitBrowser } from './htmlToPdf.js';
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>`;
 
