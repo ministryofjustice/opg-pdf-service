@@ -1,4 +1,4 @@
-import { exitBrowser, initBrowser } from './lib/htmlToPdf';
+import { exitBrowser, initBrowser } from './lib/htmlToPdf.js';
 import { fromBuffer } from 'pdf2pic';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { after, beforeEach, describe, test } from 'node:test';
 
 import request from 'supertest';
-import app from './app';
+import app from './app.js';
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>0i9`;
 
@@ -29,9 +29,7 @@ describe('Given the app gets an api request to an endpoint', () => {
         .expect(200);
     });
   });
-});
 
-describe('Given the app gets an api request to an endpoint', () => {
   describe('POST /generate-pdf', () => {
     test('It should respond with a valid PDF and correct headers', async () => {
       const response = await request(app.handler)
