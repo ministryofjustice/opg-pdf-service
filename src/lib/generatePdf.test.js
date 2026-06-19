@@ -1,10 +1,11 @@
-import embedRemoteImages from './embedRemoteImages';
-import GeneratePdf from './generatePdf';
-import { exitBrowser } from './htmlToPdf';
+import assert from 'node:assert';
+import { after, describe, test } from 'node:test';
+import GeneratePdf from './generatePdf.js';
+import { exitBrowser } from './htmlToPdf.js';
 
 const testHtml = `<html><head></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>`;
 
-afterAll(async () => {
+after(async () => {
   await exitBrowser();
 });
 
@@ -14,8 +15,8 @@ describe('Given you have a HTML document you want to create a PDF Document of', 
       stripTags: true,
     });
 
-    expect(result).not.toBeNull();
-    expect(result).toBeInstanceOf(Uint8Array);
+    assert.notEqual(result, null);
+    assert(result instanceof Uint8Array);
   });
 
   test('It should generate a PDF without stripping tags', async () => {
@@ -23,8 +24,8 @@ describe('Given you have a HTML document you want to create a PDF Document of', 
       stripTags: false,
     });
 
-    expect(result).not.toBeNull();
-    expect(result).toBeInstanceOf(Uint8Array);
+    assert.notEqual(result, null);
+    assert(result instanceof Uint8Array);
   });
 
   test('It should generate a PDF with embedding of images', async () => {
@@ -32,7 +33,7 @@ describe('Given you have a HTML document you want to create a PDF Document of', 
       embedRemoteImages: true,
     });
 
-    expect(result).not.toBeNull();
-    expect(result).toBeInstanceOf(Uint8Array);
+    assert.notEqual(result, null);
+    assert(result instanceof Uint8Array);
   });
 });

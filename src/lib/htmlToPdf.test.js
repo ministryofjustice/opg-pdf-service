@@ -1,6 +1,8 @@
-import { exitBrowser, htmlToPdf } from './htmlToPdf';
+import assert from 'node:assert';
+import { after, describe, test } from 'node:test';
+import { exitBrowser, htmlToPdf } from './htmlToPdf.js';
 
-afterAll(async () => {
+after(async () => {
   await exitBrowser();
 });
 
@@ -8,14 +10,20 @@ describe('Given you pass HTML to be returned into PDF', () => {
   const testHtml = `<html><head><script src="http://localhost/nonexistantfile"></script></head><body><p><a href="/home" class="govuk-link">Test with no links</a></p></body></html>`;
 
   describe('Given a PDF is not generated correctly due to an error', () => {
-    test('it should return null and throw an error', () => {
-      return expect(
-        htmlToPdf(testHtml, {
+    test('it should return null and throw an error', async () => {
+      try {
+        await htmlToPdf(testHtml, {
           waitUntil: 'loads',
           pageHeight: 2000,
           pageWidth: 1100,
-        }),
-      ).rejects.toThrow('Unknown value for options.waitUntil: loads');
+        });
+        assert.fail('Expected error was not thrown');
+      } catch (error) {
+        assert.strictEqual(
+          error.message,
+          'Unknown value for options.waitUntil: loads',
+        );
+      }
     });
   });
 
@@ -27,8 +35,8 @@ describe('Given you pass HTML to be returned into PDF', () => {
         pageWidth: 1100,
       });
 
-      expect(pdf).not.toBeNull();
-      expect(pdf).toBeInstanceOf(Uint8Array);
+      assert.notEqual(pdf, null);
+      assert(pdf instanceof Uint8Array);
     });
   });
 
@@ -40,8 +48,8 @@ describe('Given you pass HTML to be returned into PDF', () => {
         pageWidth: 40,
       });
 
-      expect(pdf).not.toBeNull();
-      expect(pdf).toBeInstanceOf(Uint8Array);
+      assert.notEqual(pdf, null);
+      assert(pdf instanceof Uint8Array);
     });
   });
 });

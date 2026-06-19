@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "CI=true jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "CI=true node --test",
+    "test:watch": "node --test --watch",
     "start:webserver": "node -r esm src/server.js",
-    "unit-test": "jest --ci --runInBand --reporters=default --reporters=jest-junit --detectOpenHandles --forceExit",
-    "unit-test-coverage": "jest --ci --runInBand --reporters=default --reporters=jest-junit --collectCoverage=true  --detectOpenHandles --forceExit",
+    "unit-test": "node --test --test-reporter=junit --test-reporter-destination=test-results/junit/results.xml",
+    "unit-test-coverage": "NODE_V8_COVERAGE=coverage npm run unit-test -- --experimental-test-coverage",
     "lint:check": "eslint --ignore-pattern .gitignore .",
     "lint:fix": "eslint --fix --ignore-pattern .gitignore .",
     "redoc:build": "redocly build-docs pdf -o openapi/docs/index.html"
@@ -34,8 +34,6 @@
     "eslint": "9.39.4",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
-    "jest": "30.3.0",
-    "jest-junit": "17.0.0",
     "pdf2pic": "^3.0.3",
     "pixelmatch": "7.1.0",
     "prettier": "3.8.2",
@@ -43,31 +41,5 @@
   },
   "resolutions": {
     "braces": "3.0.3"
-  },
-  "jest-junit": {
-    "outputDirectory": "./test-results/junit",
-    "outputName": "results.xml"
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!pixelmatch).+\\.js$"
-    ],
-    "testTimeout": 15000,
-    "reporters": [
-      "default",
-      "jest-junit"
-    ],
-    "resetMocks": true,
-    "testMatch": [
-      "**/?(*.)+(test).js"
-    ],
-    "testPathIgnorePatterns": [
-      "src/server.js"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!**/node_modules/**",
-      "!**/vendor/**"
-    ]
   }
 }

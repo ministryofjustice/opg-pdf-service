@@ -2,7 +2,9 @@ import { exitBrowser, initBrowser } from './lib/htmlToPdf';
 import { fromBuffer } from 'pdf2pic';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
+import assert from 'node:assert';
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { after, beforeEach, describe, test } from 'node:test';
 
 import request from 'supertest';
 import app from './app';
@@ -13,7 +15,7 @@ beforeEach(async () => {
   await initBrowser();
 });
 
-afterAll(async () => {
+after(async () => {
   await exitBrowser();
 });
 
@@ -36,26 +38,29 @@ describe('Given the app gets an api request to an endpoint', () => {
         .post('/generate-pdf')
         .set('content-type', 'text/html')
         .send(testHtml);
-      expect(response.statusCode).toBe(200);
-      expect(response.type).toBe('application/pdf');
-      expect(response.headers['content-disposition']).toBe(
+      assert.strictEqual(response.statusCode, 200);
+      assert.strictEqual(response.type, 'application/pdf');
+      assert.strictEqual(
+        response.headers['content-disposition'],
         'attachment; filename=download.pdf',
       );
-      expect(response.body).toBeInstanceOf(Uint8Array);
+      assert(response.body instanceof Uint8Array);
     });
   });
+
   describe('POST /generate-pdf with page width and height', () => {
     test('It should respond with a valid PDF and new page size', async () => {
       const response = await request(app.handler)
         .post('/generate-pdf')
         .set('content-type', 'text/html')
         .send(testHtml);
-      expect(response.statusCode).toBe(200);
-      expect(response.type).toBe('application/pdf');
-      expect(response.headers['content-disposition']).toBe(
+      assert.strictEqual(response.statusCode, 200);
+      assert.strictEqual(response.type, 'application/pdf');
+      assert.strictEqual(
+        response.headers['content-disposition'],
         'attachment; filename=download.pdf',
       );
-      expect(response.body).toBeInstanceOf(Uint8Array);
+      assert(response.body instanceof Uint8Array);
     });
   });
 
@@ -110,7 +115,7 @@ describe('Given the app gets an api request to an endpoint', () => {
 
       const matches = await Promise.all(matchPromises);
 
-      expect(matches).toStrictEqual(new Array(files.length).fill(0));
+      assert.deepStrictEqual(matches, new Array(files.length).fill(0));
     });
   });
 });
