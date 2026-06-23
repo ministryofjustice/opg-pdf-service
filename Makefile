@@ -39,7 +39,7 @@ unit-test-coverage: build-test setup-directories
 	docker compose run --rm pdf-service-test unit-test-coverage
 
 lint-test: setup-directories
-	docker compose run --rm pdf-service-test lint:check
+	docker compose run --rm --no-deps pdf-service-test lint:check
 
 setup-directories:
 	mkdir -p -m 0777 test-results/junit coverage
