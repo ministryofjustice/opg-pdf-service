@@ -6,6 +6,7 @@ let browser = null;
 export async function initBrowser() {
   browser = await puppeteer.launch({
     headless: 'true',
+    userDataDir: '/tmp/chromium-profile',
     args: [
       // Required for Docker version of Puppeteer
       '--no-sandbox',
@@ -15,6 +16,7 @@ export async function initBrowser() {
       '--disable-dev-shm-usage',
       '--disable-gpu',
       '--disable-extensions',
+      '--disable-crash-reporter',
     ],
   });
 
