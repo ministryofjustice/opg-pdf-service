@@ -15,6 +15,8 @@ export async function initBrowser() {
       '--disable-dev-shm-usage',
       '--disable-gpu',
       '--disable-extensions',
+      // Disable crash reporter as cloudwatch logs will suffice
+      '--disable-crash-reporter',
     ],
   });
 
