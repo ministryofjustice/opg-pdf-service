@@ -1,11 +1,16 @@
+import { mkdtempSync, rmSync } from 'fs';
 import puppeteer from 'puppeteer';
 import { logger } from '../logging.js';
 
 let browser = null;
 
 export async function initBrowser() {
+  // create profile dir and clean up later
+  const userDataDir = mkdtempSync('/tmp/chromium-profile-');
+
   browser = await puppeteer.launch({
     headless: 'true',
+    userDataDir,
     args: [
       // Required for Docker version of Puppeteer
       '--no-sandbox',
@@ -15,12 +20,15 @@ export async function initBrowser() {
       '--disable-dev-shm-usage',
       '--disable-gpu',
       '--disable-extensions',
+      // Disable crash reporter as cloudwatch logs will suffice
+      '--disable-crash-reporter',
     ],
   });
 
   // This will happen when you call browser.close(), not just when problems occur
   browser.on('disconnected', async () => {
     browser = null;
+    rmSync(userDataDir, { recursive: true, force: true });
   });
 }
 
