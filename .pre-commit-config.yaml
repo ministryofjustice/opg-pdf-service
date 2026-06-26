@@ -10,7 +10,6 @@ repos:
     hooks:
     -   id: renovate-config-validator
 -   repo: https://github.com/pre-commit/mirrors-eslint
-    rev: 'd72e5408a82df0b0cb6b9c878fb8cb4e947c1859'  # frozen: v10.2.0
+    rev: '97a8e4af05a8fa8a0ed79d2fbd1f4c86bf1a0178'  # frozen: v10.5.0
     hooks:
     -   id: eslint
-
