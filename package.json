@@ -46,7 +46,7 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "/node_modules/(?!pixelmatch).+\\.js$"
+      "/node_modules/(?!(pixelmatch|puppeteer|@puppeteer)).+\\.js$"
     ],
     "testTimeout": 15000,
     "reporters": [
