@@ -3,6 +3,11 @@ ignore:
   SNYK-JS-YARN-12143051:
     - '*':
         reason: Known issue in PDF Service Container
-        expires: 2026-06-30T08:00:00.000Z
+        expires: 2026-07-30T08:00:00.000Z
         created: 2026-03-26T15:33:00.000Z
+  SNYK-JS-EXTRACTZIP-17660777:
+    - '*':
+        reason: Known issue in PDF Service Container
+        expires: 2026-07-30T08:00:00.000Z
+        created: 2026-06-30T09:33:00.000Z
 patch: {}
