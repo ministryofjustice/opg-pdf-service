@@ -54,3 +54,18 @@ jobs:
           name: coverage
           path: |
             coverage
+
+  verify-readonly-fs:
+    name: Verify Read-only Filesystem
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Verify docker-compose read_only/tmpfs matches infrastructure
+        uses: ministryofjustice/opg-github-actions/actions/verify-readonly-fs@SP-3905
+        with:
+          service_json: |
+            { "pdf-service": "pdf-service.json" }
+          mounts_path: "environment/modules/environment/mounts"
+          infra_repo: git@github.com:ministryofjustice/opg-sirius-infrastructure.git
+          infra_branch: SP-3282
