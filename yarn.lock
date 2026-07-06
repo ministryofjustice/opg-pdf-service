@@ -1398,9 +1398,9 @@
     yargs "^18.0.0"
 
 "@redocly/cli@^2.0.0":
-  version "2.34.0"
-  resolved "https://registry.yarnpkg.com/@redocly/cli/-/cli-2.34.0.tgz#a7bfb6c6904ff613e8d93776b4974bdc4f58587e"
-  integrity sha512-wlEy03fyf+xrEatHbSSLFGP7T8slYwyJHO6xooArvUOntiGRMPuTGivaSPhxx+f2bFhe69zDDzDy51+CsvJ/zw==
+  version "2.37.0"
+  resolved "https://registry.yarnpkg.com/@redocly/cli/-/cli-2.37.0.tgz#7383fa53417a841de71c29d5405bd22c743384d3"
+  integrity sha512-2xKvVy2re6xiWfrWHJj633oEoVAYHisPsxEwoxtSxMqB+RhW2uqM98+JPjrLQPpj2m1bXrj08KXwpSFfojV0/g==
 
 "@sinclair/typebox@^0.34.0":
   version "0.34.49"
@@ -3826,10 +3826,10 @@ prettier-linter-helpers@^1.0.1:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@3.8.4:
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.8.4.tgz#f334f013ac04a96676f24dabc23c1c4ae1bae411"
-  integrity sha512-N2MylSdi48+5N/6S5j+maeHbUSIzzZ5uOcX5Hm4QpV8Dkb1HFjfAKTKX6yNPJQD9AhcT3ifHNB66tWTTJDi11Q==
+prettier@3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.9.1.tgz#5868bcf16456bfe145ddbfa107c623b6f39e332c"
+  integrity sha512-ppiDo2CSwexck1eyZUwJHg/N3nf1+6IRCv7W/VJ5vaLnVCmB7+3CdRfMwoCHBBX6xTrREDTksZ4OZl5SSf4zXA==
 
 pretty-format@30.4.1:
   version "30.4.1"
