@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
+    privileged: false
+    user: node
     ports:
       - 3004:8000
     environment:
