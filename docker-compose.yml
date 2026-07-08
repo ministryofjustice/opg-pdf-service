@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
+    privileged: false
+    user: node
     ports:
       - 3004:8000
     environment:
@@ -21,6 +23,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: test
+    privileged: false
+    user: node
     depends_on:
       - pdf-service-test-static-server
     working_dir: /app
