@@ -10,4 +10,9 @@ ignore:
         reason: Known issue in PDF Service Container
         expires: 2026-07-30T08:00:00.000Z
         created: 2026-06-30T09:33:00.000Z
+  SNYK-JS-JSYAML-18313070:
+    - '*':
+        reason: Known issue in PDF Service Container
+        expires: 2026-07-30T08:00:00.000Z
+        created: 2026-06-30T09:33:00.000Z
 patch: {}
