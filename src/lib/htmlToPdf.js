@@ -71,6 +71,10 @@ export const htmlToPdf = async (html, options) => {
       },
       format: 'A4',
     });
+  } catch (err) {
+    console.error(`Error generating PDF (${options.subject}): ${err}`);
+
+    throw err;
   } finally {
     await context.close();
   }
