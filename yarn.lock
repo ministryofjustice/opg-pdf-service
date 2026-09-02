@@ -1486,9 +1486,9 @@
     yargs "^17.7.2"
 
 "@redocly/cli@^2.0.0":
-  version "2.44.1"
-  resolved "https://registry.yarnpkg.com/@redocly/cli/-/cli-2.44.1.tgz#79e6754a69a0b2644b21a96fd815dfb54df46282"
-  integrity sha512-3zyg9oXTmcMZu9attaMRItk9FU7txmQKy6MuWjrksRYCFs66tf8OWdzAzGVm9NCR7ODxt+5b2TPACV5dPL4XZw==
+  version "2.49.1"
+  resolved "https://registry.yarnpkg.com/@redocly/cli/-/cli-2.49.1.tgz#5fdb5810d9090c5e8d58b969695be6ef45c828f3"
+  integrity sha512-8/7uAXm5ryOTyrXwh1MCYLD/91lY5WsoXPAmMSCxBc2dmh9O7TU77HntL/tUkV9M83wmwx3GP4EMYryDidostQ==
 
 "@sinclair/typebox@^0.34.0":
   version "0.34.52"
