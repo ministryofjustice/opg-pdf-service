@@ -9,34 +9,58 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/PuerkitoBio/goquery"
+	"golang.org/x/net/html"
+	"golang.org/x/net/html/atom"
 )
 
-func EmbedRemoteImages(ctx context.Context, html string) (string, error) {
-	doc, err := goquery.NewDocumentFromReader(strings.NewReader(html))
+// I don't think this is actually used but converted it over from the original node bits (can possibly be removed)
+func EmbedRemoteImages(ctx context.Context, input string) (string, error) {
+	doc, err := html.Parse(strings.NewReader(input))
 	if err != nil {
 		return "", err
 	}
 
-	doc.Find("img").Each(func(_ int, s *goquery.Selection) {
-		if s.Closest("template").Length() > 0 {
-			return
+	var walk func(n *html.Node, inTemplate bool)
+	walk = func(n *html.Node, inTemplate bool) {
+		if n.Type == html.ElementNode {
+			if n.DataAtom == atom.Template {
+				inTemplate = true
+			} else if n.DataAtom == atom.Img && !inTemplate {
+				embedImage(ctx, n)
+			}
 		}
-		src, ok := s.Attr("src")
-		if !ok || strings.HasPrefix(src, "data:") {
+		for c := n.FirstChild; c != nil; c = c.NextSibling {
+			walk(c, inTemplate)
+		}
+	}
+	walk(doc, false)
+
+	var sb strings.Builder
+	if err := html.Render(&sb, doc); err != nil {
+		return "", err
+	}
+	return sb.String(), nil
+}
+
+func embedImage(ctx context.Context, n *html.Node) {
+	for i := range n.Attr {
+		if n.Attr[i].Key != "src" {
+			continue
+		}
+		src := n.Attr[i].Val
+		if src == "" || strings.HasPrefix(src, "data:") {
 			return
 		}
 
-		s.SetAttr("src", "")
+		n.Attr[i].Val = ""
 		dataURI, err := fetchAsDataURI(ctx, src)
 		if err != nil {
 			log.Printf("embedRemoteImages: %v", err)
 			return
 		}
-		s.SetAttr("src", dataURI)
-	})
-
-	return doc.Html()
+		n.Attr[i].Val = dataURI
+		return
+	}
 }
 
 func fetchAsDataURI(ctx context.Context, url string) (string, error) {
