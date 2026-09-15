@@ -1,0 +1,14 @@
+http:
+  http://localhost:8000/health-check:
+    status: 200
+    method: GET
+    body:
+      - "OK"
+  http://localhost:8000/generate-pdf:
+    status: 200
+    method: POST
+    request-headers:
+      - "Content-Type: text/html"
+    request-body: "<html><head></head><body><p>PDF service goss test</p></body></html>"
+    headers:
+      - "Content-Disposition: attachment; filename=download.pdf"
