@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
       target: production
     privileged: false
-    user: node
+    user: app-user
     ports:
       - 3004:8000
     environment:
@@ -21,17 +21,30 @@ services:
       dockerfile: Dockerfile
       target: test
     privileged: false
-    user: node
     depends_on:
       - pdf-service-test-static-server
     working_dir: /app
     volumes:
       - "./coverage:/app/coverage"
       - "./test-results:/app/test-results"
-      - "~/.yarn-cache/v6/pdf-service:/usr/local/share/.cache/yarn/v6"
 
   pdf-service-test-static-server:
     container_name: static-server
     image: docker.io/nginx:latest@sha256:5a88c9c45479443d7be2eadc894b4ed0a9801bae03d97a5760ae13b5c2005942
     volumes:
       - "./src/baseline/remote_image.jpg:/usr/share/nginx/html/remote_image.jpg"
+
+  go-lint:
+    image: golangci/golangci-lint:v2.12.2@sha256:5cceeef04e53efe1470638d4b4b4f5ceefd574955ab3941b2d9a68a8c9ad5240
+    working_dir: /go/src/app
+    volumes:
+      - ./:/go/src/app
+      - ./.cache/golangci-lint:/root/.cache
+    command: golangci-lint run -v --timeout 5m
+
+  gosec:
+    image: securego/gosec:2.24.6@sha256:2cf71ea78210c496c65e3a987576a9c8317b68e20f2960520b3f6f8f9f539be5
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: -exclude-dir=.cache -exclude-generated -fmt=sarif -out=/app/test-results/gosec.sarif -stdout -verbose=text /app/...
