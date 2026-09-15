@@ -32,14 +32,14 @@ run-load:
 send-template:
 	curl --silent --request POST --header "Content-Type: text/html" localhost:8000/generate-pdf --output ./test-results/load-test-pdfs/example-sirius-lpa.pdf --data-binary '@./src/baseline/example-sirius-lpa.html'
 
-unit-test: setup-directories
-	docker compose run --rm pdf-service-test unit-test
+unit-test: build-test setup-directories
+	docker compose run --rm pdf-service-test 'gotestsum --format testname -- ./...'
 
 unit-test-coverage: build-test setup-directories
-	docker compose run --rm pdf-service-test unit-test-coverage
+	docker compose run --rm pdf-service-test 'gotestsum --junitfile test-results/junit/results.xml -- -coverprofile=coverage/coverage.out -covermode=atomic ./... && go tool cover -html=coverage/coverage.out -o coverage/coverage.html'
 
-lint-test: setup-directories
-	docker compose run --rm --no-deps pdf-service-test lint:check
+lint-test: build-test setup-directories
+	docker compose run --rm --no-deps pdf-service-test 'test -z "$$(gofmt -l .)" && go vet ./...'
 
 setup-directories:
 	mkdir -p -m 0777 test-results/junit coverage

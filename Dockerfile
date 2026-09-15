@@ -1,57 +1,37 @@
-FROM alpine:3.24@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b AS base
+# Build the static Go binary.
+FROM golang:1.26-alpine AS build
+WORKDIR /src
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -o /pdf-service ./cmd/pdf-service
 
-RUN apk add --no-cache \
-    chromium \
-    curl \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-liberation \
-    nodejs \
-    yarn
+FROM chromedp/headless-shell:latest AS production
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates fonts-liberation \
+    && rm -rf /var/lib/apt/lists/*
 
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
+RUN groupadd --gid 65532 app-user \
+    && useradd --uid 65532 --gid 65532 --home-dir /nonexistent --no-create-home --shell /sbin/nologin app-user
+
+ENV PDF_CHROME_PATH=/headless-shell/headless-shell \
+    HOME=/tmp \
     XDG_CONFIG_HOME=/tmp/.config \
     XDG_CACHE_HOME=/tmp/.cache
 
+COPY --from=build /pdf-service /usr/local/bin/pdf-service
+USER app-user
+EXPOSE 80
+ENTRYPOINT ["/usr/local/bin/pdf-service"]
+
+FROM golang:1.26 AS test
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends chromium ca-certificates fonts-liberation \
+    && rm -rf /var/lib/apt/lists/*
+ENV PDF_CHROME_PATH=/usr/bin/chromium \
+    CGO_ENABLED=0
 WORKDIR /app
-COPY package.json ./package.json
-COPY yarn.lock ./yarn.lock
-
-FROM base AS production
-RUN yarn install --production --ignore-scripts --frozen-lockfile
-
-# Patch Vulnerabilities
-RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libexpat libsodium libssl3 libtasn1 libwebp libxml2 mbedtls minizip musl musl-utils sqlite-libs tiff xz-libs
-
-COPY src src
-
-RUN addgroup -S node && adduser -S -g node node \
-    && mkdir -p /home/node/Downloads /app \
-    && chown -R node:node /home/node \
-    && chown -R node:node /app
-
-RUN rm -rf /usr/local/share/.cache/yarn
-
-USER node
-CMD [ "node", "src/server.js" ]
-
-FROM base AS test
-RUN yarn install --ignore-scripts --frozen-lockfile
-
-RUN apk add graphicsmagick ghostscript
-
-COPY src src
-COPY babel.config.cjs babel.config.cjs
-COPY eslint.config.js eslint.config.js
-COPY .prettierrc .prettierrc
-
-RUN addgroup -S node && adduser -S -g node node \
-    && mkdir -p /home/node/Downloads /app \
-    && chown -R node:node /home/node \
-    && chown -R node:node /app
-
-USER node
-ENTRYPOINT [ "yarn" ]
+COPY go.mod go.sum ./
+RUN go mod download && go install gotest.tools/gotestsum@v1.12.0
+COPY . .
+ENTRYPOINT ["sh", "-c"]
