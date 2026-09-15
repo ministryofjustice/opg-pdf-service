@@ -52,7 +52,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: '0'
-          
+
       - name: Set up Docker
         run: |
           echo '{"experimental": true, "features": { "containerd-snapshotter": true }}' | sudo tee -a /etc/docker/daemon.json
@@ -67,27 +67,18 @@ jobs:
         run: |
           docker load -i /tmp/images/multi-arch-image.tar
 
-      - name: Install Inspec for Image Tests
-        run: |
-          curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P inspec -v 5
-          inspec --chef-license=accept
-
-      - name: Test Image with Inspec
-        env:
-          CHEF_LICENSE: accept
+      - name: Test Image with Goss
         run: |
           make test-image
 
-      - name: Upload Inspec Junit
+      - name: Upload Goss Junit
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: inspec
+          name: goss
           path: |
             test-results/junit
 
-      - name: Load Test Image with Inspec
-        env:
-          CHEF_LICENSE: accept
+      - name: Load Test Image
         run: |
           make load-test-image
 

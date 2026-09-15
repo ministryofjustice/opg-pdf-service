@@ -9,19 +9,19 @@ build:
 build-test:
 	docker compose build pdf-service-test
 
-test-image: setup-directories start-container run-inspec stop-container
+test-image: setup-directories start-service run-goss stop-service
 
-load-test-image: setup-directories start-container run-load stop-container
+load-test-image: setup-directories start-service run-load stop-service
 
-start-container:
-	docker run --cpus=0.5 --memory=1G -p 8000:80 --rm -d --name pdf-service 311462405659.dkr.ecr.eu-west-1.amazonaws.com/pdf-service:latest
-	sleep 8
+start-service:
+	docker compose run --rm goss
+	docker compose up -d pdf-service
 
-stop-container:
-	docker container kill pdf-service
+stop-service:
+	docker compose down
 
-run-inspec:
-	inspec exec inspec -t docker://pdf-service --reporter cli junit:test-results/junit/pdf-service-inspec.xml
+run-goss:
+	docker compose exec -T pdf-service /goss-bin/goss --gossfile /goss-bin/goss.yaml validate --retry-timeout 30s --format junit > test-results/junit/pdf-service-goss.xml
 
 LOAD_PARALLELISM=14
 LOAD_REQUESTS_TOTAL=200
@@ -30,7 +30,7 @@ run-load:
 	yes "make send-template" | head -n $(LOAD_REQUESTS_TOTAL) | xargs -0 | parallel --jobs $(LOAD_PARALLELISM)
 
 send-template:
-	curl --silent --request POST --header "Content-Type: text/html" localhost:8000/generate-pdf --output ./test-results/load-test-pdfs/example-sirius-lpa.pdf --data-binary '@./src/baseline/example-sirius-lpa.html'
+	curl --silent --request POST --header "Content-Type: text/html" localhost:3004/generate-pdf --output ./test-results/load-test-pdfs/example-sirius-lpa.pdf --data-binary '@./src/baseline/example-sirius-lpa.html'
 
 unit-test: build-test setup-directories
 	docker compose run --rm pdf-service-test 'gotestsum --format testname -- ./...'
