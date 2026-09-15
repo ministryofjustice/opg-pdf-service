@@ -9,6 +9,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -o /pdf-service ./cmd/pdf-servic
 FROM chromedp/headless-shell:latest AS production
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates fonts-liberation \
+    # Patch Vulnerable Packages
+    && apt-get install -y --only-upgrade perl-base libc-bin libc6 libpcre2-8-0 gzip \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --gid 65532 app-user \
