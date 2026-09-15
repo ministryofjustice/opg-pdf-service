@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
       target: production
     privileged: false
-    user: node
+    user: app-user
     ports:
       - 3004:8000
     environment:
@@ -21,14 +21,12 @@ services:
       dockerfile: Dockerfile
       target: test
     privileged: false
-    user: node
     depends_on:
       - pdf-service-test-static-server
     working_dir: /app
     volumes:
       - "./coverage:/app/coverage"
       - "./test-results:/app/test-results"
-      - "~/.yarn-cache/v6/pdf-service:/usr/local/share/.cache/yarn/v6"
 
   pdf-service-test-static-server:
     container_name: static-server
