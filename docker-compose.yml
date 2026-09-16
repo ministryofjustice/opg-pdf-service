@@ -58,5 +58,11 @@ services:
       - goss-bin:/goss-bin
       - ./test/goss.yaml:/goss-src/goss.yaml:ro
 
+  weasyprint:
+    build:
+      context: ./spike/weasyprint
+    ports:
+      - 5001:5000
+
 volumes:
   goss-bin:

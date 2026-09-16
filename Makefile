@@ -13,6 +13,11 @@ test-image: setup-directories start-service run-goss stop-service
 
 load-test-image: setup-directories start-service run-load stop-service
 
+weasyprint-spike:
+	docker compose up -d --build pdf-service weasyprint
+	bash spike/compare.sh
+	docker compose down
+
 start-service:
 	docker compose run --rm goss
 	docker compose up -d pdf-service
