@@ -2,6 +2,8 @@ node_modules/
 coverage/
 test-results/
 openapi/docs/
+.cache
+spike/output/
 *.iml
 .idea
 package-lock.json
