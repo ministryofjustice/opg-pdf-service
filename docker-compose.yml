@@ -59,6 +59,7 @@ services:
       - ./test/goss.yaml:/goss-src/goss.yaml:ro
 
   weasyprint:
+    image: 311462405659.dkr.ecr.eu-west-1.amazonaws.com/weasyprint:latest
     build:
       context: ./spike/weasyprint
     ports:
