@@ -9,6 +9,9 @@ RUN apt-get update \
         libffi8 \
         shared-mime-info \
         fonts-liberation \
+    # Patch Vulnerable Packages
+    && apt-get install -y --only-upgrade libsqlite3-0 perl-base libpcre2-8-0 libxml2 gzip \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

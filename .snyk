@@ -15,4 +15,40 @@ ignore:
         reason: No Debian fix available yet.
         expires: 2026-10-31T00:00:00.000Z
         created: 2026-09-15T00:00:00.000Z
+  # weasyprint (python:3.13-slim)
+  SNYK-DEBIAN13-LIBXML2-19540211:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540216:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540223:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540224:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540226:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540237:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19669394:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
 patch: {}

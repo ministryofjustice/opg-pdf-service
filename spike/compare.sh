@@ -44,5 +44,4 @@ for f in src/baseline/*.html; do
 done
 
 echo
-echo "Done. Compare in $OUT/:"
-echo "  <name>.chromium.pdf  vs  <name>.weasyprint.pdf"
+echo "Done."
