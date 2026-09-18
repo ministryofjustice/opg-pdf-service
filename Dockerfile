@@ -10,7 +10,7 @@ FROM chromedp/headless-shell:latest AS production
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates fonts-liberation \
     # Patch Vulnerable Packages
-    && apt-get install -y --only-upgrade perl-base libc-bin libc6 libpcre2-8-0 gzip libsqlite3-0 socat \
+    && apt-get install -y --only-upgrade perl-base libc-bin libc6 libpcre2-8-0 gzip libsqlite3-0 socat libexpat1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
