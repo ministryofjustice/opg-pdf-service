@@ -1,18 +1,64 @@
 version: v1.25.1
 ignore:
-  SNYK-JS-YARN-12143051:
+  'snyk:lic:pip:pyphen:(GPL-2.0_OR_LGPL-2.0_OR_MPL-1.1)':
     - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
-  SNYK-JS-JSYAML-18593780:
+        reason: pyphen is triple-licensed. No biggie for us.
+        expires: 2026-12-31T00:00:00.000Z
+        created: 2026-09-21T00:00:00.000Z
+  SNYK-DEBIAN13-EXPAT-19964593:
     - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
-  SNYK-JS-EXTRACTZIP-17660777:
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-21T00:00:00.000Z
+  SNYK-DEBIAN13-ZLIB-19520500:
     - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-06-30T09:33:00.000Z
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-15T00:00:00.000Z
+  SNYK-DEBIAN13-ATTR-17678182:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-15T00:00:00.000Z
+  SNYK-DEBIAN13-ACL-17677866:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-15T00:00:00.000Z
+  # weasyprint (python:3.13-slim)
+  SNYK-DEBIAN13-LIBXML2-19540211:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540216:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540223:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540224:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540226:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19540237:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
+  SNYK-DEBIAN13-LIBXML2-19669394:
+    - '*':
+        reason: No Debian fix available yet.
+        expires: 2026-10-31T00:00:00.000Z
+        created: 2026-09-18T00:00:00.000Z
 patch: {}
