@@ -52,4 +52,4 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /app
 
 USER node
-ENTRYPOINT [ "npm" ]
+ENTRYPOINT [ "npm", "run" ]
