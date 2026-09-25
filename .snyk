@@ -1,18 +1,58 @@
 version: v1.25.1
 ignore:
-  SNYK-JS-YARN-12143051:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
-  SNYK-JS-JSYAML-18593780:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
-  SNYK-JS-EXTRACTZIP-17660777:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-06-30T09:33:00.000Z
+    SNYK-JS-HTTPCACHESEMANTICS-19964064:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-HTTPCACHESEMANTICS-19964068:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-EXTRACTZIP-17660777:
+      - 'puppeteer@22.15.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-EXTRACTZIP-1965364:
+      - 'puppeteer@22.15.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-JSYAML-19496768:
+      - 'puppeteer@22.15.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635206:
+      - 'undici@7.29.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635208:
+      - 'undici@7.29.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635210:
+      - 'undici@7.29.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635216:
+      - 'undici@7.29.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635222:
+      - 'undici@7.29.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635226:
+      - 'undici@7.29.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
 patch: {}
