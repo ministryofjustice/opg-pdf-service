@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     ca-certificates \
     ttf-liberation \
     nodejs \
-    yarn
+    npm
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
@@ -17,11 +17,11 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     XDG_CACHE_HOME=/tmp/.cache
 
 WORKDIR /app
-COPY package.json ./package.json
-COPY yarn.lock ./yarn.lock
+COPY package.json .
+COPY package-lock.json .
 
 FROM base AS production
-RUN yarn install --production --ignore-scripts --frozen-lockfile
+RUN npm ci --production --ignore-scripts
 
 # Patch Vulnerabilities
 RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libexpat libsodium libssl3 libtasn1 libwebp libxml2 mbedtls minizip musl musl-utils sqlite-libs tiff xz-libs
@@ -33,13 +33,11 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /home/node \
     && chown -R node:node /app
 
-RUN rm -rf /usr/local/share/.cache/yarn
-
 USER node
 CMD [ "node", "src/server.js" ]
 
 FROM base AS test
-RUN yarn install --ignore-scripts --frozen-lockfile
+RUN npm ci --ignore-scripts
 
 RUN apk add graphicsmagick ghostscript
 
@@ -54,4 +52,4 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /app
 
 USER node
-ENTRYPOINT [ "yarn" ]
+ENTRYPOINT [ "npm", "run" ]
