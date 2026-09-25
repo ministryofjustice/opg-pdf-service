@@ -1,18 +1,198 @@
 version: v1.25.1
 ignore:
-  SNYK-JS-YARN-12143051:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
-  SNYK-JS-JSYAML-18593780:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
-  SNYK-JS-EXTRACTZIP-17660777:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-06-30T09:33:00.000Z
+    SNYK-JS-HTTPCACHESEMANTICS-19964064:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-HTTPCACHESEMANTICS-19964068:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-EXTRACTZIP-17660777:
+      - 'puppeteer@22.15.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-EXTRACTZIP-1965364:
+      - 'puppeteer@22.15.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-JSYAML-19496768:
+      - 'puppeteer@22.15.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-EXTRACTZIP-19653641:
+      - 'puppeteer@22.15.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635206:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635208:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635210:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635216:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635222:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635226:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-BRACEEXPANSION-15789759:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 2.0.3, 3.0.2, 5.0.5
+    SNYK-JS-BRACEEXPANSION-16755174:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-BRACEEXPANSION-17706650:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 2.1.2, 5.0.7
+    SNYK-JS-BRACEEXPANSION-18313044:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 2.1.2, 5.0.8
+    SNYK-JS-BRACEEXPANSION-18512280:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 2.1.4, 3.0.6, 5.0.9
+    SNYK-JS-IPADDRESS-16636412:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-IPADDRESS-18516623:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-PACOTE-8225084:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-PICOMATCH-15765511:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 3.0.2, 4.0.4
+    SNYK-JS-PICOMATCH-15765513:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-POSTCSSSELECTORPARSER-16873882:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 7.1.2
+    SNYK-JS-SIGSTORE-17817054:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-SIGSTORECORE-17817061:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-SIGSTOREVERIFY-17817052:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-SIGSTOREVERIFY-17817056:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-TAR-17342362:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-TAR-17909068:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-TAR-17909104:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-TAR-17909152:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-TAR-17909225:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-TAR-18319500:
+      - 'npm@11.12.1':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-QS-19432017:
+      - 'body-parser@2.3.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-QS-19432019:
+      - 'body-parser@2.3.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z
+    SNYK-JS-UNDICI-19635212:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 7.29.1, 8.10.2
+    SNYK-JS-UNDICI-19635214:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 8.10.2
+    SNYK-JS-UNDICI-19635218:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 8.10.2
+    SNYK-JS-UNDICI-19635220:
+      - 'cheerio@1.2.0':
+          reason: Temporary ignore to allow preceding upgrades
+          expires: 2026-10-02T08:00:00.000Z
+          created: 2026-09-25T15:00:00.000Z, 8.10.2
 patch: {}
