@@ -1,6 +1,7 @@
-FROM alpine:3.24@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b AS base
+FROM alpine:3.24@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6 AS base
 
-RUN apk add --no-cache \
+RUN apk update && \
+  apk add --no-cache \
     chromium \
     curl \
     nss \
@@ -8,8 +9,8 @@ RUN apk add --no-cache \
     harfbuzz \
     ca-certificates \
     ttf-liberation \
-    nodejs \
-    yarn
+    nodejs
+RUN apk add --update --no-cache npm
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
@@ -17,11 +18,11 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     XDG_CACHE_HOME=/tmp/.cache
 
 WORKDIR /app
-COPY package.json ./package.json
-COPY yarn.lock ./yarn.lock
+COPY package.json .
+COPY package-lock.json .
 
 FROM base AS production
-RUN yarn install --production --ignore-scripts --frozen-lockfile
+RUN npm ci --production --ignore-scripts
 
 # Patch Vulnerabilities
 RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3 libexpat libsodium libssl3 libtasn1 libwebp libxml2 mbedtls minizip musl musl-utils sqlite-libs tiff xz-libs
@@ -33,13 +34,11 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /home/node \
     && chown -R node:node /app
 
-RUN rm -rf /usr/local/share/.cache/yarn
-
 USER node
 CMD [ "node", "src/server.js" ]
 
 FROM base AS test
-RUN yarn install --ignore-scripts --frozen-lockfile
+RUN npm ci --ignore-scripts
 
 RUN apk add graphicsmagick ghostscript
 
@@ -54,4 +53,4 @@ RUN addgroup -S node && adduser -S -g node node \
     && chown -R node:node /app
 
 USER node
-ENTRYPOINT [ "yarn" ]
+ENTRYPOINT [ "npm", "run" ]
