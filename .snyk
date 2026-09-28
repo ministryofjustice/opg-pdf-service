@@ -1,18 +1,63 @@
 version: v1.25.1
 ignore:
   SNYK-JS-YARN-12143051:
-    - '*':
+    - 'yarn@1.22.22':
         reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
   SNYK-JS-JSYAML-18593780:
-    - '*':
+    - 'puppeteer@22.15.0':
         reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-JSYAML-19496768:
+    - 'puppeteer@22.15.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
   SNYK-JS-EXTRACTZIP-17660777:
-    - '*':
+    - 'puppeteer@22.15.0':
         reason: Known issue in PDF Service Container
-        expires: 2026-08-31T08:00:00.000Z
-        created: 2026-06-30T09:33:00.000Z
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-EXTRACTZIP-19653641:
+    - 'puppeteer@22.15.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635206:
+    - 'cheerio@1.2.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635208:
+    - 'cheerio@1.2.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635210:
+    - 'cheerio@1.2.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635216:
+    - 'cheerio@1.2.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635218:
+    - 'cheerio@1.2.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635222
+    - 'cheerio@1.2.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635226
+    - 'cheerio@1.2.0':
+        reason: Known issue in PDF Service Container
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
 patch: {}
