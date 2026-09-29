@@ -1,16 +1,8 @@
-FROM alpine:3.24@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6 AS base
+FROM node:24-alpine AS base
 
-RUN apk update && \
-  apk add --no-cache \
-    chromium \
-    curl \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-liberation \
-    nodejs
-RUN apk add --update --no-cache npm
+RUN apk update && apk add --no-cache chromium
+
+RUN npm install -g npm@12.1.0
 
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
@@ -29,11 +21,6 @@ RUN apk upgrade --no-cache busybox cups-libs curl ffmpeg-libs libcurl libcrypto3
 
 COPY src src
 
-RUN addgroup -S node && adduser -S -g node node \
-    && mkdir -p /home/node/Downloads /app \
-    && chown -R node:node /home/node \
-    && chown -R node:node /app
-
 USER node
 CMD [ "node", "src/server.js" ]
 
@@ -46,11 +33,6 @@ COPY src src
 COPY babel.config.cjs babel.config.cjs
 COPY eslint.config.js eslint.config.js
 COPY .prettierrc .prettierrc
-
-RUN addgroup -S node && adduser -S -g node node \
-    && mkdir -p /home/node/Downloads /app \
-    && chown -R node:node /home/node \
-    && chown -R node:node /app
 
 USER node
 ENTRYPOINT [ "npm", "run" ]
