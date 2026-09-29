@@ -190,6 +190,21 @@ ignore:
         reason: "Known issue in PDF Service Container"
         expires: 2026-10-12T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-BRACEEXPANSION-20244948:
+      - 'npm@11.12.1':
+          reason: "Known issue in PDF Service Container"
+          expires: 2026-10-12T08:00:00.000Z
+          created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-BRACEEXPANSION-20244950:
+      - 'npm@11.12.1':
+          reason: "Known issue in PDF Service Container"
+          expires: 2026-10-12T08:00:00.000Z
+          created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-BRACEEXPANSION-20244952:
+      - 'npm@11.12.1':
+          reason: "Known issue in PDF Service Container"
+          expires: 2026-10-12T08:00:00.000Z
+          created: 2026-09-28T09:00:00.000Z
   snyk:lic:npm:npm:Artistic-2.0:
     - '*' :
         reason: Known issue in PDF Service Container"
