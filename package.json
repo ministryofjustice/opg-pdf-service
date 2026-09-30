@@ -22,7 +22,7 @@
     "esm": "^3.2.25",
     "pino-http": "^11.0.0",
     "polka": "^0.5.2",
-    "puppeteer": "^23.11.1"
+    "puppeteer": "^24.43.1"
   },
   "devDependencies": {
     "@babel/preset-env": "8.0.6",

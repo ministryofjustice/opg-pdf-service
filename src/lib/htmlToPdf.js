@@ -69,7 +69,8 @@ export const htmlToPdf = async (html, options) => {
         right: options.marginRight,
         left: options.marginLeft,
       },
-      format: 'A4',
+      width: '210mm',
+      height: '297.2mm',
     });
   } finally {
     await context.close();
