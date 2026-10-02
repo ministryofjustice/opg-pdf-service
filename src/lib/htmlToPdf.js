@@ -72,6 +72,10 @@ export const htmlToPdf = async (html, options) => {
       width: '210mm',
       height: '297.2mm',
     });
+  } catch (err) {
+    console.error(`Error generating PDF (${options.subject}): ${err}`);
+
+    throw err;
   } finally {
     await context.close();
   }
