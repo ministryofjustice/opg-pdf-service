@@ -1,13 +1,78 @@
 version: v1.25.1
 ignore:
-  SNYK-JS-YARN-12143051:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-07-30T08:00:00.000Z
-        created: 2026-03-26T15:33:00.000Z
   SNYK-JS-EXTRACTZIP-17660777:
-    - '*':
-        reason: Known issue in PDF Service Container
-        expires: 2026-07-30T08:00:00.000Z
-        created: 2026-06-30T09:33:00.000Z
+    - 'puppeteer@22.15.0':
+        reason: "Known issue in Puppeteer 22.15.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-EXTRACTZIP-19653641:
+    - 'puppeteer@22.15.0':
+        reason: "Known issue in Puppeteer 22.15.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-BRACEEXPANSION-20244948:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-BRACEEXPANSION-20244950:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-BRACEEXPANSION-20244952:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-HTTPCACHESEMANTICS-19964064:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-HTTPCACHESEMANTICS-19964068:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-IPADDRESS-20250962:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-IPADDRESS-20250964:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-IPADDRESS-20250983:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-IPADDRESS-20250985:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635210:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635212:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  SNYK-JS-UNDICI-19635226:
+    - 'npm@12.1.0':
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
+  snyk:lic:npm:npm:Artistic-2.0:
+    - '*' :
+        reason: "Known issue in NPM 12.1.0"
+        expires: 2026-10-12T08:00:00.000Z
+        created: 2026-09-28T09:00:00.000Z
 patch: {}

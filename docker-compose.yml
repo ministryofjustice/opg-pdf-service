@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: production
+    privileged: false
+    user: node
     ports:
       - 3004:8000
     environment:
@@ -18,16 +20,17 @@ services:
       context: .
       dockerfile: Dockerfile
       target: test
+    privileged: false
+    user: node
     depends_on:
       - pdf-service-test-static-server
     working_dir: /app
     volumes:
       - "./coverage:/app/coverage"
       - "./test-results:/app/test-results"
-      - "~/.yarn-cache/v6/pdf-service:/usr/local/share/.cache/yarn/v6"
 
   pdf-service-test-static-server:
     container_name: static-server
-    image: docker.io/nginx:latest@sha256:608a100c71651bf5b773c89083b4a1ad7ef4b2bd05d7a7e552271e03123692ad
+    image: docker.io/nginx:latest@sha256:5a88c9c45479443d7be2eadc894b4ed0a9801bae03d97a5760ae13b5c2005942
     volumes:
       - "./src/baseline/remote_image.jpg:/usr/share/nginx/html/remote_image.jpg"
