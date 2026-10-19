@@ -1,77 +1,57 @@
 version: v1.25.1
 ignore:
-  SNYK-JS-EXTRACTZIP-17660777:
-    - 'puppeteer@22.15.0':
-        reason: "Known issue in Puppeteer 22.15.0"
-        expires: 2026-11-02T08:00:00.000Z
-        created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-EXTRACTZIP-19653641:
-    - 'puppeteer@22.15.0':
-        reason: "Known issue in Puppeteer 22.15.0"
-        expires: 2026-11-02T08:00:00.000Z
-        created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-BRACEEXPANSION-20244948:
+  SNYK-JS-QS-20943482:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-BRACEEXPANSION-20244950:
+  SNYK-JS-UNDICI-21181005:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-BRACEEXPANSION-20244952:
+  SNYK-JS-UNDICI-21181009:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-HTTPCACHESEMANTICS-19964064:
+  SNYK-JS-UNDICI-21181011:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-HTTPCACHESEMANTICS-19964068:
+  SNYK-JS-UNDICI-21181013:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-IPADDRESS-20250962:
+  SNYK-JS-UNDICI-21181015:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-IPADDRESS-20250964:
+  SNYK-JS-UNDICI-21181017:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-IPADDRESS-20250983:
+  SNYK-JS-UNDICI-21181019:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-IPADDRESS-20250985:
+  SNYK-JS-UNDICI-21185768:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-UNDICI-19635210:
+  SNYK-JS-IPADDRESS-21185770:
     - 'npm@12.1.0':
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-UNDICI-19635212:
+  SNYK-JS-POSTCSSSELECTORPARSER-20510276:
     - 'npm@12.1.0':
-        reason: "Known issue in NPM 12.1.0"
-        expires: 2026-11-02T08:00:00.000Z
-        created: 2026-09-28T09:00:00.000Z
-  SNYK-JS-UNDICI-19635226:
-    - 'npm@12.1.0':
-        reason: "Known issue in NPM 12.1.0"
-        expires: 2026-11-02T08:00:00.000Z
-        created: 2026-09-28T09:00:00.000Z
-  snyk:lic:npm:npm:Artistic-2.0:
-    - '*' :
         reason: "Known issue in NPM 12.1.0"
         expires: 2026-11-02T08:00:00.000Z
         created: 2026-09-28T09:00:00.000Z
