@@ -37,8 +37,13 @@
     "prettier": "3.9.8",
     "supertest": "7.2.2"
   },
-  "resolutions": {
-    "braces": "3.0.3"
+  "overrides": {
+    "body-parser": {
+      "qs": "^6.16.1",
+      "cheerio": {
+        "undici": "^7.30.1"
+      }
+    }
   },
   "jest-junit": {
     "outputDirectory": "./test-results/junit",
